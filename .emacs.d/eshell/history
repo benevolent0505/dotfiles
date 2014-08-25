@@ -1,0 +1,31 @@
+ls
+cd .emacs
+cd .emacs.d
+ls
+ll
+la
+cd elisp/
+ls
+rm
+rm inf-ruby.el
+rm -rf inf*
+ls
+rm *robe
+ls
+rm -rf rove
+rm -rf robe
+ls
+rm ac-robe.el 
+ls
+rm robe.el 
+ls
+exit
+ls
+cd .emacs.d/
+ls
+cd elisp/
+ls
+wget http://repo.or.cz/w/emacs.git/blob_plain/HEAD:/lisp/emacs-lisp/package.el
+get
+ls
+(progn  (switch-to-buffer   (url-retrieve-synchronously    "https://raw.github.com/milkypostman/melpa/master/melpa.el"))  (package-install-from-buffer  (package-buffer-info) 'single))
