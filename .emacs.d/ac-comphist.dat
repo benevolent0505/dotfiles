@@ -1,4 +1,114 @@
-((("PATH" .
+((("howm-save-buffer-and-kill" .
+   [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0])
+  ("howm-mode-map" .
+   [0 0 0 0 0 0 0 0 0 0 0 0 1])
+  ("kill-buffer" .
+   [0 0 0 0 0 0 0 0 0 0 1])
+  ("save-buffer" .
+   [0 0 0 0 0 0 0 1 0 0 0])
+  ("buffer-saved-size" .
+   [0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0])
+  ("string-match" .
+   [0 0 0 0 0 0 0 0 0 0 0 1])
+  ("buffer-file-name" .
+   [0 0 0 0 0 0 0 0 0 1 0 1 0 0 0 0])
+  ("bufferp" .
+   [0 0 0 0 0 0 1])
+  ("interactive" .
+   [0 0 0 0 0 1 0 0 0 0 0])
+  ("howm-save-" .
+   [0 0 0 0 0 0 0 0 0 1])
+  ("global-undo-tree-mode" .
+   [0 0 0 0 0 0 0 0 0 0 1 0 0 1 0 1 0 0 0 0 0])
+  ("undo-tree" .
+   [0 0 0 0 0 0 0 0 1])
+  ("unrmail" .
+   [0 0 0 1 0 0 0])
+  ("run-ruby" .
+   [0 0 0 0 0 0 1 0])
+  ("descbinds-anything" .
+   [0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0])
+  ("auto-install" .
+   [0 0 0 0 0 0 0 1 0 0 0 0])
+  ("anything-shortcut-keys" .
+   [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0])
+  ("anything-migrate-sources" .
+   [0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0])
+  ("executable-find" .
+   [0 0 0 0 0 0 0 0 0 0 0 0 0 1 0])
+  ("and" .
+   [2 0 0])
+  ("anything-match-plugin" .
+   [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0])
+  ("anything-source" .
+   [0 0 0 0 0 0 0 0 0 0 0 1 0 0 0])
+  ("anything-config.el" .
+   [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0])
+  ("alphabet" .
+   [0 0 0 1 0 0 0 0])
+  ("anything-enable-shortcuts" .
+   [0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0])
+  ("anything-quick-update" .
+   [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1])
+  ("100" .
+   [1 0 0])
+  ("anything-candidate-number-limit" .
+   [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0])
+  ("anything-candidate-number" .
+   [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1])
+  ("0.2" .
+   [1 0 0])
+  ("anything-input-idle-delay" .
+   [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0])
+  ("anything-input" .
+   [0 0 0 0 0 0 0 0 0 0 0 0 0 1])
+  ("0.3" .
+   [2 0 0])
+  ("anything-idle-delay" .
+   [0 0 0 0 0 0 0 0 0 0 0 3 0 0 0 0 0 0 0])
+  ("anything" .
+   [1 0 0 6 0 0 0 5])
+  ("server-mode" .
+   [0 0 0 0 1 0 0 0 0 0 0])
+  ("turn-on-eldoc-mode" .
+   [0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0])
+  ("eldoc" .
+   [0 0 0 1 2])
+  ("when" .
+   [10 0 0 3])
+  ("lambda" .
+   [0 0 0 1 0 0])
+  ("emacs-lisp-mode" .
+   [0 0 0 0 0 0 0 1 0 0 0 0 0 0 0])
+  ("add-hook" .
+   [0 0 0 0 0 1 0 1])
+  ("add-" .
+   [0 0 0 1])
+  ("expand-file-name" .
+   [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1])
+  ("auto-save-file-name-transforms" .
+   [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0])
+  ("auto-save" .
+   [0 0 0 0 0 0 0 1 0])
+  ("cons" .
+   [1 0 0 0])
+  ("backup-directory-alist" .
+   [0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0])
+  ("add-to-list" .
+   [0 0 0 0 0 0 1 0 0 0 0])
+  ("display-time-day-and-date" .
+   [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0])
+  ("setq" .
+   [5 0 0 9])
+  ("display-time-mode" .
+   [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1])
+  ("display-time" .
+   [0 0 0 0 0 0 1 0 0 0 0 1])
+  ("t" .
+   [1])
+  ("column-number-mode" .
+   [0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0])
+  ("PATH" .
    [1 0 0 0])
   ("start_with?" .
    [1 0 0 0 0 0 0 0 0 0 0])
@@ -67,7 +177,7 @@
   ("block" .
    [0 0 0 3 0])
   ("display" .
-   [0 0 0 1 0 0 0])
+   [0 0 0 1 0 0 2])
   ("right" .
    [0 0 2 1 0])
   ("source" .
@@ -77,7 +187,7 @@
   ("gem" .
    [4 0 0])
   ("require" .
-   [0 0 1 3 2 0 2])
+   [0 0 1 8 2 0 12])
   ("redis" .
    [5 0 0 0 2])
   ("Redis" .
@@ -129,7 +239,7 @@
   ("Nokogiri::HTML" .
    [2 0 0 0 0 0 0 0 0 0 0 0 0 0])
   ("nil" .
-   [1 0 0])
+   [13 0 0])
   ("doc" .
    [3 0 0])
   ("http" .
@@ -215,4 +325,52 @@
   ("connections" .
    [1 0 0 0 0 0 0 0 0 0 0])
   ("false" .
-   [1 0 0 0 0])))
+   [1 0 0 0 0])
+  ("emacs-lisp-mode-hook" .
+   [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0])
+  ("autoload" .
+   [0 0 0 0 0 0 0 2])
+  ("inf-ruby" .
+   [0 0 0 0 0 0 0 1])
+  ("defun" .
+   [0 0 0 0 2])
+  ("inf-ruby-keys" .
+   [0 0 0 0 0 0 0 0 0 0 0 0 1])
+  ("ruby-electric-mode" .
+   [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1])
+  ("ruby-block-mode" .
+   [0 0 0 0 0 0 0 0 0 0 0 0 0 0 1])
+  ("ruby-mode-map" .
+   [0 0 0 0 0 0 0 0 0 0 0 0 1])
+  ("ruby-mode-hook" .
+   [0 0 0 0 0 0 0 0 0 0 0 0 0 1])
+  ("ruby-mode.el" .
+   [0 0 0 0 0 0 0 0 0 0 0 1])
+  ("ruby-mode-hooks" .
+   [0 0 0 0 0 0 0 0 0 0 0 1 0 0 0])
+  ("defun-prefix-alt" .
+   [0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0])
+  ("defimage" .
+   [0 0 0 0 0 0 0 1])
+  ("define-key" .
+   [0 0 0 0 0 0 0 0 0 3])
+  ("global-map" .
+   [0 0 0 0 0 0 0 0 0 2])
+  ("kbd" .
+   [4 0 0])
+  ("anything-show-kill-ring" .
+   [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0])
+  ("anything-c-moccur" .
+   [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 3])
+  ("0.10" .
+   [0 0 0 1])
+  ("anything-c-moccur-enable-auto-look-flag" .
+   [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0])
+  ("global-set-key" .
+   [0 0 0 0 0 0 0 0 0 0 0 0 0 1])
+  ("concat" .
+   [0 0 0 0 0 1])
+  ("user-emacs-directory" .
+   [0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0])
+  ("howm-mode" .
+   [1 0 0 0 0 0 0 0 0])))

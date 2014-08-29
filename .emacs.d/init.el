@@ -62,7 +62,7 @@
 (tool-bar-mode -1)
 
 ;; メニューバーを非表示
-;;(menu-bar-mode -1)
+;; (menu-bar-mode -1)
 
 ;; スクロールバー非表示
 (set-scroll-bar-mode nil)
@@ -78,7 +78,7 @@
                     :height 0.9)
 
 ;; 行番号フォーマット
-;;(setq linum-format "%4d")
+;; (setq linum-format "%4d")
 
 ;; 括弧の範囲内を強調表示
 (show-paren-mode t)
@@ -105,7 +105,7 @@
 (fset 'yes-or-no-p 'y-or-n-p)
 
 ;; バックアップを残さない
-(setq make-backup-files nil)
+;; (setq make-backup-files nil)
 
 ;; 行間
 (setq-default line-spacing 0)
@@ -119,15 +119,160 @@
 ;; フレームの透明度
 (set-frame-parameter (selected-frame) 'alpha '(0.85))
 
-;; ------------------------------------------------------------------------
-;; @ auto-install.el
+;; C-mにnewline-and-indentを割り当てる。初期値はnewline
+(define-key global-map (kbd "C-m") 'newline-and-indent)
 
-;; パッケージのインストールを自動化
-;; http://www.emacswiki.org/emacs/auto-install.el
-(when (require 'auto-install nil t)
-  (setq auto-install-directory "~/.emacs.d/elisp/")
-  (auto-install-update-emacswiki-package-name t)
-  (auto-install-compatibility-setup))
+;; "C-t" でウィンドウを切り替える。初期値はtranspose-chars
+(define-key global-map (kbd "C-t") 'other-window)
+
+;; カラム番号を表示
+(column-number-mode t)
+
+;; 時計を表示
+(setq display-time-day-and-date t)
+;; (setq display-time-24hr-format t)
+(display-time-mode t)
+
+;; バッテリー残量を表示(marvericksだとpatchを当てないと表示されない)
+;; (display-battery-mode t)
+
+;; バックアップとオートセーブファイルを~/.emacs.d/backups/へ集める
+(add-to-list 'backup-directory-alist
+             (cons "." "~/.emacs.d/backups/"))
+(setq auto-save-file-name-transforms
+      `((".*" ,(expand-file-name "~/.emacs.d/backups/") t)))
+
+;; emacs-lisp-modeのフックをセット
+(add-hook 'emacs-lisp-mode-hook
+          '(lambda ()
+             (when (require 'eldoc nil t)
+               (setq eldoc-idle-delay 0.2)
+               (setq eldoc-echo-area-use-multiline-p t)
+               (turn-on-eldoc-mode))))
+
+;; ruby-mode-hook用の関数を定義
+(defun ruby-mode-hooks ()
+  (inf-ruby-keys)
+  (ruby-electric-mode t)
+  (ruby-block-mode t))
+;; ruby-mode-hookに追加
+(add-hook 'ruby-mode-hook 'ruby-mode-hooks)
+
+;; ------------------------------------------------------------------------
+;; @ howm
+
+;; howm
+;; http://howm.sourceforge.jp/index.html
+;; howmメモ保存の場所
+(setq hown-directory (concat user-emacs-directory "howm"))
+;; howm-menuの言語を日本語に
+(setq howm-menu-lang 'ja)
+;; howm-modeを読み込む
+(when (require 'howm-mode nil t)
+  (define-key global-map (kbd "C-c ,,") 'howm-menu))
+;; howmメモを保存と同時に閉じる
+(defun howm-save-buffer-and-kill ()
+  (interactive)
+  (when (and (buffer-file-name)
+             (string-match "\\.howm" (buffer-file-name)))
+    (save-buffer)
+    (kill-buffer nil)))
+
+;; C-c C-cでメモの保存と同時にバッファを閉じる
+(define-key howm-mode-map (kbd "C-c C-c") 'howm-save-buffer-and-kill)
+;; ------------------------------------------------------------------------
+;; @ undo-tree.el
+
+;; undo-tree
+;; http://melpa.milkbox.net/#/undo-tree
+(when (require 'undo-tree nil t)
+  (global-undo-tree-mode))
+
+;; ------------------------------------------------------------------------
+;; @ undohist.el
+
+;; undohist
+;; https://github.com/m2ym/undohist-el
+(when (require 'undohist nil t)
+  (undohist-initialize))
+
+;; ------------------------------------------------------------------------
+;; @ wgrep.el
+
+;; wgrep
+;; https://github.com/mhayashi1120/Emacs-wgrep
+(require 'wgrep nil t)
+
+;; ------------------------------------------------------------------------
+;; @ color-moccur.el
+
+;; multi-buffer occur (grep) mode
+;; http://www.emacswiki.org/emacs/color-moccur.el
+(when (require 'color-moccur nil t)
+  (define-key global-map (kbd "M-o") 'occur-by-moccur)
+  (setq moccur-split-word t)
+  (add-to-list 'dmoccur-exclusion-mask "\\.DS_Store")
+  (add-to-list 'dmoccur-exclusion-mask "^#.+#$")
+  (when (and (executable-find "cmigemo")
+             (require 'migemo nil t))
+    (setq moccur-use-migemo t)))
+
+;; ------------------------------------------------------------------------
+;; @ moccur-edit.el
+
+;; apply replaces to multiple files
+;; http://www.emacswiki.org/emacs/moccur-edit.el
+(require 'moccur-edit nil t)
+
+;; moccur-edit-finish-editと同時にファイルを保存する
+(defadvice moccur-edit-change-file
+  (after save-after-moccur-edit-buffer activate)
+  (save-buffer))
+
+;; ------------------------------------------------------------------------
+;; @ anything.el
+
+;; anything
+;; http://www.emacswiki.org/emacs/anything.el
+(when (require 'anything nil t)
+  (setq
+   anything-idle-delay 0.3
+   anything-input-idle-delay 0.2
+   anything-candidate-number-limit 100
+   anything-quick-update t
+   anything-enable-shortcuts 'alphabet)
+
+  (when (require 'anything-config nil t)
+    (setq anything-su-or-sudo "sudo"))
+
+  (require 'anything-match-plugin nil t)
+
+  (when (and (executable-find "cmigemo")
+             (require 'migemo nil t))
+    (require 'anything-migemo nil t))
+
+  (when (require 'anything-complete nil t)
+    (anything-lisp-complete-symbol-set-timer 150))
+
+  (require 'anything-show-completion nil t)
+
+  (when (require 'auto-install nil t)
+    (require 'anything-auto-install nil t))
+
+  (when (require 'descbinds-anything nil t)
+    (descbinds-anything-install)))
+
+;; M-yにanything-show-kill-ringを割り当てる
+(define-key global-map (kbd "M-y") 'anything-show-kill-ring)
+
+;; 要anything-moccur.el
+(when (require 'anything-c-moccur nil t)
+  (setq
+   anything-c-moccur-anything-idle-delay 0.1
+   lanything-c-moccur-highlight-info-line-flag t
+   anything-c-moccur-enable-auto-look-flag t
+   anything-c-moccur-enable-initial-pattern t)
+  (global-set-key (kbd "C-M-o") 'anything-c-moccur-occur-by-moccur))
 
 ;; ------------------------------------------------------------------------
 ;; @ auto-complete.el
@@ -146,60 +291,7 @@
 ;; http://code.google.com/p/gnuemacscolorthemetest/
 (when (and (require 'color-theme nil t) (window-system))
   (color-theme-initialize)
-  (color-theme-matrix))
-
-;; ------------------------------------------------------------------------
-;; @ tabbar.el
-
-;; タブ化
-;; http://www.emacswiki.org/emacs/tabbar.el
-;;(require 'cl)
-(require 'tabbar nil t)
-
-;; scratch buffer以外をまとめてタブに表示する
-(setq tabbar-buffer-groups-function
-      (lambda (b) (list "All Buffers")))
-(setq tabbar-buffer-list-function
-      (lambda ()
-        (remove-if
-         (lambda(buffer)
-           (unless (string-match (buffer-name buffer)
-                                 "\\(*scratch*\\|*Apropos*\\|*shell*\\|*eshell*\\|*Customize*\\)")
-             (find (aref (buffer-name buffer) 0) " *"))
-           )
-         (buffer-list))))
-
-;; tabbarを有効にする
-(tabbar-mode 1)
-
-;; ボタンをシンプルにする
-(setq tabbar-home-button-enabled "")
-(setq tabbar-scroll-right-button-enabled "")
-(setq tabbar-scroll-left-button-enabled "")
-(setq tabbar-scroll-right-button-disabled "")
-(setq tabbar-scroll-left-button-disabled "")
-
-;; Ctrl-Tab, Ctrl-Shift-Tab でタブを切り替える
-(dolist (func '(tabbar-mode tabbar-forward-tab tabbar-forward-group tabbar-backward-tab tabbar-backward-group))
-  (autoload func "tabbar" "Tabs at the top of buffers and easy control-tab navigation"))
-(defmacro defun-prefix-alt (name on-no-prefix on-prefix &optional do-always)
-  `(defun ,name (arg)
-     (interactive "P")
-     ,do-always
-     (if (equal nil arg)
-         ,on-no-prefix
-       ,on-prefix)))
-(defun-prefix-alt shk-tabbar-next (tabbar-forward-tab) (tabbar-forward-group) (tabbar-mode 1))
-(defun-prefix-alt shk-tabbar-prev (tabbar-backward-tab) (tabbar-backward-group) (tabbar-mode 1))
-(global-set-key [(control tab)] 'shk-tabbar-next)
-(global-set-key [(control shift tab)] 'shk-tabbar-prev)
-
-;; GUIで直接ファイルを開いた場合フレームを作成しない
-(add-hook 'before-make-frame-hook
-          (lambda ()
-            (when (eq tabbar-mode t)
-              (switch-to-buffer (buffer-name))
-              (delete-this-frame))))
+  (color-theme-clarity))
 
 ;; ------------------------------------------------------------------------
 ;; @  dired.el
@@ -235,6 +327,24 @@
 (setq ruby-electric-expand-delimiters-list nil)
 
 ;; ------------------------------------------------------------------------
+;; @  ruby-block.el
+
+;; rubyのendに対応する行をハイライト
+;; http://www.emacswiki.org/emacs/ruby-block.el
+(when (require 'ruby-block nil t)
+  (setq ruby-block-highlight-toggle t))
+
+;; ------------------------------------------------------------------------
+;; @  inf-ruby.el
+
+;; inf-ruby provides a REPL buffer connected to a Ruby subprocess
+;; https://github.com/nonsequitur/inf-ruby/blob/master/inf-ruby.el
+(autoload 'run-ruby "inf-ruby"
+  "Run an inferior Ruby process")
+(autoload 'inf-ruby-keys "inf-ruby"
+  "Set local key defs for inf-ruby in ruby-mode")
+
+;; ------------------------------------------------------------------------
 ;; @  package.el
 (package-initialize)
 (require 'package)
@@ -264,3 +374,13 @@
   (setq web-mode-java-offset   2)
   (setq web-mode-asp-offset    2))
 (add-hook 'web-mode-hook 'web-mode-hook)
+
+;; ------------------------------------------------------------------------
+;; @ auto-install.el
+
+;; パッケージのインストールを自動化
+;; http://www.emacswiki.org/emacs/auto-install.el
+(when (require 'auto-install nil t)
+  (setq auto-install-directory "~/.emacs.d/elisp/")
+  (auto-install-update-emacswiki-package-name t)
+  (auto-install-compatibility-setup))
