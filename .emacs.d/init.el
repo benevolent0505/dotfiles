@@ -158,6 +158,43 @@
 ;; ruby-mode-hookに追加
 (add-hook 'ruby-mode-hook 'ruby-mode-hooks)
 
+;; Emacs24以降標準のColor themeを使う
+(load-theme 'deeper-blue t)
+
+;; ------------------------------------------------------------------------
+;; @ egg.el
+
+;; Emacs DE Git
+;; https://github.com/byplayer/egg
+(when (executable-find "git")
+  (require 'egg nil t))
+
+;; ------------------------------------------------------------------------
+;; @ rhtml.el
+
+;; rhtml
+;; https://github.com/eschulte/rhtml
+(when (require 'rhtml-mode nil t)
+  (add-to-list 'auto-mode-alist '("\\.rhtml\\'" .rhtml-mode)))
+
+;; ------------------------------------------------------------------------
+;; @ groovy-mode.el
+
+;; Groovy mode
+;; https://github.com/russel/Emacs-Groovy-Mode
+(add-to-list 'load-path "~/.emacs.d/emacs-groovy-mode")
+(autoload 'groovy-mode "groovy-mode" "Major mode for editing Groovy code." t)
+(add-to-list 'auto-mode-alist '("\.groovy$" . groovy-mode))
+(add-to-list 'interpreter-mode-alist '("grooy" . groovy-mode))
+
+;; ------------------------------------------------------------------------
+;; @ multi-term.el
+
+;; multi-term
+;; http://www.emacswiki.org/emacs/MultiTerm
+;; (require 'multi-term)
+;; (setq multi-term-program "/bin/bash")
+
 ;; ------------------------------------------------------------------------
 ;; @ howm
 
@@ -283,15 +320,6 @@
   (add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
   (setq ac-ignore-case t)
   (ac-config-default))
-
-;; ------------------------------------------------------------------------
-;; @  color-theme.el
-
-;; Emacsのカラーテーマ
-;; http://code.google.com/p/gnuemacscolorthemetest/
-(when (and (require 'color-theme nil t) (window-system))
-  (color-theme-initialize)
-  (color-theme-clarity))
 
 ;; ------------------------------------------------------------------------
 ;; @  dired.el

@@ -5,7 +5,7 @@
 
 ;;;### (autoloads (multi-term-dedicated-select multi-term-dedicated-toggle
 ;;;;;;  multi-term-dedicated-open multi-term-prev multi-term-next
-;;;;;;  multi-term) "multi-term" "multi-term.el" (21501 30811 0 0))
+;;;;;;  multi-term) "multi-term" "multi-term.el" (21505 14657 0 0))
 ;;; Generated autoloads from multi-term.el
 
 (autoload 'multi-term "multi-term" "\
@@ -44,7 +44,7 @@ Select the `multi-term' dedicated window.
 
 ;;;***
 
-;;;### (autoloads nil nil ("multi-term-pkg.el") (21501 30811 784375
+;;;### (autoloads nil nil ("multi-term-pkg.el") (21505 14657 514936
 ;;;;;;  0))
 
 ;;;***

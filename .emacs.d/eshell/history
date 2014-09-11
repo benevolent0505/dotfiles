@@ -1,22 +1,3 @@
-ll
-la
-cd elisp/
-ls
-rm
-rm inf-ruby.el
-rm -rf inf*
-ls
-rm *robe
-ls
-rm -rf rove
-rm -rf robe
-ls
-rm ac-robe.el 
-ls
-rm robe.el 
-ls
-exit
-ls
 cd .emacs.d/
 ls
 cd elisp/
@@ -126,3 +107,22 @@ ls
 ls
 ls
 exit
+ls
+cd develop/
+ls
+mkdir groovy
+cd groovy/
+ls
+mkdir game
+cd game/
+ls
+cd ..
+ls
+cd foo
+ls
+mkdir hoge
+ls
+cd hoge/
+ls
+ls
+groovy GroovyExample.groovy 
