@@ -162,6 +162,13 @@
 (load-theme 'deeper-blue t)
 
 ;; ------------------------------------------------------------------------
+;; @ twittering-mode
+
+;; Emacs DE Twitter
+;; https://github.com/hayamiz/twittering-mode/tree/master
+(require 'twittering-mode)
+
+;; ------------------------------------------------------------------------
 ;; @ egg.el
 
 ;; Emacs DE Git
