@@ -1,466 +1,466 @@
-((("twittering-icon-mode" .
-   [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0])
-  ("load-theme" .
-   [0 0 0 0 0 0 0 1 0 0])
-  ("email" .
-   [2 0 0 0 0])
-  (":email" .
-   [1 0 0 0 0 0])
-  ("have_title" .
-   [0 0 0 0 0 0 0 5 0 0])
-  ("s" .
-   [1])
-  ("have" .
-   [1 0 0 0])
-  ("have_content" .
-   [0 0 0 0 0 0 0 1 1 1 1 0])
-  ("should" .
-   [0 0 0 0 0 7])
-  ("short" .
-   [0 0 0 0 1])
-  ("it" .
-   [1 0])
-  ("full_title" .
-   [0 0 0 0 3 1 0 1 0 1])
-  ("else" .
-   [1 0 0 0])
-  ("empty" .
-   [0 0 0 0 1])
-  ("page_title" .
-   [0 0 0 0 0 2 0 0 0 0])
-  ("base_title" .
-   [0 0 0 0 3 1 0 0 0 0])
-  ("auto-mode-alist" .
-   [0 0 0 0 0 0 0 0 0 0 1 0 0 0 0])
-  ("rhtml" .
-   [0 0 0 1 0])
-  ("multi-term-program" .
-   [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1])
-  ("multi-term-pkg" .
-   [0 0 0 0 0 0 0 0 0 0 1 0 0 0])
-  ("howm-save-buffer-and-kill" .
-   [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0])
-  ("howm-mode-map" .
-   [0 0 0 0 0 0 0 0 0 0 0 0 1])
-  ("kill-buffer" .
-   [0 0 0 0 0 0 0 0 0 0 1])
-  ("save-buffer" .
-   [0 0 0 0 0 0 0 1 0 0 0])
-  ("buffer-saved-size" .
-   [0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0])
-  ("string-match" .
-   [0 0 0 0 0 0 0 0 0 0 0 1])
-  ("buffer-file-name" .
-   [0 0 0 0 0 0 0 0 0 1 0 1 0 0 0 0])
-  ("bufferp" .
-   [0 0 0 0 0 0 1])
-  ("interactive" .
-   [0 0 0 0 0 1 0 0 0 0 0])
-  ("howm-save-" .
-   [0 0 0 0 0 0 0 0 0 1])
-  ("global-undo-tree-mode" .
-   [0 0 0 0 0 0 0 0 0 0 1 0 0 1 0 1 0 0 0 0 0])
-  ("undo-tree" .
-   [0 0 0 0 0 0 0 0 1])
-  ("unrmail" .
+((("twittering-use-master-password" .
+   [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0])
+  ("destroy" .
    [0 0 0 1 0 0 0])
-  ("run-ruby" .
-   [0 0 0 0 0 0 1 0])
-  ("descbinds-anything" .
-   [0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0])
-  ("auto-install" .
-   [0 0 0 0 0 0 0 1 0 0 0 0])
-  ("anything-shortcut-keys" .
-   [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0])
-  ("anything-migrate-sources" .
-   [0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0])
-  ("executable-find" .
-   [0 0 0 1 0 0 0 0 0 0 0 0 0 1 0])
-  ("and" .
-   [2 0 0])
-  ("anything-match-plugin" .
-   [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0])
-  ("anything-source" .
-   [0 0 0 0 0 0 0 0 0 0 0 1 0 0 0])
-  ("anything-config.el" .
-   [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0])
-  ("alphabet" .
-   [0 0 0 1 0 0 0 0])
-  ("anything-enable-shortcuts" .
-   [0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0])
-  ("anything-quick-update" .
-   [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1])
-  ("100" .
-   [1 0 0])
-  ("anything-candidate-number-limit" .
-   [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0])
-  ("anything-candidate-number" .
-   [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1])
-  ("0.2" .
-   [1 0 0])
-  ("anything-input-idle-delay" .
-   [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0])
-  ("anything-input" .
-   [0 0 0 0 0 0 0 0 0 0 0 0 0 1])
-  ("0.3" .
-   [2 0 0])
-  ("anything-idle-delay" .
-   [0 0 0 0 0 0 0 0 0 0 0 3 0 0 0 0 0 0 0])
-  ("anything" .
-   [1 0 0 6 0 0 0 5])
-  ("server-mode" .
-   [0 0 0 0 1 0 0 0 0 0 0])
-  ("turn-on-eldoc-mode" .
-   [0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0])
-  ("eldoc" .
-   [0 0 0 1 2])
-  ("when" .
-   [12 0 0 4])
-  ("lambda" .
-   [0 0 0 1 0 0])
-  ("emacs-lisp-mode" .
-   [0 0 0 0 0 0 0 1 0 0 0 0 0 0 0])
-  ("add-hook" .
-   [0 0 0 0 0 1 0 1])
-  ("add-" .
-   [0 0 0 1])
-  ("expand-file-name" .
-   [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1])
-  ("auto-save-file-name-transforms" .
-   [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0])
-  ("auto-save" .
-   [0 0 0 0 0 0 0 1 0])
-  ("cons" .
-   [1 0 0 0])
-  ("backup-directory-alist" .
-   [0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0])
-  ("add-to-list" .
-   [0 0 0 0 0 0 1 0 0 0 1])
-  ("display-time-day-and-date" .
-   [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0])
-  ("setq" .
-   [6 0 1 11])
-  ("display-time-mode" .
-   [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1])
-  ("display-time" .
-   [0 0 0 0 0 0 1 0 0 0 0 1])
-  ("t" .
-   [2])
-  ("column-number-mode" .
-   [0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0])
-  ("PATH" .
-   [1 0 0 0])
-  ("start_with?" .
-   [1 0 0 0 0 0 0 0 0 0 0])
-  ("text" .
-   [3 0 0 0])
-  ("user" .
-   [3 0 0 0])
-  ("stream_client" .
-   [0 0 0 0 3 1 0 0 0 0 0 0 0])
-  ("update" .
-   [1 0 0 0 0 0])
-  ("item" .
-   [6 0 0 0])
-  ("puts" .
-   [1 0 0 0])
-  (":item" .
-   [2 0 0 0 0])
-  ("hmget" .
-   [1 0 0 0 0])
-  ("CCCCCC" .
-   [1 0 0 0 0 0])
-  ("222" .
-   [1 0 0])
-  ("0px" .
-   [1 0 0])
-  ("textarea" .
-   [0 0 0 0 1 0 0 0])
-  ("box-shadow" .
-   [0 0 0 2 0 0 0 0 0 0])
-  ("0" .
-   [1])
-  ("resize" .
-   [0 0 0 0 2 0])
-  ("000" .
-   [2 0 0])
-  ("10px" .
-   [3 0 0 0])
-  ("solid" .
-   [0 0 1 1 0])
-  ("teal" .
-   [1 0 0 0])
-  ("background-color" .
-   [0 0 0 1 0 0 0 1 0 0 0 0 0 0 0 0])
-  ("fuchsia" .
-   [1 0 0 0 0 0 0])
-  ("float" .
-   [0 0 0 0 1])
-  ("left" .
-   [1 0 2 0])
-  ("absolute" .
-   [1 0 0 0 0 0 0 0])
-  ("fixed" .
-   [0 0 1 0 0])
-  ("position" .
-   [0 0 0 0 1 0 0 0])
-  ("100px" .
-   [0 1 0 1 0])
-  ("margin-left" .
-   [0 0 0 0 0 0 0 0 0 1 0])
-  ("margin" .
-   [0 0 0 0 0 1])
-  ("padding" .
-   [0 0 0 1 1 0 0])
-  ("auto" .
-   [2 0 2 0])
-  ("block" .
-   [0 0 0 3 0])
-  ("display" .
-   [0 0 0 1 0 0 2])
-  ("right" .
-   [0 0 2 1 0])
-  ("source" .
-   [0 0 1 0 0 0])
-  ("ruby" .
-   [0 0 1 0])
-  ("gem" .
-   [5 0 0])
-  ("require" .
-   [0 0 1 13 2 0 17])
-  ("redis" .
-   [5 0 0 0 2])
-  ("Redis" .
-   [1 0 0 0 0])
-  ("new" .
-   [3 0 0])
-  ("down" .
-   [0 0 5 0])
-  ("post" .
-   [11 0 0 1])
-  ("Post" .
-   [3 0 0 1])
-  ("def" .
-   [1 0 0])
-  ("title" .
-   [8 0 0 2 0])
-  ("get" .
+  ("update_attributes" .
+   [0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0])
+  (":id" .
    [6 0 0])
-  ("erb" .
-   [7 0 0])
-  ("params" .
-   [2 0 0 0 15 0])
-  ("redirect" .
-   [0 0 0 0 3 0 1 0])
-  (":title" .
-   [5 0 0 0 1 0])
-  ("true" .
-   [3 0 0 0])
-  ("validates" .
-   [0 0 0 0 1 0 0 0 0])
-  (":body" .
-   [1 0 0 0 0])
-  ("presence:" .
-   [0 0 0 1 0 0 0 0 0])
-  ("open" .
-   [8 0 0 0])
-  ("nokogiri" .
-   [1 0 0 0 1 0 0 0])
-  ("url" .
-   [8 0 1])
-  ("html" .
-   [2 0 0 0])
-  ("do" .
-   [13 0])
-  ("charset" .
-   [2 0 0 0 1 0 0])
-  ("read" .
+  ("find_by_title" .
+   [0 0 0 0 0 0 0 0 0 0 1 0 0])
+  ("find_by_id" .
+   [0 0 0 0 0 0 0 1 0 5])
+  ("find" .
    [1 0 0 0])
-  ("Nokogiri::HTML" .
-   [2 0 0 0 0 0 0 0 0 0 0 0 0 0])
-  ("nil" .
-   [16 0 0])
-  ("doc" .
-   [3 0 0])
-  ("http" .
-   [3 0 0 0])
-  ("port" .
+  (":description" .
+   [1 0 0 2 0 2 0 2 0 0 0 1])
+  ("create" .
+   [1 0 0 0 0 0])
+  ("all" .
+   [1 0 0])
+  ("a" .
+   [1])
+  ("List" .
+   [1 0 2 4])
+  ("items" .
+   [1 0 0 0 0])
+  ("delete" .
+   [1 0 0 0 0 0])
+  ("list" .
+   [1 0 0 0])
+  ("development?" .
+   [0 0 0 0 1 0 0 0 0 0 0 0])
+  ("if" .
+   [1 0])
+  (":level" .
+   [3 0 0 1 0 1])
+  ("string" .
+   [2 0 0 0 0 0])
+  (":list" .
+   [1 0 0 0 0])
+  ("ApplicationHelper" .
+   [0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0])
+  ("application" .
+   [1 0 0 0 0 0 0 0 0 0 0])
+  ("include" .
+   [0 0 0 0 1 0 0])
+  ("munm" .
+   [0 0 0 1])
+  ("multi-term" .
+   [0 0 0 0 0 0 0 0 0 2])
+  ("howm-mode" .
+   [1 0 0 0 0 0 0 0 0])
+  ("user-emacs-directory" .
+   [0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0])
+  ("concat" .
+   [0 0 0 0 0 1])
+  ("global-set-key" .
+   [0 0 0 0 0 0 0 0 0 0 0 0 0 1])
+  ("anything-c-moccur-enable-auto-look-flag" .
+   [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0])
+  ("0.10" .
+   [0 0 0 1])
+  ("anything-c-moccur" .
+   [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 3])
+  ("anything-show-kill-ring" .
+   [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0])
+  ("kbd" .
+   [4 0 0])
+  ("global-map" .
+   [0 0 0 0 0 0 0 0 0 2])
+  ("define-key" .
+   [0 0 0 0 0 0 0 0 0 3])
+  ("defimage" .
+   [0 0 0 0 0 0 0 1])
+  ("defun-prefix-alt" .
+   [0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0])
+  ("ruby-mode-hooks" .
+   [0 0 0 0 0 0 0 0 0 0 0 1 0 0 0])
+  ("ruby-mode.el" .
+   [0 0 0 0 0 0 0 0 0 0 0 1])
+  ("ruby-mode-hook" .
+   [0 0 0 0 0 0 0 0 0 0 0 0 0 1])
+  ("ruby-mode-map" .
+   [0 0 0 0 0 0 0 0 0 0 0 0 1])
+  ("ruby-block-mode" .
+   [0 0 0 0 0 0 0 0 0 0 0 0 0 0 1])
+  ("ruby-electric-mode" .
+   [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1])
+  ("inf-ruby-keys" .
+   [0 0 0 0 0 0 0 0 0 0 0 0 1])
+  ("defun" .
+   [0 0 0 0 2])
+  ("inf-ruby" .
+   [0 0 0 0 0 0 0 1])
+  ("autoload" .
+   [0 0 0 0 0 0 0 2])
+  ("emacs-lisp-mode-hook" .
+   [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0])
+  ("false" .
+   [1 0 0 0 0])
+  ("connections" .
+   [1 0 0 0 0 0 0 0 0 0 0])
+  ("connection" .
+   [0 0 0 0 0 0 0 0 0 1])
+  ("broadcast" .
+   [0 0 0 0 1 0 0 0 0])
+  ("msg" .
+   [1 0 0])
+  ("send" .
+   [1 0 0 0])
+  ("isNatta" .
+   [0 0 1 2 0 0 0])
+  ("log" .
+   [2 0 1])
+  ("console" .
+   [0 0 0 1 0 0 2])
+  ("function" .
+   [0 0 0 1 2 0 0 0])
+  ("status" .
+   [5 0 0 0 0 0])
+  ("streaming_client" .
+   [0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0])
+  ("tweet" .
+   [0 1 0 0 0])
+  ("access_token" .
+   [0 0 0 0 1 0 0 0 0 0 0 0])
+  ("client" .
+   [1 0 1 1 1 1])
+  ("config" .
+   [1 0 2 1 0 0])
+  ("induce" .
+   [1 0 0 0 0 0])
+  ("deduce" .
+   [1 0 0 0 0 0])
+  ("6/13Â·éÆÂ„ºÂ¶æÂ„∞ÁΩ‚ÌÂéß" .
+   [0 0 0 0 1 0 0 0 0 0])
+  ("other" .
+   [1 0 0 0 0])
+  ("turn" .
+   [1 0 0 0])
+  ("describe-key" .
+   [0 0 0 0 0 0 0 0 0 1 0 0])
+  ("fix" .
+   [1 0 0])
+  ("foreach" .
+   [0 0 0 0 1 0 0])
+  ("header" .
+   [1 0 0 0 0 0])
+  ("file" .
+   [5 0 0 0])
+  ("f" .
+   [2])
+  ("strip" .
+   [1 0 0 0 0])
+  ("csv" .
+   [11 0 0])
+  ("CSV" .
+   [2 0 0])
+  ("then" .
+   [1 0 0 0])
+  ("name" .
+   [1 0 0 0])
+  ("close" .
+   [2 0 0 0 0])
+  ("line" .
+   [4 0 0 0])
+  ("each" .
+   [1 0 0 0])
+  ("data" .
+   [2 0 0 0])
+  ("Net::HTTP" .
+   [0 0 0 0 0 1 0 0 1])
+  ("res" .
+   [2 0 0])
+  ("path" .
    [2 0 0 0])
   ("443" .
    [1 0 0])
-  ("path" .
+  ("port" .
    [2 0 0 0])
-  ("res" .
-   [2 0 0])
-  ("Net::HTTP" .
-   [0 0 0 0 0 1 0 0 1])
-  ("data" .
+  ("http" .
+   [3 0 0 0])
+  ("doc" .
+   [3 0 0])
+  ("nil" .
+   [16 0 0])
+  ("Nokogiri::HTML" .
+   [2 0 0 0 0 0 0 0 0 0 0 0 0 0])
+  ("read" .
+   [1 0 0 0])
+  ("charset" .
+   [2 0 0 0 1 0 0])
+  ("do" .
+   [13 0])
+  ("html" .
    [2 0 0 0])
-  ("each" .
-   [1 0 0 0])
-  ("line" .
-   [4 0 0 0])
-  ("close" .
-   [2 0 0 0 0])
-  ("name" .
-   [1 0 0 0])
-  ("then" .
-   [1 0 0 0])
-  ("CSV" .
-   [2 0 0])
-  ("csv" .
-   [11 0 0])
-  ("strip" .
+  ("url" .
+   [8 0 1])
+  ("nokogiri" .
+   [1 0 0 0 1 0 0 0])
+  ("open" .
+   [8 0 0 0])
+  ("presence:" .
+   [0 0 0 1 0 0 0 0 0])
+  (":body" .
    [1 0 0 0 0])
-  ("f" .
-   [2])
-  ("file" .
-   [5 0 0 0])
-  ("header" .
-   [1 0 0 0 0 0])
-  ("foreach" .
-   [0 0 0 0 1 0 0])
-  ("fix" .
-   [1 0 0])
-  ("describe-key" .
-   [0 0 0 0 0 0 0 0 0 1 0 0])
-  ("turn" .
-   [1 0 0 0])
-  ("other" .
-   [1 0 0 0 0])
-  ("6/13Â·éÆÂ„ºÂ¶æÂ„∞ÁΩ‚ÌÂéß" .
-   [0 0 0 0 1 0 0 0 0 0])
-  ("deduce" .
-   [1 0 0 0 0 0])
-  ("induce" .
-   [1 0 0 0 0 0])
-  ("config" .
-   [1 0 2 1 0 0])
-  ("client" .
-   [1 0 1 1 1 1])
-  ("access_token" .
-   [0 0 0 0 1 0 0 0 0 0 0 0])
-  ("tweet" .
-   [0 1 0 0 0])
-  ("streaming_client" .
-   [0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0])
-  ("status" .
-   [5 0 0 0 0 0])
-  ("function" .
-   [0 0 0 1 2 0 0 0])
-  ("console" .
-   [0 0 0 1 0 0 2])
-  ("log" .
-   [2 0 1])
-  ("isNatta" .
-   [0 0 1 2 0 0 0])
-  ("send" .
-   [1 0 0 0])
-  ("msg" .
-   [1 0 0])
-  ("broadcast" .
+  ("validates" .
    [0 0 0 0 1 0 0 0 0])
-  ("connection" .
-   [0 0 0 0 0 0 0 0 0 1])
-  ("connections" .
-   [1 0 0 0 0 0 0 0 0 0 0])
-  ("false" .
-   [1 0 0 0 0])
-  ("emacs-lisp-mode-hook" .
-   [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0])
-  ("autoload" .
-   [0 0 0 0 0 0 0 2])
-  ("inf-ruby" .
-   [0 0 0 0 0 0 0 1])
-  ("defun" .
-   [0 0 0 0 2])
-  ("inf-ruby-keys" .
-   [0 0 0 0 0 0 0 0 0 0 0 0 1])
-  ("ruby-electric-mode" .
-   [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1])
-  ("ruby-block-mode" .
-   [0 0 0 0 0 0 0 0 0 0 0 0 0 0 1])
-  ("ruby-mode-map" .
-   [0 0 0 0 0 0 0 0 0 0 0 0 1])
-  ("ruby-mode-hook" .
-   [0 0 0 0 0 0 0 0 0 0 0 0 0 1])
-  ("ruby-mode.el" .
-   [0 0 0 0 0 0 0 0 0 0 0 1])
-  ("ruby-mode-hooks" .
-   [0 0 0 0 0 0 0 0 0 0 0 1 0 0 0])
-  ("defun-prefix-alt" .
-   [0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0])
-  ("defimage" .
-   [0 0 0 0 0 0 0 1])
-  ("define-key" .
-   [0 0 0 0 0 0 0 0 0 3])
-  ("global-map" .
-   [0 0 0 0 0 0 0 0 0 2])
-  ("kbd" .
-   [4 0 0])
-  ("anything-show-kill-ring" .
-   [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0])
-  ("anything-c-moccur" .
-   [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 3])
-  ("0.10" .
-   [0 0 0 1])
-  ("anything-c-moccur-enable-auto-look-flag" .
-   [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0])
-  ("global-set-key" .
-   [0 0 0 0 0 0 0 0 0 0 0 0 0 1])
-  ("concat" .
-   [0 0 0 0 0 1])
-  ("user-emacs-directory" .
-   [0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0])
-  ("howm-mode" .
-   [1 0 0 0 0 0 0 0 0])
-  ("multi-term" .
-   [0 0 0 0 0 0 0 0 0 2])
-  ("munm" .
-   [0 0 0 1])
-  ("include" .
-   [0 0 0 0 1 0 0])
-  ("application" .
-   [1 0 0 0 0 0 0 0 0 0 0])
-  ("ApplicationHelper" .
-   [0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0])
-  (":list" .
-   [1 0 0 0 0])
-  ("string" .
-   [2 0 0 0 0 0])
-  (":level" .
-   [3 0 0 1 0 1])
-  ("if" .
-   [1 0])
-  ("development?" .
-   [0 0 0 0 1 0 0 0 0 0 0 0])
-  ("list" .
-   [1 0 0 0])
-  ("delete" .
-   [1 0 0 0 0 0])
-  ("items" .
-   [1 0 0 0 0])
-  ("List" .
-   [1 0 2 4])
-  ("a" .
-   [1])
-  ("all" .
-   [1 0 0])
-  ("create" .
-   [1 0 0 0 0 0])
-  (":description" .
-   [1 0 0 2 0 2 0 2 0 0 0 1])
-  ("find" .
-   [1 0 0 0])
-  ("find_by_id" .
-   [0 0 0 0 0 0 0 1 0 5])
-  ("find_by_title" .
-   [0 0 0 0 0 0 0 0 0 0 1 0 0])
-  (":id" .
+  ("true" .
+   [3 0 0 0])
+  (":title" .
+   [5 0 0 0 1 0])
+  ("redirect" .
+   [0 0 0 0 3 0 1 0])
+  ("params" .
+   [2 0 0 0 15 0])
+  ("erb" .
+   [7 0 0])
+  ("get" .
    [6 0 0])
-  ("update_attributes" .
-   [0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0])
-  ("destroy" .
+  ("title" .
+   [8 0 0 2 0])
+  ("def" .
+   [1 0 0])
+  ("Post" .
+   [3 0 0 1])
+  ("post" .
+   [11 0 0 1])
+  ("down" .
+   [0 0 5 0])
+  ("new" .
+   [3 0 0])
+  ("Redis" .
+   [1 0 0 0 0])
+  ("redis" .
+   [5 0 0 0 2])
+  ("require" .
+   [0 0 1 13 2 0 17])
+  ("gem" .
+   [5 0 0])
+  ("ruby" .
+   [0 0 1 0])
+  ("source" .
+   [0 0 1 0 0 0])
+  ("right" .
+   [0 0 2 1 0])
+  ("display" .
+   [0 0 0 1 0 0 2])
+  ("block" .
+   [0 0 0 3 0])
+  ("auto" .
+   [2 0 2 0])
+  ("padding" .
+   [0 0 0 1 1 0 0])
+  ("margin" .
+   [0 0 0 0 0 1])
+  ("margin-left" .
+   [0 0 0 0 0 0 0 0 0 1 0])
+  ("100px" .
+   [0 1 0 1 0])
+  ("position" .
+   [0 0 0 0 1 0 0 0])
+  ("fixed" .
+   [0 0 1 0 0])
+  ("absolute" .
+   [1 0 0 0 0 0 0 0])
+  ("left" .
+   [1 0 2 0])
+  ("float" .
+   [0 0 0 0 1])
+  ("fuchsia" .
+   [1 0 0 0 0 0 0])
+  ("background-color" .
+   [0 0 0 1 0 0 0 1 0 0 0 0 0 0 0 0])
+  ("teal" .
+   [1 0 0 0])
+  ("solid" .
+   [0 0 1 1 0])
+  ("10px" .
+   [3 0 0 0])
+  ("000" .
+   [2 0 0])
+  ("resize" .
+   [0 0 0 0 2 0])
+  ("0" .
+   [1])
+  ("box-shadow" .
+   [0 0 0 2 0 0 0 0 0 0])
+  ("textarea" .
+   [0 0 0 0 1 0 0 0])
+  ("0px" .
+   [1 0 0])
+  ("222" .
+   [1 0 0])
+  ("CCCCCC" .
+   [1 0 0 0 0 0])
+  ("hmget" .
+   [1 0 0 0 0])
+  (":item" .
+   [2 0 0 0 0])
+  ("puts" .
+   [1 0 0 0])
+  ("item" .
+   [6 0 0 0])
+  ("update" .
+   [1 0 0 0 0 0])
+  ("stream_client" .
+   [0 0 0 0 3 1 0 0 0 0 0 0 0])
+  ("user" .
+   [3 0 0 0])
+  ("text" .
+   [3 0 0 0])
+  ("start_with?" .
+   [1 0 0 0 0 0 0 0 0 0 0])
+  ("PATH" .
+   [1 0 0 0])
+  ("column-number-mode" .
+   [0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0])
+  ("t" .
+   [2])
+  ("display-time" .
+   [0 0 0 0 0 0 1 0 0 0 0 1])
+  ("display-time-mode" .
+   [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1])
+  ("setq" .
+   [6 0 1 11])
+  ("display-time-day-and-date" .
+   [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0])
+  ("add-to-list" .
+   [0 0 0 0 0 0 1 0 0 0 1])
+  ("backup-directory-alist" .
+   [0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0])
+  ("cons" .
+   [1 0 0 0])
+  ("auto-save" .
+   [0 0 0 0 0 0 0 1 0])
+  ("auto-save-file-name-transforms" .
+   [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0])
+  ("expand-file-name" .
+   [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1])
+  ("add-" .
+   [0 0 0 1])
+  ("add-hook" .
+   [0 0 0 0 0 1 0 1])
+  ("emacs-lisp-mode" .
+   [0 0 0 0 0 0 0 1 0 0 0 0 0 0 0])
+  ("lambda" .
+   [0 0 0 1 0 0])
+  ("when" .
+   [12 0 0 4])
+  ("eldoc" .
+   [0 0 0 1 2])
+  ("turn-on-eldoc-mode" .
+   [0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0])
+  ("server-mode" .
+   [0 0 0 0 1 0 0 0 0 0 0])
+  ("anything" .
+   [1 0 0 6 0 0 0 5])
+  ("anything-idle-delay" .
+   [0 0 0 0 0 0 0 0 0 0 0 3 0 0 0 0 0 0 0])
+  ("0.3" .
+   [2 0 0])
+  ("anything-input" .
+   [0 0 0 0 0 0 0 0 0 0 0 0 0 1])
+  ("anything-input-idle-delay" .
+   [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0])
+  ("0.2" .
+   [1 0 0])
+  ("anything-candidate-number" .
+   [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1])
+  ("anything-candidate-number-limit" .
+   [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0])
+  ("100" .
+   [1 0 0])
+  ("anything-quick-update" .
+   [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1])
+  ("anything-enable-shortcuts" .
+   [0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0])
+  ("alphabet" .
+   [0 0 0 1 0 0 0 0])
+  ("anything-config.el" .
+   [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0])
+  ("anything-source" .
+   [0 0 0 0 0 0 0 0 0 0 0 1 0 0 0])
+  ("anything-match-plugin" .
+   [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0])
+  ("and" .
+   [2 0 0])
+  ("executable-find" .
+   [0 0 0 1 0 0 0 0 0 0 0 0 0 1 0])
+  ("anything-migrate-sources" .
+   [0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0])
+  ("anything-shortcut-keys" .
+   [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0])
+  ("auto-install" .
+   [0 0 0 0 0 0 0 1 0 0 0 0])
+  ("descbinds-anything" .
+   [0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0])
+  ("run-ruby" .
+   [0 0 0 0 0 0 1 0])
+  ("unrmail" .
    [0 0 0 1 0 0 0])
-  ("twittering-use-master-password" .
-   [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0])))
+  ("undo-tree" .
+   [0 0 0 0 0 0 0 0 1])
+  ("global-undo-tree-mode" .
+   [0 0 0 0 0 0 0 0 0 0 1 0 0 1 0 1 0 0 0 0 0])
+  ("howm-save-" .
+   [0 0 0 0 0 0 0 0 0 1])
+  ("interactive" .
+   [0 0 0 0 0 1 0 0 0 0 0])
+  ("bufferp" .
+   [0 0 0 0 0 0 1])
+  ("buffer-file-name" .
+   [0 0 0 0 0 0 0 0 0 1 0 1 0 0 0 0])
+  ("string-match" .
+   [0 0 0 0 0 0 0 0 0 0 0 1])
+  ("buffer-saved-size" .
+   [0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0])
+  ("save-buffer" .
+   [0 0 0 0 0 0 0 1 0 0 0])
+  ("kill-buffer" .
+   [0 0 0 0 0 0 0 0 0 0 1])
+  ("howm-mode-map" .
+   [0 0 0 0 0 0 0 0 0 0 0 0 1])
+  ("howm-save-buffer-and-kill" .
+   [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0])
+  ("multi-term-pkg" .
+   [0 0 0 0 0 0 0 0 0 0 1 0 0 0])
+  ("multi-term-program" .
+   [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1])
+  ("rhtml" .
+   [0 0 0 1 0])
+  ("auto-mode-alist" .
+   [0 0 0 0 0 0 0 0 0 0 1 0 0 0 0])
+  ("base_title" .
+   [0 0 0 0 3 1 0 0 0 0])
+  ("page_title" .
+   [0 0 0 0 0 2 0 0 0 0])
+  ("empty" .
+   [0 0 0 0 1])
+  ("else" .
+   [1 0 0 0])
+  ("full_title" .
+   [0 0 0 0 3 1 0 1 0 1])
+  ("it" .
+   [1 0])
+  ("short" .
+   [0 0 0 0 1])
+  ("should" .
+   [0 0 0 0 0 7])
+  ("have_content" .
+   [0 0 0 0 0 0 0 1 1 1 1 0])
+  ("have" .
+   [1 0 0 0])
+  ("s" .
+   [1])
+  ("have_title" .
+   [0 0 0 0 0 0 0 5 0 0])
+  (":email" .
+   [1 0 0 0 0 0])
+  ("email" .
+   [2 0 0 0 0])
+  ("load-theme" .
+   [0 0 0 0 0 0 0 1 0 0])
+  ("twittering-icon-mode" .
+   [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0])))
