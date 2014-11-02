@@ -117,7 +117,7 @@
 (setq comint-scroll-show-maximum-output t) ;; shell-mode
 
 ;; フレームの透明度
-(set-frame-parameter (selected-frame) 'alpha '(0.85))
+(set-frame-parameter (selected-frame) 'alpha '(0.70))
 
 ;; C-mにnewline-and-indentを割り当てる。初期値はnewline
 (define-key global-map (kbd "C-m") 'newline-and-indent)
@@ -160,6 +160,14 @@
 
 ;; Emacs24以降標準のColor themeを使う
 (load-theme 'deeper-blue t)
+
+;; ------------------------------------------------------------------------
+;; @ js2-mode
+
+;; Improved JavaScript editing mode for GNU Emacs
+;; https://github.com/mooz/js2-mode
+(autoload 'js2-mode "js2-mode" nil t)
+(add-to-list 'auto-mode-alist '("\.js$" . js2-mode))
 
 ;; ------------------------------------------------------------------------
 ;; @ web-mode.el
