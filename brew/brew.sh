@@ -1,4 +1,6 @@
 brew tap phinze/homebrew-cask
+brew tap sanemat/font
+brew tap peco/peco
 
 brew install brew-cask
 brew install git
@@ -9,14 +11,20 @@ brew install readline
 brew install wget
 brew install curl
 brew install sl
+brew install peco
+brew install hub
+brew install ricty
 
 brew install sqlite
 brew install redis
+brew install postgresql
 
-brew install node
-brew install npm
+brew install nvm
 brew install clisp
+brew install rbenv
+brew install ruby-build
 brew install heroku-toolbelt
+
 
 brew cask install alfred
 brew cask install appcleaner
@@ -32,3 +40,4 @@ brew cask install virtualbox
 brew cask install vlc
 brew cask install xquartz
 brew cask install yorufukurou
+brew cask install github

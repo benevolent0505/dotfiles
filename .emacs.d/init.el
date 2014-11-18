@@ -117,7 +117,7 @@
 (setq comint-scroll-show-maximum-output t) ;; shell-mode
 
 ;; フレームの透明度
-(set-frame-parameter (selected-frame) 'alpha '(0.70))
+(set-frame-parameter (selected-frame) 'alpha '(0.7))
 
 ;; C-mにnewline-and-indentを割り当てる。初期値はnewline
 (define-key global-map (kbd "C-m") 'newline-and-indent)
@@ -226,7 +226,6 @@
 (require 'twittering-mode)
 (setq twittering-use-master-password t)
 (setq twittering-icon-mode t)
-
 
 ;; ------------------------------------------------------------------------
 ;; @ egg.el
@@ -365,6 +364,9 @@
 
   (when (require 'descbinds-anything nil t)
     (descbinds-anything-install)))
+
+;; C-x bにanything-for-filesを割り当てる
+(define-key global-map (kbd "C-x b") 'anything-for-files)
 
 ;; M-yにanything-show-kill-ringを割り当てる
 (define-key global-map (kbd "M-y") 'anything-show-kill-ring)
