@@ -13,6 +13,7 @@ brew install curl
 brew install sl
 brew install peco
 brew install hub
+brew install emacs --cocoa -srgb --with-gnutls
 
 brew install sqlite
 brew install redis
