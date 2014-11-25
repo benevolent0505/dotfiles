@@ -1,3 +1,6 @@
 [submodule ".emacs.d/public_repo/twittering-mode"]
 	path = .emacs.d/public_repo/twittering-mode
 	url = git@github.com:hayamiz/twittering-mode.git
+[submodule ".emacs.d/public_repo/markdown-mode"]
+	path = .emacs.d/public_repo/markdown-mode
+	url = git://jblevins.org/git/markdown-mode.git

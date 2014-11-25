@@ -162,6 +162,17 @@
 (load-theme 'deeper-blue t)
 
 ;; ------------------------------------------------------------------------
+;; @ markdown-mode
+
+;; Major mode for editing Markdown-formatted text files in GNU Emacs.
+;; http://jblevins.org/projects/markdown-mode/
+(autoload 'markdown-mode "markdown-mode"
+   "Major mode for editing Markdown files" t)
+(add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
+
+;; ------------------------------------------------------------------------
 ;; @ js2-mode
 
 ;; Improved JavaScript editing mode for GNU Emacs
