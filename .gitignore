@@ -9,3 +9,6 @@
 /.emacs.d/eshell/*
 /.emacs.d/.DS_Store
 /.emacs.d/ac-comphist.dat
+
+/.emacs.d/public_repo/howm-1.4.2/*
+/.emacs.d/public_repo/yatex1.77/*
