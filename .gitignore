@@ -1,3 +1,7 @@
+/.emacs.d/elisp/*
+/.emacs.d/elpa/*
+/.emacs.d/bin/*
+/.emacs.d/share/*
 /.emacs.d/backups/*
 /.emacs.d/undohist/*
 /.emacs.d/howm/*
