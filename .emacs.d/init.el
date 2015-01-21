@@ -1,8 +1,10 @@
-; -*- Mode: Emacs-Lisp ; Coding: utf-8 -*-
+;; Cask
+(require 'cask "~/.cask/cask.el")
+(cask-initialize)
+
 ;; ------------------------------------------------------------------------
 ;; @ load-path
-
-;; load-pathã®è¿½åŠ é–¢æ•°
+;; load-path¤ÎÄÉ²Ã´Ø¿ô
 (defun add-to-load-path (&rest paths)
   (let (path)
     (dolist (path paths paths)
@@ -11,20 +13,18 @@
         (if (fboundp 'normal-top-level-add-subdirs-to-load-path)
             (normal-top-level-add-subdirs-to-load-path))))))
 
-;; load-pathã«è¿½åŠ ã™ã‚‹ãƒ•ã‚©ãƒ«ãƒ€
-;; 2ã¤ä»¥ä¸Šãƒ•ã‚©ãƒ«ãƒ€ã‚’æŒ‡å®šã™ã‚‹å ´åˆã®å¼•æ•° => (add-to-load-path "elisp" "xxx" "xxx")
+;; load-path¤ËÄÉ²Ã¤¹¤ë¥Õ¥©¥ë¥À
+;; 2¤Ä°Ê¾å¥Õ¥©¥ë¥À¤ò»ØÄê¤¹¤ë¾ì¹ç¤Î°ú¿ô => (add-to-load-path "elisp" "xxx" "xxx")
 (add-to-load-path "elisp" "conf" "public_repo")
 
 ;; ------------------------------------------------------------------------
 ;; @ general
-
 ;; common lisp
 (require 'cl)
-
-;;c-x c-fã®ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ
+;;c-x c-f¤Î¥Ç¥Õ¥©¥ë¥È
 (setq default-directory "~/")
 
-;; æ–‡å­—ã‚³ãƒ¼ãƒ‰
+;; Ê¸»ú¥³¡¼¥É
 (set-language-environment "Japanese")
 (let ((ws window-system))
   (cond ((eq ws 'w32)
@@ -38,111 +38,112 @@
          (setq file-name-coding-system 'utf-8-hfs)
          (setq locale-coding-system 'utf-8-hfs))))
 
-;; Windowsã§è‹±æ•°ã¨æ—¥æœ¬èªã«Meiryoã‚’æŒ‡å®š
-;; Macã§è‹±æ•°ã¨æ—¥æœ¬èªã«Rictyã‚’æŒ‡å®š
+;; Windows¤Ç±Ñ¿ô¤ÈÆüËÜ¸ì¤ËMeiryo¤ò»ØÄê
+;; Mac¤Ç±Ñ¿ô¤ÈÆüËÜ¸ì¤ËRicty¤ò»ØÄê
 (let ((ws window-system))
   (cond ((eq ws 'w32)
          (set-face-attribute 'default nil
-                             :family "Meiryo"  ;; è‹±æ•°
+                             :family "Meiryo" ;; ±Ñ¿ô
                              :height 100)
-         (set-fontset-font nil 'japanese-jisx0208 (font-spec :family "Meiryo")))  ;; æ—¥æœ¬èª
+         (set-fontset-font nil 'japanese-jisx0208 (font-spec :family "Meiryo"))) ;; ÆüËÜ¸ì
         ((eq ws 'ns)
          (set-face-attribute 'default nil
-                             :family "Ricty"  ;; è‹±æ•°
+                             :family "Ricty" ;; ±Ñ¿ô
                              :height 140)
-         (set-fontset-font nil 'japanese-jisx0208 (font-spec :family "Ricty")))))  ;; æ—¥æœ¬èª
+         (set-fontset-font nil 'japanese-jisx0208 (font-spec :family "Ricty"))))) ;; ÆüËÜ¸ì
 
-;; ã‚¹ã‚¿ãƒ¼ãƒˆã‚¢ãƒƒãƒ—éè¡¨ç¤º
+;; ¥¹¥¿¡¼¥È¥¢¥Ã¥×ÈóÉ½¼¨
 (setq inhibit-startup-screen t)
 
-;; scratchã®åˆæœŸãƒ¡ãƒƒã‚»ãƒ¼ã‚¸æ¶ˆå»
+;; scratch¤Î½é´ü¥á¥Ã¥»¡¼¥¸¾Ãµî
 (setq initial-scratch-message "")
 
-;; ãƒ„ãƒ¼ãƒ«ãƒãƒ¼éè¡¨ç¤º
+;; ¥Ä¡¼¥ë¥Ğ¡¼ÈóÉ½¼¨
 (tool-bar-mode -1)
 
-;; ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒãƒ¼ã‚’éè¡¨ç¤º
-;; (menu-bar-mode -1)
+;; ¥á¥Ë¥å¡¼¥Ğ¡¼¤òÈóÉ½¼¨
+(menu-bar-mode -1)
 
-;; ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒãƒ¼éè¡¨ç¤º
+;; ¥¹¥¯¥í¡¼¥ë¥Ğ¡¼ÈóÉ½¼¨
 (set-scroll-bar-mode nil)
 
-;; ã‚¿ã‚¤ãƒˆãƒ«ãƒãƒ¼ã«ãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ•ãƒ«ãƒ‘ã‚¹è¡¨ç¤º
+;; ¥¿¥¤¥È¥ë¥Ğ¡¼¤Ë¥Õ¥¡¥¤¥ë¤Î¥Õ¥ë¥Ñ¥¹É½¼¨
 (setq frame-title-format
       (format "%%f - Emacs@%s" (system-name)))
 
-;; è¡Œç•ªå·è¡¨ç¤º
+;; ¹ÔÈÖ¹æÉ½¼¨
 (global-linum-mode t)
 (set-face-attribute 'linum nil
                     :foreground "#800"
                     :height 0.9)
 
-;; è¡Œç•ªå·ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆ
+
+;; ¹ÔÈÖ¹æ¥Õ¥©¡¼¥Ş¥Ã¥È
 ;; (setq linum-format "%4d")
 
-;; æ‹¬å¼§ã®ç¯„å›²å†…ã‚’å¼·èª¿è¡¨ç¤º
+;; ³ç¸Ì¤ÎÈÏ°ÏÆâ¤ò¶¯Ä´É½¼¨
 (show-paren-mode t)
 (setq show-paren-delay 0)
 (setq show-paren-style 'expression)
 
-;; æ‹¬å¼§ã®ç¯„å›²è‰²
+;; ³ç¸Ì¤ÎÈÏ°Ï¿§
 (set-face-background 'show-paren-match-face "#500")
 
-;; é¸æŠé ˜åŸŸã®è‰²
+;; ÁªÂòÎÎ°è¤Î¿§
 (set-face-background 'region "#555")
 
-;; è¡Œæœ«ã®ç©ºç™½ã‚’å¼·èª¿è¡¨ç¤º
+;; ¹ÔËö¤Î¶õÇò¤ò¶¯Ä´É½¼¨
 (setq-default show-trailing-whitespace t)
 (set-face-background 'trailing-whitespace "#b14770")
 
-;; ã‚¿ãƒ–ã‚’ã‚¹ãƒšãƒ¼ã‚¹ã§æ‰±ã†
+;; ¥¿¥Ö¤ò¥¹¥Ú¡¼¥¹¤Ç°·¤¦
 (setq-default indent-tabs-mode nil)
 
-;; ã‚¿ãƒ–å¹…
+;; ¥¿¥ÖÉı
 (custom-set-variables '(tab-width 4))
 
-;; yes or noã‚’y or n
+;; yes or no¤òy or n
 (fset 'yes-or-no-p 'y-or-n-p)
 
-;; ãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—ã‚’æ®‹ã•ãªã„
+;; ¥Ğ¥Ã¥¯¥¢¥Ã¥×¤ò»Ä¤µ¤Ê¤¤
 ;; (setq make-backup-files nil)
 
-;; è¡Œé–“
+;; ¹Ô´Ö
 (setq-default line-spacing 0)
 
-;; 1è¡Œãšã¤ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«
+;; 1¹Ô¤º¤Ä¥¹¥¯¥í¡¼¥ë
 (setq scroll-conservatively 35
       scroll-margin 0
       scroll-step 1)
 (setq comint-scroll-show-maximum-output t) ;; shell-mode
 
-;; ãƒ•ãƒ¬ãƒ¼ãƒ ã®é€æ˜åº¦
+;; ¥Õ¥ì¡¼¥à¤ÎÆ©ÌÀÅÙ
 (set-frame-parameter (selected-frame) 'alpha '(0.7))
 
-;; C-mã«newline-and-indentã‚’å‰²ã‚Šå½“ã¦ã‚‹ã€‚åˆæœŸå€¤ã¯newline
+;; C-m¤Ënewline-and-indent¤ò³ä¤êÅö¤Æ¤ë¡£½é´üÃÍ¤Ïnewline
 (define-key global-map (kbd "C-m") 'newline-and-indent)
 
-;; "C-t" ã§ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’åˆ‡ã‚Šæ›¿ãˆã‚‹ã€‚åˆæœŸå€¤ã¯transpose-chars
+;; "C-t" ¤Ç¥¦¥£¥ó¥É¥¦¤òÀÚ¤êÂØ¤¨¤ë¡£½é´üÃÍ¤Ïtranspose-chars
 (define-key global-map (kbd "C-t") 'other-window)
 
-;; ã‚«ãƒ©ãƒ ç•ªå·ã‚’è¡¨ç¤º
+;; ¥«¥é¥àÈÖ¹æ¤òÉ½¼¨
 (column-number-mode t)
 
-;; æ™‚è¨ˆã‚’è¡¨ç¤º
+;; »ş·×¤òÉ½¼¨
 (setq display-time-day-and-date t)
 ;; (setq display-time-24hr-format t)
 (display-time-mode t)
 
-;; ãƒãƒƒãƒ†ãƒªãƒ¼æ®‹é‡ã‚’è¡¨ç¤º(marvericksã ã¨patchã‚’å½“ã¦ãªã„ã¨è¡¨ç¤ºã•ã‚Œãªã„)
+;; ¥Ğ¥Ã¥Æ¥ê¡¼»ÄÎÌ¤òÉ½¼¨(marvericks¤À¤Èpatch¤òÅö¤Æ¤Ê¤¤¤ÈÉ½¼¨¤µ¤ì¤Ê¤¤)
 ;; (display-battery-mode t)
 
-;; ãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—ã¨ã‚ªãƒ¼ãƒˆã‚»ãƒ¼ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ã‚’~/.emacs.d/backups/ã¸é›†ã‚ã‚‹
+;; ¥Ğ¥Ã¥¯¥¢¥Ã¥×¤È¥ª¡¼¥È¥»¡¼¥Ö¥Õ¥¡¥¤¥ë¤ò~/.emacs.d/backups/¤Ø½¸¤á¤ë
 (add-to-list 'backup-directory-alist
              (cons "." "~/.emacs.d/backups/"))
 (setq auto-save-file-name-transforms
       `((".*" ,(expand-file-name "~/.emacs.d/backups/") t)))
 
-;; emacs-lisp-modeã®ãƒ•ãƒƒã‚¯ã‚’ã‚»ãƒƒãƒˆ
+;; emacs-lisp-mode¤Î¥Õ¥Ã¥¯¤ò¥»¥Ã¥È
 (add-hook 'emacs-lisp-mode-hook
           '(lambda ()
              (when (require 'eldoc nil t)
@@ -150,31 +151,30 @@
                (setq eldoc-echo-area-use-multiline-p t)
                (turn-on-eldoc-mode))))
 
-;; ruby-mode-hookç”¨ã®é–¢æ•°ã‚’å®šç¾©
+;; ruby-mode-hookÍÑ¤Î´Ø¿ô¤òÄêµÁ
 (defun ruby-mode-hooks ()
   (inf-ruby-keys)
   (ruby-electric-mode t)
   (ruby-block-mode t))
-;; ruby-mode-hookã«è¿½åŠ 
+
+;; ruby-mode-hook¤ËÄÉ²Ã
 (add-hook 'ruby-mode-hook 'ruby-mode-hooks)
 
-;; Emacs24ä»¥é™æ¨™æº–ã®Color themeã‚’ä½¿ã†
+;; Emacs24°Ê¹ßÉ¸½à¤ÎColor theme¤ò»È¤¦
 (load-theme 'deeper-blue t)
 
-;; ------------------------------------------------------------------------
+; ------------------------------------------------------------------------
 ;; @ markdown-mode
-
 ;; Major mode for editing Markdown-formatted text files in GNU Emacs.
 ;; http://jblevins.org/projects/markdown-mode/
 (autoload 'markdown-mode "markdown-mode"
-   "Major mode for editing Markdown files" t)
+  "Major mode for editing Markdown files" t)
 (add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 
 ;; ------------------------------------------------------------------------
 ;; @ js2-mode
-
 ;; Improved JavaScript editing mode for GNU Emacs
 ;; https://github.com/mooz/js2-mode
 (autoload 'js2-mode "js2-mode" nil t)
@@ -182,170 +182,39 @@
 
 ;; ------------------------------------------------------------------------
 ;; @ web-mode.el
-
 ;; major mode for editing html templates
 ;; http://web-mode.org/
 (require 'web-mode)
-
-;;; emacs 23ä»¥ä¸‹ã®äº’æ›
+;;; emacs 23°Ê²¼¤Î¸ß´¹
 (when (< emacs-major-version 24)
   (defalias 'prog-mode 'fundamental-mode))
-
-;;; é©ç”¨ã™ã‚‹æ‹¡å¼µå­
-(add-to-list 'auto-mode-alist '("\\.phtml$"     . web-mode))
+;;; Å¬ÍÑ¤¹¤ë³ÈÄ¥»Ò
+(add-to-list 'auto-mode-alist '("\\.phtml$" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.tpl\\.php$" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.jsp$"       . web-mode))
-(add-to-list 'auto-mode-alist '("\\.as[cp]x$"   . web-mode))
-(add-to-list 'auto-mode-alist '("\\.erb$"       . web-mode))
-(add-to-list 'auto-mode-alist '("\\.html?$"     . web-mode))
-
-;;; ã‚¤ãƒ³ãƒ‡ãƒ³ãƒˆæ•°
+(add-to-list 'auto-mode-alist '("\\.jsp$" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.as[cp]x$" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.erb$" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.html?$" . web-mode))
+;;; ¥¤¥ó¥Ç¥ó¥È¿ô
 (defun web-mode-hook ()
   "Hooks for Web mode."
-  (setq web-mode-html-offset   2)
-  (setq web-mode-css-offset    2)
+  (setq web-mode-html-offset 2)
+  (setq web-mode-css-offset 2)
   (setq web-mode-script-offset 2)
-  (setq web-mode-php-offset    2)
-  (setq web-mode-java-offset   2)
-  (setq web-mode-asp-offset    2))
+  (setq web-mode-php-offset 2)
+  (setq web-mode-java-offset 2)
+  (setq web-mode-asp-offset 2))
 (add-hook 'web-mode-hook 'web-mode-hook)
 
 ;; ------------------------------------------------------------------------
-;; @ yatex
-
-;; Emacs DE TeX
-;; http://www.yatex.org/
-;; æ‹¡å¼µå­ãŒ .tex ãªã‚‰ yatex-mode ã«
-(setq auto-mode-alist
-  (cons (cons "\\.tex$" 'yatex-mode) auto-mode-alist))
-(autoload 'yatex-mode "yatex" "Yet Another LaTeX mode" t)
-
-;; YaTeX ãŒåˆ©ç”¨ã™ã‚‹å†…éƒ¨ã‚³ãƒãƒ³ãƒ‰ã‚’å®šç¾©ã™ã‚‹
-(setq tex-command "platex2pdf") ;; è‡ªä½œã—ãŸã‚³ãƒãƒ³ãƒ‰ã‚’
-(cond
-  ((eq system-type 'gnu/linux) ;; GNU/Linux ãªã‚‰
-    (setq dvi2-command "evince")) ;; evince ã§ PDF ã‚’é–²è¦§
-  ((eq system-type 'darwin) ;; Mac ãªã‚‰
-    (setq dvi2-command "open -a Preview"))) ;; ãƒ—ãƒ¬ãƒ“ãƒ¥ãƒ¼ã§
-(add-hook 'yatex-mode-hook '(lambda () (setq auto-fill-function nil)))
-
-;; ------------------------------------------------------------------------
-;; @ twittering-mode
-
-;; Emacs DE Twitter
-;; https://github.com/hayamiz/twittering-mode/tree/master
-;; (require 'twittering-mode)
-;; (setq twittering-use-master-password t)
-;; (setq twittering-icon-mode t)
-
-;; ------------------------------------------------------------------------
 ;; @ egg.el
-
 ;; Emacs DE Git
 ;; https://github.com/byplayer/egg
 (when (executable-find "git")
   (require 'egg nil t))
 
 ;; ------------------------------------------------------------------------
-;; @ rhtml.el
-
-;; rhtml
-;; https://github.com/eschulte/rhtml
-(when (require 'rhtml-mode nil t)
-  (add-to-list 'auto-mode-alist '("\\.rhtml\\'" .rhtml-mode)))
-
-;; ------------------------------------------------------------------------
-;; @ groovy-mode.el
-
-;; Groovy mode
-;; https://github.com/russel/Emacs-Groovy-Mode
-(add-to-list 'load-path "~/.emacs.d/emacs-groovy-mode")
-(autoload 'groovy-mode "groovy-mode" "Major mode for editing Groovy code." t)
-(add-to-list 'auto-mode-alist '("\.groovy$" . groovy-mode))
-(add-to-list 'interpreter-mode-alist '("grooy" . groovy-mode))
-
-;; ------------------------------------------------------------------------
-;; @ multi-term.el
-
-;; multi-term
-;; http://www.emacswiki.org/emacs/MultiTerm
-;; (require 'multi-term)
-;; (setq multi-term-program "/bin/bash")
-
-;; ------------------------------------------------------------------------
-;; @ howm
-
-;; howm
-;; http://howm.sourceforge.jp/index.html
-;; howmãƒ¡ãƒ¢ä¿å­˜ã®å ´æ‰€
-(setq hown-directory (concat user-emacs-directory "howm"))
-;; howm-menuã®è¨€èªã‚’æ—¥æœ¬èªã«
-(setq howm-menu-lang 'ja)
-;; howm-modeã‚’èª­ã¿è¾¼ã‚€
-(when (require 'howm-mode nil t)
-  (define-key global-map (kbd "C-c ,,") 'howm-menu))
-;; howmãƒ¡ãƒ¢ã‚’ä¿å­˜ã¨åŒæ™‚ã«é–‰ã˜ã‚‹
-(defun howm-save-buffer-and-kill ()
-  (interactive)
-  (when (and (buffer-file-name)
-             (string-match "\\.howm" (buffer-file-name)))
-    (save-buffer)
-    (kill-buffer nil)))
-
-;; C-c C-cã§ãƒ¡ãƒ¢ã®ä¿å­˜ã¨åŒæ™‚ã«ãƒãƒƒãƒ•ã‚¡ã‚’é–‰ã˜ã‚‹
-(define-key howm-mode-map (kbd "C-c C-c") 'howm-save-buffer-and-kill)
-;; ------------------------------------------------------------------------
-;; @ undo-tree.el
-
-;; undo-tree
-;; http://melpa.milkbox.net/#/undo-tree
-(when (require 'undo-tree nil t)
-  (global-undo-tree-mode))
-
-;; ------------------------------------------------------------------------
-;; @ undohist.el
-
-;; undohist
-;; https://github.com/m2ym/undohist-el
-(when (require 'undohist nil t)
-  (undohist-initialize))
-
-;; ------------------------------------------------------------------------
-;; @ wgrep.el
-
-;; wgrep
-;; https://github.com/mhayashi1120/Emacs-wgrep
-(require 'wgrep nil t)
-
-;; ------------------------------------------------------------------------
-;; @ color-moccur.el
-
-;; multi-buffer occur (grep) mode
-;; http://www.emacswiki.org/emacs/color-moccur.el
-(when (require 'color-moccur nil t)
-  (define-key global-map (kbd "M-o") 'occur-by-moccur)
-  (setq moccur-split-word t)
-  (add-to-list 'dmoccur-exclusion-mask "\\.DS_Store")
-  (add-to-list 'dmoccur-exclusion-mask "^#.+#$")
-  (when (and (executable-find "cmigemo")
-             (require 'migemo nil t))
-    (setq moccur-use-migemo t)))
-
-;; ------------------------------------------------------------------------
-;; @ moccur-edit.el
-
-;; apply replaces to multiple files
-;; http://www.emacswiki.org/emacs/moccur-edit.el
-(require 'moccur-edit nil t)
-
-;; moccur-edit-finish-editã¨åŒæ™‚ã«ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ä¿å­˜ã™ã‚‹
-(defadvice moccur-edit-change-file
-  (after save-after-moccur-edit-buffer activate)
-  (save-buffer))
-
-;; ------------------------------------------------------------------------
 ;; @ anything.el
-
 ;; anything
 ;; http://www.emacswiki.org/emacs/anything.el
 (when (require 'anything nil t)
@@ -355,67 +224,32 @@
    anything-candidate-number-limit 100
    anything-quick-update t
    anything-enable-shortcuts 'alphabet)
-
   (when (require 'anything-config nil t)
     (setq anything-su-or-sudo "sudo"))
-
   (require 'anything-match-plugin nil t)
-
   (when (and (executable-find "cmigemo")
              (require 'migemo nil t))
     (require 'anything-migemo nil t))
-
   (when (require 'anything-complete nil t)
     (anything-lisp-complete-symbol-set-timer 150))
-
   (require 'anything-show-completion nil t)
-
   (when (require 'auto-install nil t)
     (require 'anything-auto-install nil t))
-
   (when (require 'descbinds-anything nil t)
     (descbinds-anything-install)))
-
-;; C-x bã«anything-for-filesã‚’å‰²ã‚Šå½“ã¦ã‚‹
+;; C-x b¤Ëanything-for-files¤ò³ä¤êÅö¤Æ¤ë
 (define-key global-map (kbd "C-x b") 'anything-for-files)
-
-;; M-yã«anything-show-kill-ringã‚’å‰²ã‚Šå½“ã¦ã‚‹
+;; M-y¤Ëanything-show-kill-ring¤ò³ä¤êÅö¤Æ¤ë
 (define-key global-map (kbd "M-y") 'anything-show-kill-ring)
-
-;; è¦anything-moccur.el
-(when (require 'anything-c-moccur nil t)
-  (setq
-   anything-c-moccur-anything-idle-delay 0.1
-   lanything-c-moccur-highlight-info-line-flag t
-   anything-c-moccur-enable-auto-look-flag t
-   anything-c-moccur-enable-initial-pattern t)
-  (global-set-key (kbd "C-M-o") 'anything-c-moccur-occur-by-moccur))
 
 ;; ------------------------------------------------------------------------
 ;; @ auto-complete.el
-
-;; è‡ªå‹•è£œå®Œæ©Ÿèƒ½
+;; ¼«Æ°Êä´°µ¡Ç½
 ;; https://github.com/m2ym/auto-complete
 (when (require 'auto-complete-config nil t)
   (add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
   (setq ac-ignore-case t)
   (ac-config-default))
-
-;; ------------------------------------------------------------------------
-;; @  dired.el
-
-;; A simple directory explorer
-;; https://github.com/m2ym/direx-el
-(require 'direx)
-(global-set-key (kbd "C-x C-j") 'direx:jump-to-directory)
-
-;; ------------------------------------------------------------------------
-;; @ redo+.el
-
-;; redoã§ãã‚‹ã‚ˆã†ã«ã™ã‚‹
-;; http://www.emacswiki.org/emacs/redo+.el
-(when (require 'redo+ nil t)
-  (define-key global-map (kbd "C-_") 'redo))
 
 ;; ruby-mode
 (autoload 'ruby-mode "ruby-mode"
@@ -426,8 +260,7 @@
 (setq ruby-insert-encoding-magic-comment nil)
 
 ;; ------------------------------------------------------------------------
-;; @  ruby-electric.el
-
+;; @ ruby-electric.el
 ;; a minor mode that makes writing and editing Ruby code easier.
 ;; https://github.com/qoobaa/ruby-electric
 (require 'ruby-electric)
@@ -435,16 +268,14 @@
 (setq ruby-electric-expand-delimiters-list nil)
 
 ;; ------------------------------------------------------------------------
-;; @  ruby-block.el
-
-;; rubyã®endã«å¯¾å¿œã™ã‚‹è¡Œã‚’ãƒã‚¤ãƒ©ã‚¤ãƒˆ
+;; @ ruby-block.el
+;; ruby¤Îend¤ËÂĞ±ş¤¹¤ë¹Ô¤ò¥Ï¥¤¥é¥¤¥È
 ;; http://www.emacswiki.org/emacs/ruby-block.el
 (when (require 'ruby-block nil t)
   (setq ruby-block-highlight-toggle t))
 
 ;; ------------------------------------------------------------------------
-;; @  inf-ruby.el
-
+;; @ inf-ruby.el
 ;; inf-ruby provides a REPL buffer connected to a Ruby subprocess
 ;; https://github.com/nonsequitur/inf-ruby/blob/master/inf-ruby.el
 (autoload 'run-ruby "inf-ruby"
@@ -452,19 +283,3 @@
 (autoload 'inf-ruby-keys "inf-ruby"
   "Set local key defs for inf-ruby in ruby-mode")
 
-;; ------------------------------------------------------------------------
-;; @  package.el
-(package-initialize)
-(require 'package)
-(add-to-list 'package-archives
-  '("melpa" . "http://melpa.milkbox.net/packages/") t)
-
-;; ------------------------------------------------------------------------
-;; @ auto-install.el
-
-;; ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ã®ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«ã‚’è‡ªå‹•åŒ–
-;; http://www.emacswiki.org/emacs/auto-install.el
-(when (require 'auto-install nil t)
-  (setq auto-install-directory "~/.emacs.d/elisp/")
-  (auto-install-update-emacswiki-package-name t)
-  (auto-install-compatibility-setup))
