@@ -25,7 +25,8 @@
 (setq default-directory "~/")
 
 ;; 文字コード
-(set-language-environment "Japanese")
+;; (set-language-environment "Japanese")
+(prefer-coding-system 'utf-8-unix)
 (let ((ws window-system))
   (cond ((eq ws 'w32)
          (prefer-coding-system 'utf-8-unix)
@@ -161,6 +162,13 @@
 ;; Emacs24以降標準のColor themeを使う
 (load-theme 'deeper-blue t)
 
+;; 自動改行をoffにする
+(setq text-mode-hook 'turn-off-auto-fill)
+
+;; ------------------------------------------------------------------------
+;; @ markdown-mode
+(add-hook 'after-init-hook #'global-flycheck-mode)
+
 ;; ------------------------------------------------------------------------
 ;; @ markdown-mode
 
@@ -221,13 +229,13 @@
 (autoload 'yatex-mode "yatex" "Yet Another LaTeX mode" t)
 
 ;; YaTeX が利用する内部コマンドを定義する
-(setq tex-command "platex2pdf") ;; 自作したコマンドを
-(cond
-  ((eq system-type 'gnu/linux) ;; GNU/Linux なら
-    (setq dvi2-command "evince")) ;; evince で PDF を閲覧
-  ((eq system-type 'darwin) ;; Mac なら
-    (setq dvi2-command "open -a Preview"))) ;; プレビューで
-(add-hook 'yatex-mode-hook '(lambda () (setq auto-fill-function nil)))
+;; (setq tex-command "platex2pdf") ;; 自作したコマンドを
+;; (cond
+;;   ((eq system-type 'gnu/linux) ;; GNU/Linux なら
+;;     (setq dvi2-command "evince")) ;; evince で PDF を閲覧
+;;   ((eq system-type 'darwin) ;; Mac なら
+;;     (setq dvi2-command "open -a Preview"))) ;; プレビューで
+;; (add-hook 'yatex-mode-hook '(lambda () (setq auto-fill-function nil)))
 
 ;; ------------------------------------------------------------------------
 ;; @ twittering-mode
@@ -278,22 +286,23 @@
 ;; howm
 ;; http://howm.sourceforge.jp/index.html
 ;; howmメモ保存の場所
-(setq hown-directory (concat user-emacs-directory "howm"))
-;; howm-menuの言語を日本語に
-(setq howm-menu-lang 'ja)
-;; howm-modeを読み込む
-(when (require 'howm-mode nil t)
-  (define-key global-map (kbd "C-c ,,") 'howm-menu))
-;; howmメモを保存と同時に閉じる
-(defun howm-save-buffer-and-kill ()
-  (interactive)
-  (when (and (buffer-file-name)
-             (string-match "\\.howm" (buffer-file-name)))
-    (save-buffer)
-    (kill-buffer nil)))
+;; (setq hown-directory (concat user-emacs-directory "howm"))
+;; ;; howm-menuの言語を日本語に
+;; (setq howm-menu-lang 'ja)
+;; ;; howm-modeを読み込む
+;; (when (require 'howm-mode nil t)
+;;   (define-key global-map (kbd "C-c ,,") 'howm-menu))
+;; ;; howmメモを保存と同時に閉じる
+;; (defun howm-save-buffer-and-kill ()
+;;   (interactive)
+;;   (when (and (buffer-file-name)
+;;              (string-match "\\.howm" (buffer-file-name)))
+;;     (save-buffer)
+;;     (kill-buffer nil)))
 
-;; C-c C-cでメモの保存と同時にバッファを閉じる
-(define-key howm-mode-map (kbd "C-c C-c") 'howm-save-buffer-and-kill)
+;; ;; C-c C-cでメモの保存と同時にバッファを閉じる
+;; (define-key howm-mode-map (kbd "C-c C-c") 'howm-save-buffer-and-kill)
+
 ;; ------------------------------------------------------------------------
 ;; @ undo-tree.el
 
