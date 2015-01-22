@@ -24,8 +24,14 @@
 ;;c-x c-f�Υǥե����
 (setq default-directory "~/")
 
+<<<<<<< HEAD
 ;; ʸ��������
 (set-language-environment "Japanese")
+=======
+;; 文字コード
+;; (set-language-environment "Japanese")
+(prefer-coding-system 'utf-8-unix)
+>>>>>>> 223f5aeec3f157a0c410e835f186936eb3cea1ff
 (let ((ws window-system))
   (cond ((eq ws 'w32)
          (prefer-coding-system 'utf-8-unix)
@@ -163,7 +169,13 @@
 ;; Emacs24�ʹ�ɸ���Color theme��Ȥ�
 (load-theme 'deeper-blue t)
 
-; ------------------------------------------------------------------------
+;; 80文字での自動改行をoff
+(setq text-mode-hook 'turn-off-auto-fill)
+
+;; flycheckの設定
+(add-hook 'after-init-hook #'global-flycheck-mode)
+
+;; ------------------------------------------------------------------------
 ;; @ markdown-mode
 ;; Major mode for editing Markdown-formatted text files in GNU Emacs.
 ;; http://jblevins.org/projects/markdown-mode/
@@ -207,6 +219,37 @@
 (add-hook 'web-mode-hook 'web-mode-hook)
 
 ;; ------------------------------------------------------------------------
+<<<<<<< HEAD
+=======
+;; @ yatex
+
+;; Emacs DE TeX
+;; http://www.yatex.org/
+;; 拡張子が .tex なら yatex-mode に
+(setq auto-mode-alist
+  (cons (cons "\\.tex$" 'yatex-mode) auto-mode-alist))
+(autoload 'yatex-mode "yatex" "Yet Another LaTeX mode" t)
+
+;; YaTeX が利用する内部コマンドを定義する
+;; (setq tex-command "platex2pdf") ;; 自作したコマンドを
+;; (cond
+;;   ((eq system-type 'gnu/linux) ;; GNU/Linux なら
+;;     (setq dvi2-command "evince")) ;; evince で PDF を閲覧
+;;   ((eq system-type 'darwin) ;; Mac なら
+;;     (setq dvi2-command "open -a Preview"))) ;; プレビューで
+;; (add-hook 'yatex-mode-hook '(lambda () (setq auto-fill-function nil)))
+
+;; ------------------------------------------------------------------------
+;; @ twittering-mode
+
+;; Emacs DE Twitter
+;; https://github.com/hayamiz/twittering-mode/tree/master
+;; (require 'twittering-mode)
+;; (setq twittering-use-master-password t)
+;; (setq twittering-icon-mode t)
+
+;; ------------------------------------------------------------------------
+>>>>>>> 223f5aeec3f157a0c410e835f186936eb3cea1ff
 ;; @ egg.el
 ;; Emacs DE Git
 ;; https://github.com/byplayer/egg
@@ -214,6 +257,107 @@
   (require 'egg nil t))
 
 ;; ------------------------------------------------------------------------
+<<<<<<< HEAD
+=======
+;; @ rhtml.el
+
+;; rhtml
+;; https://github.com/eschulte/rhtml
+(when (require 'rhtml-mode nil t)
+  (add-to-list 'auto-mode-alist '("\\.rhtml\\'" .rhtml-mode)))
+
+;; ------------------------------------------------------------------------
+;; @ groovy-mode.el
+
+;; Groovy mode
+;; https://github.com/russel/Emacs-Groovy-Mode
+(add-to-list 'load-path "~/.emacs.d/emacs-groovy-mode")
+(autoload 'groovy-mode "groovy-mode" "Major mode for editing Groovy code." t)
+(add-to-list 'auto-mode-alist '("\.groovy$" . groovy-mode))
+(add-to-list 'interpreter-mode-alist '("grooy" . groovy-mode))
+
+;; ------------------------------------------------------------------------
+;; @ multi-term.el
+
+;; multi-term
+;; http://www.emacswiki.org/emacs/MultiTerm
+;; (require 'multi-term)
+;; (setq multi-term-program "/bin/bash")
+
+;; ------------------------------------------------------------------------
+;; @ howm
+
+;; howm
+;; http://howm.sourceforge.jp/index.html
+;; howmメモ保存の場所
+;; (setq hown-directory (concat user-emacs-directory "howm"))
+;; ;; howm-menuの言語を日本語に
+;; (setq howm-menu-lang 'ja)
+;; ;; howm-modeを読み込む
+;; (when (require 'howm-mode nil t)
+;;   (define-key global-map (kbd "C-c ,,") 'howm-menu))
+;; ;; howmメモを保存と同時に閉じる
+;; (defun howm-save-buffer-and-kill ()
+;;   (interactive)
+;;   (when (and (buffer-file-name)
+;;              (string-match "\\.howm" (buffer-file-name)))
+;;     (save-buffer)
+;;     (kill-buffer nil)))
+
+;; ;; C-c C-cでメモの保存と同時にバッファを閉じる
+;; (define-key howm-mode-map (kbd "C-c C-c") 'howm-save-buffer-and-kill)
+
+;; ------------------------------------------------------------------------
+;; @ undo-tree.el
+
+;; undo-tree
+;; http://melpa.milkbox.net/#/undo-tree
+(when (require 'undo-tree nil t)
+  (global-undo-tree-mode))
+
+;; ------------------------------------------------------------------------
+;; @ undohist.el
+
+;; undohist
+;; https://github.com/m2ym/undohist-el
+(when (require 'undohist nil t)
+  (undohist-initialize))
+
+;; ------------------------------------------------------------------------
+;; @ wgrep.el
+
+;; wgrep
+;; https://github.com/mhayashi1120/Emacs-wgrep
+(require 'wgrep nil t)
+
+;; ------------------------------------------------------------------------
+;; @ color-moccur.el
+
+;; multi-buffer occur (grep) mode
+;; http://www.emacswiki.org/emacs/color-moccur.el
+(when (require 'color-moccur nil t)
+  (define-key global-map (kbd "M-o") 'occur-by-moccur)
+  (setq moccur-split-word t)
+  (add-to-list 'dmoccur-exclusion-mask "\\.DS_Store")
+  (add-to-list 'dmoccur-exclusion-mask "^#.+#$")
+  (when (and (executable-find "cmigemo")
+             (require 'migemo nil t))
+    (setq moccur-use-migemo t)))
+
+;; ------------------------------------------------------------------------
+;; @ moccur-edit.el
+
+;; apply replaces to multiple files
+;; http://www.emacswiki.org/emacs/moccur-edit.el
+(require 'moccur-edit nil t)
+
+;; moccur-edit-finish-editと同時にファイルを保存する
+(defadvice moccur-edit-change-file
+  (after save-after-moccur-edit-buffer activate)
+  (save-buffer))
+
+;; ------------------------------------------------------------------------
+>>>>>>> 223f5aeec3f157a0c410e835f186936eb3cea1ff
 ;; @ anything.el
 ;; anything
 ;; http://www.emacswiki.org/emacs/anything.el

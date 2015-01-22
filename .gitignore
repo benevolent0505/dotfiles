@@ -9,7 +9,7 @@
 /.emacs.d/eshell/*
 /.emacs.d/.DS_Store
 /.emacs.d/ac-comphist.dat
-
+/.emacs.d/url/*
 /.emacs.d/.cask
 
 /.emacs.d/public_repo/howm-1.4.2/*
