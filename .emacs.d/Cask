@@ -5,6 +5,7 @@
 (depends-on "anything")
 (depends-on "auto-complete")
 (depends-on "flycheck")
+(depends-on "flycheck-pos-tip")
 (depends-on "egg" :git "git@github.com:byplayer/egg.git")
 
 (depends-on "markdown-mode" : "git@github.com:defunkt/markdown-mode.git")
