@@ -7,12 +7,17 @@
 (depends-on "flycheck")
 (depends-on "flycheck-pos-tip")
 (depends-on "egg" :git "git@github.com:byplayer/egg.git")
+(depends-on "popwin" :git "git@github.com:m2ym/popwin-el.git")
 
 (depends-on "markdown-mode" : "git@github.com:defunkt/markdown-mode.git")
 (depends-on "web-mode")
+(depends-on "emmet-mode")
 
 ;; programming modes
 (depends-on "js2-mode")
+(depends-on "js2-refactor")
+
+(depends-on "scala-mode2")
 
 (depends-on "ruby-mode")
 (depends-on "ruby-block")

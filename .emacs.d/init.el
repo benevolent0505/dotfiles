@@ -9,8 +9,8 @@
         (if (fboundp 'normal-top-level-add-subdirs-to-load-path)
             (normal-top-level-add-subdirs-to-load-path))))))
 
-;; load-pathに追加するフォルダ
-;; 2つ以上フォルダを指定する場合の引数 => (add-to-load-path "elisp" "xxx" "xxx")
+;; load-pathに追加するフォルダ
+;; 2つ以上フォルダを指定する場合の引数 => (add-to-load-path "elisp" "xxx" "xxx")
 (add-to-load-path "elisp" "public_repo")
 
 ;; ------------------------------------------------------------------------
@@ -23,9 +23,11 @@
 
 ;; ------------------------------------------------------------------------
 ;; @ general
+
 ;; common lisp
 (require 'cl)
-;;c-x c-fのデフォルト
+
+;;c-x c-fのデフォルト
 (setq default-directory "~/")
 
 (set-language-environment "Japanese")
@@ -42,8 +44,8 @@
          (setq file-name-coding-system 'utf-8-hfs)
          (setq locale-coding-system 'utf-8-hfs))))
 
-;; Windowsで英数と日本語にMeiryoを指定
-;; Macで英数と日本語にRictyを指定
+;; Windowsで英数と日本語にMeiryoを指定
+;; Macで英数と日本語にRictyを指定
 (let ((ws window-system))
   (cond ((eq ws 'w32)
          (set-face-attribute 'default nil
@@ -56,22 +58,22 @@
                              :height 140)
          (set-fontset-font nil 'japanese-jisx0208 (font-spec :family "Ricty"))))) ;; 日本語
 
-;; スタートアップ非表示
+;; スタートアップ非表示
 (setq inhibit-startup-screen t)
 
-;; scratchの初期メッセージ消去
+;; scratchの初期メッセージ消去
 (setq initial-scratch-message "")
 
-;; ツールバー非表示
+;; ツールバー非表示
 (tool-bar-mode -1)
 
-;; メニューバー非表示
+;; メニューバー非表示
 (menu-bar-mode -1)
 
-;; スクロールバー非表示
+;; スクロールバー非表示
 (set-scroll-bar-mode nil)
 
-;; タイトルバーにファイルのフルパスを表示
+;; タイトルバーにファイルのフルパスを表示
 (setq frame-title-format
       (format "%%f - Emacs@%s" (system-name)))
 
@@ -80,7 +82,6 @@
 (set-face-attribute 'linum nil
                     :foreground "#800"
                     :height 0.9)
-
 
 ;; 行番号フォーマット
 ;; (setq linum-format "%4d")
@@ -100,22 +101,22 @@
 (setq-default show-trailing-whitespace t)
 (set-face-background 'trailing-whitespace "#b14770")
 
-;; タブをスペースで扱う
+;; タブをスペースで扱う
 (setq-default indent-tabs-mode nil)
 
-;; タブ幅
-(custom-set-variables '(tab-width 4))
+;; タブ幅
+(setq-default tab-width 2)
 
 ;; yes or noをy or n
 (fset 'yes-or-no-p 'y-or-n-p)
 
-;; バックアップを残さない
+;; バックアップを残さない
 ;; (setq make-backup-files nil)
 
 ;; 行間
 (setq-default line-spacing 0)
 
-;; 1行ずつスクロール
+;; 1行ずつスクロール
 (setq scroll-conservatively 35
       scroll-margin 0
       scroll-step 1)
@@ -127,7 +128,7 @@
 ;; C-mにnewline-and-indentを割り当てる.初期値はnewline
 (define-key global-map (kbd "C-m") 'newline-and-indent)
 
-;; "C-t" でウィンドウを切り替える.初期値はtranspose-chars
+;; "C-t" でウィンドウを切り替える.初期値はtranspose-chars
 (define-key global-map (kbd "C-t") 'other-window)
 
 ;; カラム番号を表示
@@ -138,10 +139,10 @@
 ;; (setq display-time-24hr-format t)
 (display-time-mode t)
 
-;; バッテリー残量を表示(marvericksだとpatchを当てないと表示されない)
+;; バッテリー残量を表示(marvericksだとpatchを当てないと表示されない)
 ;; (display-battery-mode t)
 
-;; バックアップとオートセーブファイルを~/.emacs.d/backups/へ集める
+;; バックアップとオートセーブファイルを~/.emacs.d/backups/へ集める
 (add-to-list 'backup-directory-alist
              (cons "." "~/.emacs.d/backups/"))
 (setq auto-save-file-name-transforms
@@ -167,26 +168,44 @@
 ;; Emacs24以降標準のColor themeを使う
 (load-theme 'deeper-blue t)
 
-;; 80文字での自動改行をoff
+;; 80文字での自動改行をoff
 (setq text-mode-hook 'turn-off-auto-fill)
+
+;; 自動インデントを無効
+(electric-indent-mode 0)
+
+;; サーバー起動
+(require 'server)
+(unless (server-running-p)
+  (server-start))
+
+;; org-mode
+;; (setq org-export-run-in-background t)
+
+;; ------------------------------------------------------------------------
+;; @ popwin.el
+;; Popup Window Manager for Emacs
+;; https://github.com/m2ym/popwin-el
+(require 'popwin)
+(popwin-mode 1)
 
 ;; ------------------------------------------------------------------------
 ;; @ yatex
 
 ;; Emacs DE TeX
 ;; http://www.yatex.org/
-;; 拡張子が .tex なら yatex-mode に
+;; 拡張子が .tex なら yatex-mode に
 (setq auto-mode-alist
   (cons (cons "\\.tex$" 'yatex-mode) auto-mode-alist))
 (autoload 'yatex-mode "yatex" "Yet Another LaTeX mode" t)
 
-;; YaTeX が利用する内部コマンドを定義する
-(setq tex-command "platex2pdf") ;; 自作したコマンドを
+;; YaTeX が利用する内部コマンドを定義する
+(setq tex-command "platex2pdf") ;; 自作したコマンドを
 (cond
   ((eq system-type 'gnu/linux) ;; GNU/Linux なら
-    (setq dvi2-command "evince")) ;; evince で PDF を閲覧
+    (setq dvi2-command "evince")) ;; evince で PDF を閲覧
   ((eq system-type 'darwin) ;; Mac なら
-    (setq dvi2-command "open -a Preview"))) ;; プレビューで
+    (setq dvi2-command "open -a Preview"))) ;; プレビューで
 (add-hook 'yatex-mode-hook '(lambda () (setq auto-fill-function nil)))
 
 ;; ------------------------------------------------------------------------
@@ -223,26 +242,35 @@
 ;; major mode for editing html templates
 ;; http://web-mode.org/
 (require 'web-mode)
-;;; emacs 23以下の互換
-(when (< emacs-major-version 24)
-  (defalias 'prog-mode 'fundamental-mode))
 ;;; 適用する拡張子
-(add-to-list 'auto-mode-alist '("\\.phtml$" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.tpl\\.php$" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.jsp$" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.as[cp]x$" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.erb$" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.html?$" . web-mode))
-;;; インデント数
+(add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.[agj]sp\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.as[cp]x\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+;;; インデント数
 (defun web-mode-hook ()
   "Hooks for Web mode."
-  (setq web-mode-html-offset 2)
-  (setq web-mode-css-offset 2)
-  (setq web-mode-script-offset 2)
-  (setq web-mode-php-offset 2)
-  (setq web-mode-java-offset 2)
-  (setq web-mode-asp-offset 2))
+  (setq web-mode-markup-indent-offset 2)
+  (setq web-mode-css-indent-offset 2)
+  (setq web-mode-code-indent-offset 2)
+  (setq web-mode-style-padding 1)
+  (setq web-mode-script-padding 1)
+  (setq web-mode-block-padding 0))
 (add-hook 'web-mode-hook 'web-mode-hook)
+
+;; ------------------------------------------------------------------------
+;; @ emmet-mode.el
+;; emmet's support for emacs.
+;; https://github.com/smihica/emmet-mode
+(require 'emmet-mode)
+(add-hook 'sgml-mode-hook 'emmet-mode)
+(add-hook 'css-mode-hook  'emmet-mode)
+(add-hook 'emmet-mode-hook (lambda () (setq emmet-indentation 2)))
+(define-key emmet-mode-keymap (kbd "C-c C-j") 'emmet-expand-line)
 
 ;; ------------------------------------------------------------------------
 ;; @ egg.el
