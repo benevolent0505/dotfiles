@@ -166,7 +166,7 @@
 (add-hook 'ruby-mode-hook 'ruby-mode-hooks)
 
 ;; Emacs24以降標準のColor themeを使う
-(load-theme 'deeper-blue t)
+(load-theme 'tango-dark t)
 
 ;; 80文字での自動改行をoff
 (setq text-mode-hook 'turn-off-auto-fill)
@@ -236,6 +236,11 @@
 ;; https://github.com/mooz/js2-mode
 (autoload 'js2-mode "js2-mode" nil t)
 (add-to-list 'auto-mode-alist '("\.js$" . js2-mode))
+;; (customize-variable js2-basic-offset 2)
+
+;; tern
+(autoload 'tern-mode "tern.el" nil t)
+(add-hook 'js2-mode-hook 'tern-mode)
 
 ;; ------------------------------------------------------------------------
 ;; @ web-mode.el

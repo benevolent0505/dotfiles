@@ -16,6 +16,7 @@
 ;; programming modes
 (depends-on "js2-mode")
 (depends-on "js2-refactor")
+(depends-on "tern")
 
 (depends-on "scala-mode2")
 
