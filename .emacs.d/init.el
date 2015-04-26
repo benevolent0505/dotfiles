@@ -305,17 +305,20 @@
 ;; 以下JavaScript
 
 ;; ------------------------------------------------------------------------
-;; @ js2-mode
-;; Improved JavaScript editing mode for GNU Emacs
-;; https://github.com/mooz/js2-mode
-(autoload 'js2-mode "js2-mode" nil t)
-(add-to-list 'auto-mode-alist '("\.js$" . js2-mode))
-;; (customize-variable js2-basic-offset 2)
-(add-hook 'js2-mode-hook
-          (lambda ()
-            (tern-mode t)))
+;; @ js3-mode
+;; A chimeric fork of js2-mode and js-mode
+;; https://github.com/thomblake/js3-mode
+(require 'js3-mode)
+'(js3-auto-indent-p t)
+'(js3-enter-indents-newline t)
+'(js3-indent-on-enter-key t)
 
-(eval-after-load 'tern
-  '(progn
-     (require 'tern-auto-complete)
-     (tern-ac-setup)))
+(defun js3-mode-hooks()
+  (tern-mode t)
+  (eval-after-load 'tern
+    'progn
+    (require 'auto-complete)
+    (auto-complete-mode t)
+    (require 'tern-auto-complete)
+    (tern-ac-setup)))
+(add-hook 'js3-mode-hook 'js3-mode-hooks)

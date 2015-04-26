@@ -18,7 +18,6 @@
 ;; programming modes
 
 ;; JavaScript
-(depends-on "js2-mode")
-(depends-on "js2-refactor")
+(depends-on "js3-mode")
 (depends-on "tern")
 (depends-on "tern-auto-complete")
