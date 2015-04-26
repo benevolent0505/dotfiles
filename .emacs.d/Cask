@@ -6,6 +6,7 @@
 (depends-on "auto-complete")
 (depends-on "flycheck")
 (depends-on "flycheck-pos-tip")
+(depends-on "magit")
 (depends-on "egg" :git "git@github.com:byplayer/egg.git")
 (depends-on "popwin" :git "git@github.com:m2ym/popwin-el.git")
 
@@ -17,6 +18,7 @@
 (depends-on "js2-mode")
 (depends-on "js2-refactor")
 (depends-on "tern")
+(depends-on "tern-auto-complete")
 
 (depends-on "scala-mode2")
 

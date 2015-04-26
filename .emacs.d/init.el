@@ -73,18 +73,11 @@
 ;; スクロールバー非表示
 (set-scroll-bar-mode nil)
 
-;; タイトルバーにファイルのフルパスを表示
-(setq frame-title-format
-      (format "%%f - Emacs@%s" (system-name)))
+;; タイトルパーにファイルのフルパスを表示する
+(setq frame-title-format "%f")
 
-;; 行番号表示
+;; 行番号を表示する
 (global-linum-mode t)
-(set-face-attribute 'linum nil
-                    :foreground "#800"
-                    :height 0.9)
-
-;; 行番号フォーマット
-;; (setq linum-format "%4d")
 
 ;; 括弧の範囲内を強制表示
 (show-paren-mode t)
@@ -110,9 +103,6 @@
 ;; yes or noをy or n
 (fset 'yes-or-no-p 'y-or-n-p)
 
-;; バックアップを残さない
-;; (setq make-backup-files nil)
-
 ;; 行間
 (setq-default line-spacing 0)
 
@@ -120,7 +110,6 @@
 (setq scroll-conservatively 35
       scroll-margin 0
       scroll-step 1)
-(setq comint-scroll-show-maximum-output t) ;; shell-mode
 
 ;; フレームの透明度
 (set-frame-parameter (selected-frame) 'alpha '(0.7))
@@ -133,6 +122,15 @@
 
 ;; カラム番号を表示
 (column-number-mode t)
+
+;; カーソルのある行をハイライトする
+(global-hl-line-mode t)
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(hl-line ((t (:background "color-236")))))
 
 ;; 時計を表示
 (setq display-time-day-and-date t)
@@ -179,15 +177,18 @@
 (unless (server-running-p)
   (server-start))
 
-;; org-mode
-;; (setq org-export-run-in-background t)
+;; ------------------------------------------------------------------------
+;; @ Magit
+;; http://magit.vc/
+;; Magit! A Git Porcelain inside Emacs
+
 
 ;; ------------------------------------------------------------------------
 ;; @ popwin.el
 ;; Popup Window Manager for Emacs
 ;; https://github.com/m2ym/popwin-el
-(require 'popwin)
-(popwin-mode 1)
+;; (require 'popwin)
+;; (popwin-mode 1)
 
 ;; ------------------------------------------------------------------------
 ;; @ yatex
@@ -237,10 +238,15 @@
 (autoload 'js2-mode "js2-mode" nil t)
 (add-to-list 'auto-mode-alist '("\.js$" . js2-mode))
 ;; (customize-variable js2-basic-offset 2)
+(add-hook 'js2-mode-hook
+          (lambda ()
+            (tern-mode t)))
 
-;; tern
-(autoload 'tern-mode "tern.el" nil t)
-(add-hook 'js2-mode-hook 'tern-mode)
+(eval-after-load 'tern
+  '(progn
+     (require 'tern-auto-complete)
+     (tern-ac-setup)))
+
 
 ;; ------------------------------------------------------------------------
 ;; @ web-mode.el
@@ -353,3 +359,10 @@
   "Run an inferior Ruby process")
 (autoload 'inf-ruby-keys "inf-ruby"
   "Set local key defs for inf-ruby in ruby-mode")
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(flycheck-display-errors-function (function flycheck-pos-tip-error-messages))
+ '(js2-basic-offset 2))
