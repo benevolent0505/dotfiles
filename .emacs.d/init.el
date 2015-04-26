@@ -154,15 +154,6 @@
                (setq eldoc-echo-area-use-multiline-p t)
                (turn-on-eldoc-mode))))
 
-;; ruby-mode-hook用の関数を定義
-(defun ruby-mode-hooks ()
-  (inf-ruby-keys)
-  (ruby-electric-mode t)
-  (ruby-block-mode t))
-
-;; ruby-mode-hookに追加
-(add-hook 'ruby-mode-hook 'ruby-mode-hooks)
-
 ;; Emacs24以降標準のColor themeを使う
 (load-theme 'tango-dark t)
 
@@ -230,23 +221,6 @@
 (add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
-
-;; ------------------------------------------------------------------------
-;; @ js2-mode
-;; Improved JavaScript editing mode for GNU Emacs
-;; https://github.com/mooz/js2-mode
-(autoload 'js2-mode "js2-mode" nil t)
-(add-to-list 'auto-mode-alist '("\.js$" . js2-mode))
-;; (customize-variable js2-basic-offset 2)
-(add-hook 'js2-mode-hook
-          (lambda ()
-            (tern-mode t)))
-
-(eval-after-load 'tern
-  '(progn
-     (require 'tern-auto-complete)
-     (tern-ac-setup)))
-
 
 ;; ------------------------------------------------------------------------
 ;; @ web-mode.el
@@ -328,41 +302,20 @@
   (setq ac-ignore-case t)
   (ac-config-default))
 
-;; ruby-mode
-(autoload 'ruby-mode "ruby-mode"
-  "Mode for editing ruby source files" t)
-(add-to-list 'auto-mode-alist '("\\.rb$latex " . ruby-mode))
-(add-to-list 'auto-mode-alist '("Capfile$" . ruby-mode))
-(add-to-list 'auto-mode-alist '("Gemfile$" . ruby-mode))
-(setq ruby-insert-encoding-magic-comment nil)
+;; 以下JavaScript
 
 ;; ------------------------------------------------------------------------
-;; @ ruby-electric.el
-;; a minor mode that makes writing and editing Ruby code easier.
-;; https://github.com/qoobaa/ruby-electric
-(require 'ruby-electric)
-(add-hook 'ruby-mode-hook '(lambda () (ruby-electric-mode t)))
-(setq ruby-electric-expand-delimiters-list nil)
+;; @ js2-mode
+;; Improved JavaScript editing mode for GNU Emacs
+;; https://github.com/mooz/js2-mode
+(autoload 'js2-mode "js2-mode" nil t)
+(add-to-list 'auto-mode-alist '("\.js$" . js2-mode))
+;; (customize-variable js2-basic-offset 2)
+(add-hook 'js2-mode-hook
+          (lambda ()
+            (tern-mode t)))
 
-;; ------------------------------------------------------------------------
-;; @ ruby-block.el
-;; rubyのendに対応する行をハイライト
-;; http://www.emacswiki.org/emacs/ruby-block.el
-(when (require 'ruby-block nil t)
-  (setq ruby-block-highlight-toggle t))
-
-;; ------------------------------------------------------------------------
-;; @ inf-ruby.el
-;; inf-ruby provides a REPL buffer connected to a Ruby subprocess
-;; https://github.com/nonsequitur/inf-ruby/blob/master/inf-ruby.el
-(autoload 'run-ruby "inf-ruby"
-  "Run an inferior Ruby process")
-(autoload 'inf-ruby-keys "inf-ruby"
-  "Set local key defs for inf-ruby in ruby-mode")
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(flycheck-display-errors-function (function flycheck-pos-tip-error-messages))
- '(js2-basic-offset 2))
+(eval-after-load 'tern
+  '(progn
+     (require 'tern-auto-complete)
+     (tern-ac-setup)))

@@ -10,19 +10,15 @@
 (depends-on "egg" :git "git@github.com:byplayer/egg.git")
 (depends-on "popwin" :git "git@github.com:m2ym/popwin-el.git")
 
+;; Web
 (depends-on "markdown-mode" : "git@github.com:defunkt/markdown-mode.git")
 (depends-on "web-mode")
 (depends-on "emmet-mode")
 
 ;; programming modes
+
+;; JavaScript
 (depends-on "js2-mode")
 (depends-on "js2-refactor")
 (depends-on "tern")
 (depends-on "tern-auto-complete")
-
-(depends-on "scala-mode2")
-
-(depends-on "ruby-mode")
-(depends-on "ruby-block")
-(depends-on "ruby-electric")
-(depends-on "ruby-end")
