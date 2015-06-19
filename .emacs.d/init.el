@@ -1,21 +1,3 @@
-;;; ------------------------------------------------------------------------
-;; @ load-path
-;; load-pathの追加関数
-(defun add-to-load-path (&rest paths)
-  (let (path)
-    (dolist (path paths paths)
-      (let ((default-directory (expand-file-name (concat user-emacs-directory path))))
-        (add-to-list 'load-path default-directory)
-        (if (fboundp 'normal-top-level-add-subdirs-to-load-path)
-            (normal-top-level-add-subdirs-to-load-path))))))
-
-;; load-pathに追加するフォルダ
-;; 2つ以上フォルダを指定する場合の引数 => (add-to-load-path "elisp" "xxx" "xxx")
-(add-to-load-path "elisp" "public_repo")
-
-;; ------------------------------------------------------------------------
-;; @ Cask
-;; cask initialize
 (if (eq system-type 'darwin)
     (require 'cask "/usr/local/opt/cask/cask.el")
   (require 'cask "~/.cask/cask.el"))
@@ -160,67 +142,64 @@
 ;; 80文字での自動改行をoff
 (setq text-mode-hook 'turn-off-auto-fill)
 
-;; 自動インデントを無効
-(electric-indent-mode 0)
+;; ------------------------------------------------------------------------
+;; @helm
+;; Emacs incremental completion and selection narrowing framework
+;; https://github.com/emacs-helm/helm
+(require 'helm-config)
+(global-set-key (kbd "M-x") 'helm-M-x)
+(helm-mode 1)
+(helm-autoresize-mode 1)
+;; For find-file etc.
+(define-key helm-read-file-map (kbd "TAB") 'helm-execute-persistent-action)
+;; For helm-find-files etc.
+(define-key helm-find-files-map (kbd "TAB") 'helm-execute-persistent-action)
+(define-key global-map (kbd "C-x C-f") 'helm-find-files)
+(define-key global-map (kbd "C-x b")   'helm-buffers-list)
 
-;; サーバー起動
-(require 'server)
-(unless (server-running-p)
-  (server-start))
+(require 'helm-ls-git)
 
 ;; ------------------------------------------------------------------------
 ;; @ Magit
 ;; http://magit.vc/
 ;; Magit! A Git Porcelain inside Emacs
-
-
-;; ------------------------------------------------------------------------
-;; @ popwin.el
-;; Popup Window Manager for Emacs
-;; https://github.com/m2ym/popwin-el
-;; (require 'popwin)
-;; (popwin-mode 1)
+(require 'magit)
+(setq magit-last-seen-setup-instructions "1.4.1")
 
 ;; ------------------------------------------------------------------------
-;; @ yatex
-
-;; Emacs DE TeX
-;; http://www.yatex.org/
-;; 拡張子が .tex なら yatex-mode に
-(setq auto-mode-alist
-  (cons (cons "\\.tex$" 'yatex-mode) auto-mode-alist))
-(autoload 'yatex-mode "yatex" "Yet Another LaTeX mode" t)
-
-;; YaTeX が利用する内部コマンドを定義する
-(setq tex-command "platex2pdf") ;; 自作したコマンドを
-(cond
-  ((eq system-type 'gnu/linux) ;; GNU/Linux なら
-    (setq dvi2-command "evince")) ;; evince で PDF を閲覧
-  ((eq system-type 'darwin) ;; Mac なら
-    (setq dvi2-command "open -a Preview"))) ;; プレビューで
-(add-hook 'yatex-mode-hook '(lambda () (setq auto-fill-function nil)))
+;; @ auto-complete.el
+;; 自動補完機能
+;; https://github.com/m2ym/auto-complete
+(when (require 'auto-complete-config nil t)
+  (add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
+  (setq ac-ignore-case t)
+  (ac-config-default))
+(ac-set-trigger-key "TAB")
+;; 補完メニュー表示時にC-n/C-pで補完候補選択
+(defvar ac-use-menu-map t)
 
 ;; ------------------------------------------------------------------------
-;; @ flycheck
-;; modern on-the-fly syntax checking extension.
-(add-hook 'after-init-hook #'global-flycheck-mode)
-
-(with-eval-after-load 'flycheck
-  (setq-default flycheck-disabled-checkers '(emacs-lisp-checkdoc)))
-
-(eval-after-load 'flycheck
-  '(custom-set-variables
-   '(flycheck-display-errors-function #'flycheck-pos-tip-error-messages)))
+;; @ js2-mode
+;; https://github.com/mooz/js2-mode
+;; Improved JavaScript editing mode for GNU Emacs
+(add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
+(add-to-list 'interpreter-mode-alist '("node" . js2-mode))
+(add-hook 'js2-mode-hook
+          '(lambda ()
+             (setq js2-basic-offset 2)))
+(add-hook 'js-mode-hook 'js2-minor-mode)
+(add-hook 'js2-mode-hook 'ac-js2-mode)
+(defvar ac-js2-evaluate-calls t)
 
 ;; ------------------------------------------------------------------------
-;; @ markdown-mode
-;; Major mode for editing Markdown-formatted text files in GNU Emacs.
-;; http://jblevins.org/projects/markdown-mode/
-(autoload 'markdown-mode "markdown-mode"
-  "Major mode for editing Markdown files" t)
-(add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
-(add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
-(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
+;; @ tern
+;; https://github.com/marijnh/tern
+;; A JavaScript code analyzer for deep, cross-editor language support
+(add-hook 'js2-mode-hook (lambda () (tern-mode t)))
+(eval-after-load 'tern
+   '(progn
+      (require 'tern-auto-complete)
+      (tern-ac-setup)))
 
 ;; ------------------------------------------------------------------------
 ;; @ web-mode.el
@@ -248,77 +227,29 @@
 (add-hook 'web-mode-hook 'web-mode-hook)
 
 ;; ------------------------------------------------------------------------
-;; @ emmet-mode.el
-;; emmet's support for emacs.
-;; https://github.com/smihica/emmet-mode
-(require 'emmet-mode)
-(add-hook 'sgml-mode-hook 'emmet-mode)
-(add-hook 'css-mode-hook  'emmet-mode)
-(add-hook 'emmet-mode-hook (lambda () (setq emmet-indentation 2)))
-(define-key emmet-mode-keymap (kbd "C-c C-j") 'emmet-expand-line)
+;; @ flycheck
+;; modern on-the-fly syntax checking extension.
+;; https://github.com/flycheck/flycheck
+(add-hook 'after-init-hook #'global-flycheck-mode)
+;; flycheck pos tip
+(eval-after-load 'flycheck
+  '(custom-set-variables
+   '(flycheck-display-errors-function #'flycheck-pos-tip-error-messages)))
 
 ;; ------------------------------------------------------------------------
-;; @ egg.el
-;; Emacs DE Git
-;; https://github.com/byplayer/egg
-(when (executable-find "git")
-  (require 'egg nil t))
+;; @ anzu
+;; Emacs Port of anzu.vim
+;; https://github.com/syohex/emacs-anzu
+(anzu-mode +1)
+(custom-set-variables
+ '(anzu-mode-lighter "")
+ '(anzu-deactivate-region t)
+ '(anzu-search-threshold 1000))
 
 ;; ------------------------------------------------------------------------
-;; @ anything.el
-;; anything
-;; http://www.emacswiki.org/emacs/anything.el
-(when (require 'anything nil t)
-  (setq
-   anything-idle-delay 0.3
-   anything-input-idle-delay 0.2
-   anything-candidate-number-limit 100
-   anything-quick-update t
-   anything-enable-shortcuts 'alphabet)
-  (when (require 'anything-config nil t)
-    (setq anything-su-or-sudo "sudo"))
-  (require 'anything-match-plugin nil t)
-  (when (and (executable-find "cmigemo")
-             (require 'migemo nil t))
-    (require 'anything-migemo nil t))
-  (when (require 'anything-complete nil t)
-    (anything-lisp-complete-symbol-set-timer 150))
-  (require 'anything-show-completion nil t)
-  (when (require 'auto-install nil t)
-    (require 'anything-auto-install nil t))
-  (when (require 'descbinds-anything nil t)
-    (descbinds-anything-install)))
-;; C-x bにanything-for-filesを割り当てる
-(define-key global-map (kbd "C-x b") 'anything-for-files)
-;; M-yにanything-show-kill-ringを割り当てる
-(define-key global-map (kbd "M-y") 'anything-show-kill-ring)
+;; @ powerline
+;; emacs powerline
+;; https://github.com/milkypostman/powerline
+(require 'powerline)
+(powerline-default-theme)
 
-;; ------------------------------------------------------------------------
-;; @ auto-complete.el
-;; 自動補完機能
-;; https://github.com/m2ym/auto-complete
-(when (require 'auto-complete-config nil t)
-  (add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
-  (setq ac-ignore-case t)
-  (ac-config-default))
-
-;; 以下JavaScript
-
-;; ------------------------------------------------------------------------
-;; @ js3-mode
-;; A chimeric fork of js2-mode and js-mode
-;; https://github.com/thomblake/js3-mode
-(require 'js3-mode)
-'(js3-auto-indent-p t)
-'(js3-enter-indents-newline t)
-'(js3-indent-on-enter-key t)
-
-(defun js3-mode-hooks()
-  (tern-mode t)
-  (eval-after-load 'tern
-    'progn
-    (require 'auto-complete)
-    (auto-complete-mode t)
-    (require 'tern-auto-complete)
-    (tern-ac-setup)))
-(add-hook 'js3-mode-hook 'js3-mode-hooks)
