@@ -36,6 +36,8 @@
 (depends-on "powerline" :git "https://github.com/milkypostman/powerline")
 (depends-on "flycheck-pos-tip")
 (depends-on "git-gutter")
+(depends-on "skewer-mode")
+(depends-on "simple-httpd")
 
 ;; javascript
 (depends-on "js2-mode")

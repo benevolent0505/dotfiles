@@ -259,3 +259,26 @@
 ;; Emacs port of GitGutter which is Sublime Text Plugin
 ;; https://github.com/syohex/emacs-git-gutter
 (global-git-gutter-mode +1)
+
+;; ------------------------------------------------------------------------
+;; @ simple-httpd
+;; Extensible Emacs HTTP 1.1 server
+;; https://github.com/skeeto/emacs-web-server
+;; (require 'simple-httpd)
+;; (setq httpd-root "/var/www")
+;; (httpd-start)
+
+;; ------------------------------------------------------------------------
+;; @ skewer-mode
+;; Live web development in Emacs
+;; https://github.com/skeeto/skewer-mode
+(add-hook 'js2-mode-hook 'skewer-mode)
+(add-hook 'css-mode-hook 'skewer-css-mode)
+(add-hook 'html-mode-hook 'skewer-html-mode)
+
+;; ------------------------------------------------------------------------
+;; @ yasnippet
+;; A template system for Emacs
+;; https://github.com/capitaomorte/yasnippet
+(require 'yasnippet)
+(yas-global-mode 1)
