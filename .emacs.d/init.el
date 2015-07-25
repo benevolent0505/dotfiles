@@ -94,7 +94,7 @@
       scroll-step 1)
 
 ;; フレームの透明度
-(set-frame-parameter (selected-frame) 'alpha '(0.7))
+(set-frame-parameter (selected-frame) 'alpha '(0.8))
 
 ;; C-mにnewline-and-indentを割り当てる.初期値はnewline
 (define-key global-map (kbd "C-m") 'newline-and-indent)
@@ -216,6 +216,7 @@
 (add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.jsx\\'"f . web-mode))
 ;;; インデント数
 (defun web-mode-hook ()
   "Hooks for Web mode."
@@ -282,3 +283,4 @@
 ;; https://github.com/capitaomorte/yasnippet
 (require 'yasnippet)
 (yas-global-mode 1)
+(define-key yas-minor-mode-map (kbd "C-x i i") 'yas-insert-snippet)
