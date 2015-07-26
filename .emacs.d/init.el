@@ -38,7 +38,12 @@
          (set-face-attribute 'default nil
                              :family "Ricty" ;;英数
                              :height 140)
-         (set-fontset-font nil 'japanese-jisx0208 (font-spec :family "Ricty"))))) ;; 日本語
+         (set-fontset-font nil 'japanese-jisx0208 (font-spec :family "Ricty")))
+        ((eq ws 'x)
+         (set-face-attribute 'default nil
+                             :family "Inconsolata"
+                             :height 120)
+         (set-fontset-font nil 'japanese-jisx0208 (font-spec :family "Ricty")))))
 
 ;; スタートアップ非表示
 (setq inhibit-startup-screen t)
