@@ -94,7 +94,7 @@
       scroll-step 1)
 
 ;; フレームの透明度
-(set-frame-parameter (selected-frame) 'alpha '(0.8))
+(set-frame-parameter (selected-frame) 'alpha '(0.85))
 
 ;; C-mにnewline-and-indentを割り当てる.初期値はnewline
 (define-key global-map (kbd "C-m") 'newline-and-indent)
@@ -137,7 +137,7 @@
                (turn-on-eldoc-mode))))
 
 ;; Emacs24以降標準のColor themeを使う
-(load-theme 'tango-dark t)
+(load-theme 'misterioso t)
 
 ;; 80文字での自動改行をoff
 (setq text-mode-hook 'turn-off-auto-fill)
@@ -216,7 +216,7 @@
 (add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.jsx\\'"f . web-mode))
+(add-to-list 'auto-mode-alist '("\\.jsx?\\'" . web-mode))
 ;;; インデント数
 (defun web-mode-hook ()
   "Hooks for Web mode."
