@@ -38,6 +38,9 @@
 (depends-on "git-gutter")
 (depends-on "skewer-mode")
 (depends-on "simple-httpd")
+(depends-on "neotree")
+(depends-on "slime")
+(depends-on "ac-slime")
 
 ;; javascript
 (depends-on "js2-mode")

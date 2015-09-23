@@ -1,6 +1,4 @@
-(if (eq system-type 'darwin)
-    (require 'cask "/usr/local/opt/cask/cask.el")
-  (require 'cask "~/.cask/cask.el"))
+(require 'cask "~/.cask/cask.el")
 (cask-initialize)
 
 ;; ------------------------------------------------------------------------
@@ -289,3 +287,22 @@
 (require 'yasnippet)
 (yas-global-mode 1)
 (define-key yas-minor-mode-map (kbd "C-x i i") 'yas-insert-snippet)
+
+;; ------------------------------------------------------------------------
+;; @ neotree
+;; A emacs tree plugin like NerdTree for Vim.
+;; https://github.com/jaypei/emacs-neotree
+(require 'neotree)
+(global-set-key [f8] 'neotree-toggle)
+
+;; ------------------------------------------------------------------------
+;; @ SLIME
+;; The Superior Lisp Interaction Mode for Emacs.
+;; https://github.com/slime/slime
+(setq inferior-lisp-program "/usr/local/bin/sbcl")
+(require 'slime)
+(slime-setup '(slime-repl slime-fancy slime-banner slime-indentation))
+(setq slime-net-coding-system 'utf-8-unix)
+(require 'ac-slime)
+(add-hook 'slime-mode-hook 'set-up-slime-ac)
+(add-hook 'slime-repl-mode-hook 'set-up-slime-ac)
