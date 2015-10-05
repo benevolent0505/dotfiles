@@ -47,3 +47,10 @@
 (depends-on "ac-js2")
 (depends-on "tern")
 (depends-on "tern-auto-complete")
+
+;; ruby
+(depends-on "ruby-electric")
+(depends-on "ruby-block")
+
+;; other
+(depends-on "scss-mode")

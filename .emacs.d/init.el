@@ -174,13 +174,15 @@
 ;; @ auto-complete.el
 ;; 自動補完機能
 ;; https://github.com/m2ym/auto-complete
-(when (require 'auto-complete-config nil t)
-  (add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
-  (setq ac-ignore-case t)
-  (ac-config-default))
+(require 'auto-complete-config)
+(ac-config-default)
+(add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
+(add-to-list 'ac-modes 'text-mode)
+(add-to-list 'ac-modes 'fundamental-mode)
+(add-to-list 'ac-modes 'org-mode)
 (ac-set-trigger-key "TAB")
-;; 補完メニュー表示時にC-n/C-pで補完候補選択
-(defvar ac-use-menu-map t)
+(setq ac-use-menu-map t)
+(setq ac-use-fuzzy t)
 
 ;; ------------------------------------------------------------------------
 ;; @ js2-mode
@@ -194,6 +196,8 @@
 (add-hook 'js-mode-hook 'js2-minor-mode)
 (add-hook 'js2-mode-hook 'ac-js2-mode)
 (defvar ac-js2-evaluate-calls t)
+
+
 
 ;; ------------------------------------------------------------------------
 ;; @ tern
@@ -306,3 +310,27 @@
 (require 'ac-slime)
 (add-hook 'slime-mode-hook 'set-up-slime-ac)
 (add-hook 'slime-repl-mode-hook 'set-up-slime-ac)
+
+
+;; ruby-mode
+(autoload 'ruby-mode "ruby-mode"
+  "Mode for editing ruby source files" t)
+(add-to-list 'auto-mode-alist '("\\.rb$latex " . ruby-mode))
+(add-to-list 'auto-mode-alist '("Capfile$" . ruby-mode))
+(add-to-list 'auto-mode-alist '("Gemfile$" . ruby-mode))
+(setq ruby-insert-encoding-magic-comment nil)
+
+;; ruby-electric
+(require 'ruby-electric)
+(add-hook 'ruby-mode-hook '(lambda () (ruby-electric-mode t)))
+(setq ruby-electric-expand-delimiters-list nil)
+
+;;ruby-block
+(require 'ruby-block)
+(ruby-block-mode t)
+(setq ruby-block-highlight-toggle t)
+
+
+;; scss-mode
+(require 'scss-mode)
+(add-to-list 'auto-mode-alist '("\\.scss\\'" . scss-mode))
