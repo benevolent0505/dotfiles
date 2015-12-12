@@ -203,6 +203,7 @@
 ;; @ tern
 ;; https://github.com/marijnh/tern
 ;; A JavaScript code analyzer for deep, cross-editor language support
+(require 'tern)
 (add-hook 'js2-mode-hook (lambda () (tern-mode t)))
 (eval-after-load 'tern
    '(progn
@@ -330,7 +331,23 @@
 (ruby-block-mode t)
 (setq ruby-block-highlight-toggle t)
 
+;; inf-ruby
+(require 'inf-ruby)
+(add-hook 'ruby-mode-hook 'inf-ruby-minor-mode)
+(setenv "PATH" (concat (getenv "HOME") "/.rbenv/shims:"
+                       (getenv "HOME") "/.rbenv/bin:" (getenv "PATH")))
+(setq exec-path (cons (concat (getenv "HOME") "/.rbenv/shims")
+                      (cons (concat (getenv "HOME") "/.rbenv/bin") exec-path)))
 
-;; scss-mode
+;; robe
+(require 'robe)
+(add-hook 'ruby-mode-hook 'robe-mode)
+(add-hook 'robe-mode-hook 'ac-robe-setup)
+
+
+;; Scss-mode
 (require 'scss-mode)
 (add-to-list 'auto-mode-alist '("\\.scss\\'" . scss-mode))
+
+;; scala
+(require 'scala-mode2)

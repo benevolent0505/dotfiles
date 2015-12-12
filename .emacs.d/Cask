@@ -51,6 +51,10 @@
 ;; ruby
 (depends-on "ruby-electric")
 (depends-on "ruby-block")
+(depends-on "robe")
+
+;; scala
+(depends-on "scala-mode2")
 
 ;; other
 (depends-on "scss-mode")
