@@ -56,5 +56,10 @@
 ;; scala
 (depends-on "scala-mode2")
 
+;; typescript
+(depends-on "typescript-mode")
+(depends-on "tide")
+(depends-on "company")
+
 ;; other
 (depends-on "scss-mode")
