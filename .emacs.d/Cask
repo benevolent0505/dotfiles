@@ -55,6 +55,7 @@
 
 ;; scala
 (depends-on "scala-mode2")
+(depends-on "ensime")
 
 ;; typescript
 (depends-on "typescript-mode")
