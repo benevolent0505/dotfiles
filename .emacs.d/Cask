@@ -53,14 +53,5 @@
 (depends-on "ruby-block")
 (depends-on "robe")
 
-;; scala
-(depends-on "scala-mode2")
-(depends-on "ensime")
-
-;; typescript
-(depends-on "typescript-mode")
-(depends-on "tide")
-(depends-on "company")
-
 ;; other
 (depends-on "scss-mode")
