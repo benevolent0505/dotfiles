@@ -184,6 +184,9 @@
 (setq ac-use-menu-map t)
 (setq ac-use-fuzzy t)
 
+
+;; Setting for JavaScript
+
 ;; ------------------------------------------------------------------------
 ;; @ js2-mode
 ;; https://github.com/mooz/js2-mode
@@ -192,12 +195,9 @@
 (add-to-list 'interpreter-mode-alist '("node" . js2-mode))
 (add-hook 'js2-mode-hook
           '(lambda ()
-             (setq js2-basic-offset 2)))
+             (setq js2-basic-offset 2)
+             (setq indent-tabs-mode nil)))
 (add-hook 'js-mode-hook 'js2-minor-mode)
-(add-hook 'js2-mode-hook 'ac-js2-mode)
-(defvar ac-js2-evaluate-calls t)
-
-
 
 ;; ------------------------------------------------------------------------
 ;; @ tern
@@ -348,3 +348,22 @@
 ;; Scss-mode
 (require 'scss-mode)
 (add-to-list 'auto-mode-alist '("\\.scss\\'" . scss-mode))
+
+
+;; python-mode
+(add-hook 'python-mode-hook
+          '(lambda ()
+             (setq indent-tabs-mode nil)
+             (setq indent-level 4)
+             (setq python-indent 4)
+             (setq tab-width 4)))
+;; jedi
+(require 'jedi)
+(add-hook 'python-mode-hook 'jedi:setup)
+;;これを入れるとjediを手動<C-tab>で立ち上げないといけない。
+;(setq jedi:setup-keys t)
+(setq jedi:complete-on-dot t)
+
+;; ac-python
+(require 'ac-python)
+(add-to-list 'ac-modes 'python-2-mode)
