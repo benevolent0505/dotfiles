@@ -41,10 +41,10 @@
 (depends-on "neotree")
 (depends-on "slime")
 (depends-on "ac-slime")
+(depends-on "exec-path-from-shell")
 
 ;; javascript
 (depends-on "js2-mode")
-(depends-on "ac-js2")
 (depends-on "tern")
 (depends-on "tern-auto-complete")
 
@@ -52,6 +52,11 @@
 (depends-on "ruby-electric")
 (depends-on "ruby-block")
 (depends-on "robe")
+
+;; Python
+(depends-on "python-mode")
+(depends-on "jedi")
+(depends-on "ac-python")
 
 ;; other
 (depends-on "scss-mode")
