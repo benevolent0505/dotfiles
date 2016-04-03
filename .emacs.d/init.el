@@ -191,6 +191,7 @@
 ;; @ js2-mode
 ;; https://github.com/mooz/js2-mode
 ;; Improved JavaScript editing mode for GNU Emacs
+(require 'js2-mode)
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
 (add-to-list 'interpreter-mode-alist '("node" . js2-mode))
 (add-hook 'js2-mode-hook
