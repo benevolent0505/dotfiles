@@ -146,6 +146,12 @@
 (setq text-mode-hook 'turn-off-auto-fill)
 
 ;; ------------------------------------------------------------------------
+;; @helm exec-path-from-shell
+;; Make Emacs use the $PATH set up by the user's shell
+;; https://github.com/purcell/exec-path-from-shell
+(exec-path-from-shell-initialize)
+
+;; ------------------------------------------------------------------------
 ;; @helm
 ;; Emacs incremental completion and selection narrowing framework
 ;; https://github.com/emacs-helm/helm
