@@ -218,6 +218,12 @@
       (tern-ac-setup)))
 
 ;; ------------------------------------------------------------------------
+;; @ jade-mode
+;; https://github.com/brianc/jade-mode
+;; Emacs major mode for jade template highlighting
+(require 'jade-mode)
+
+;; ------------------------------------------------------------------------
 ;; @ web-mode.el
 ;; major mode for editing html templates
 ;; http://web-mode.org/
