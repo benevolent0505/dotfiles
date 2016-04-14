@@ -145,6 +145,12 @@
 ;; 80文字での自動改行をoff
 (setq text-mode-hook 'turn-off-auto-fill)
 
+;; ddskkの設定
+(when (require 'skk nil t)
+  (global-set-key (kbd "\C-x j") 'skk-auto-fill-mode)
+  (setq default-input-method "japanese-skk")
+  (require 'skk-study))
+
 ;; ------------------------------------------------------------------------
 ;; @helm exec-path-from-shell
 ;; Make Emacs use the $PATH set up by the user's shell
@@ -370,11 +376,13 @@
              (setq indent-level 4)
              (setq python-indent 4)
              (setq tab-width 4)))
-;; jedi
+
+;; ------------------------------------------------------------------------
+;; @ jedi
+;; https://github.com/davidhalter/jedi
+;; Awesome autocompletion and static analysis library for python.
 (require 'jedi)
 (add-hook 'python-mode-hook 'jedi:setup)
-;;これを入れるとjediを手動<C-tab>で立ち上げないといけない。
-;(setq jedi:setup-keys t)
 (setq jedi:complete-on-dot t)
 
 ;; ac-python

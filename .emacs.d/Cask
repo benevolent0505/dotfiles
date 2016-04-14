@@ -42,6 +42,7 @@
 (depends-on "slime")
 (depends-on "ac-slime")
 (depends-on "exec-path-from-shell")
+(depends-on "ddskk")
 
 ;; javascript
 (depends-on "js2-mode")
