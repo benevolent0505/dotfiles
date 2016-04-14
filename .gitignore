@@ -11,6 +11,8 @@
 /.emacs.d/ac-comphist.dat
 /.emacs.d/url/*
 /.emacs.d/.cask
+/.emacs.d/kkcrc
+/.emacs.d/recentf
 
 /.emacs.d/public_repo/howm-1.4.2/*
 /.emacs.d/public_repo/yatex1.77/*
