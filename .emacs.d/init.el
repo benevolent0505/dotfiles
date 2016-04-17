@@ -97,7 +97,7 @@
       scroll-step 1)
 
 ;; フレームの透明度
-(set-frame-parameter (selected-frame) 'alpha '(0.85))
+(set-frame-parameter (selected-frame) 'alpha '(0.90))
 
 ;; C-mにnewline-and-indentを割り当てる.初期値はnewline
 (define-key global-map (kbd "C-m") 'newline-and-indent)
