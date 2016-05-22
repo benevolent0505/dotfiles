@@ -330,10 +330,16 @@
 (el-get-bundle inf-ruby
   (autoload 'inf-ruby "inf-ruby" "Run an inferior Ruby process" t)
   (add-hook 'ruby-mode-hook 'inf-ruby-minor-mode))
-(el-get-bundle dgutov/robe
-  (require 'robe)
-  (add-hook 'ruby-mode-hook 'robe-mode)
-  (add-hook 'ruby-mode-hook 'ac-robe-setup))
+(el-get-bundle robe-mode
+  :type github
+  :description "Code navigation, documentation lookup and completion for Ruby"
+  :pkgname "dgutov/robe"
+  :website "https://github.com/dgutov/robe"
+  :depends (inf-ruby)
+  :post-init (add-hook 'ruby-mode-hook 'robe-mode))
+(require 'robe)
+(add-hook 'ruby-mode-hook 'robe-mode)
+(add-hook 'ruby-mode-hook 'ac-robe-setup)
 
 
 ;; For PHP
