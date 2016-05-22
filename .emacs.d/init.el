@@ -21,16 +21,8 @@
 (require 'cl)
 
 ;; language setting
-(setq default-buffer-file-coding-system 'utf-8-unix)
-(set-buffer-file-coding-system 'utf-8-unix)
-(set-terminal-coding-system 'utf-8-unix)
-(set-keyboard-coding-system 'utf-8-unix)
-(set-clipboard-coding-system 'utf-8-unix)
-(prefer-coding-system 'utf-8-unix)
-(set-language-environment 'utf-8)
-(set-default-coding-systems 'utf-8-unix)
 (set-language-environment "Japanese")
-(setq locale-coding-system 'utf-8)
+(prefer-coding-system 'utf-8-unix)
 
 ;; Windowsで英数と日本語にMeiryoを指定
 ;; Macで英数と日本語にRictyを指定
@@ -265,10 +257,4 @@
 ;; modern on-the-fly syntax checking extension.
 ;; https://github.com/flycheck/flycheck
 (el-get-bundle flycheck
-  (global-flycheck-mode))
-(el-get-bundle flycheck-pos-tip
-  (with-eval-after-load 'flycheck
-    (flycheck-pos-tip-mode)))
-(eval-after-load 'flycheck
-  '(custom-set-variables
-   '(flycheck-display-errors-function #'flycheck-pos-tip-error-messages)))
+  (add-hook 'after-init-hook #'global-flycheck-mode))
