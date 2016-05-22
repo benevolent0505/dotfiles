@@ -1,20 +1,12 @@
-/.emacs.d/elisp/*
-/.emacs.d/elpa/*
-/.emacs.d/bin/*
-/.emacs.d/share/*
-/.emacs.d/backups/*
-/.emacs.d/undohist/*
-/.emacs.d/howm/*
-/.emacs.d/auto-save-list/*
-/.emacs.d/eshell/*
-/.emacs.d/.DS_Store
+# Emacs
 /.emacs.d/ac-comphist.dat
-/.emacs.d/url/*
-/.emacs.d/.cask
-/.emacs.d/kkcrc
+/.emacs.d/auto-save-list/*
+/.emacs.d/backups/*
+/.emacs.d/el-get/*
+/.emacs.d/elpa/*
+/.emacs.d/projectile-bookmarks.eld
 /.emacs.d/recentf
 
-/.emacs.d/public_repo/howm-1.4.2/*
-/.emacs.d/public_repo/yatex1.77/*
+/.emacs.d/.DS_Store
 
 *.log
