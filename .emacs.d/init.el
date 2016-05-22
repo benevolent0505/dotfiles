@@ -258,3 +258,100 @@
 ;; https://github.com/flycheck/flycheck
 (el-get-bundle flycheck
   (add-hook 'after-init-hook #'global-flycheck-mode))
+
+
+;; For web
+(el-get-bundle web-mode)
+
+(require 'web-mode)
+(add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.[agj]sp\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.as[cp]x\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
+
+(defun web-mode-hook ()
+  "Hooks for web mode."
+  (setq web-mode-markup-indent-offset 2)
+  (setq web-mode-css-indent-offset 2)
+  (setq web-mode-code-indent-offset 2)
+  (setq web-mode-style-padding 1)
+  (setq web-mode-script-padding 1)
+  (setq web-mode-block-padding 0))
+(add-hook 'web-mode-hook 'web-mode-hook)
+
+;; For JavaScript
+(el-get-bundle js2-mode
+  (require 'js2-mode)
+  (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
+  (add-to-list 'interpreter-mode-alist '("node" . js2-mode))
+  (add-to-list 'js2-mode-hook
+               '(lambda ()
+                  (setq js2-basic-offset 2)
+                  (setq indent-tabs-mode nil)))
+  (add-hook 'js-mode-hook 'js2-minor-mode))
+
+(el-get-bundle tern)
+(require 'tern)
+(add-hook 'js2-mode-hook '(lambda () (tern-mode t)))
+(eval-after-load 'tern
+  '(progn
+     (require 'tern-auto-complete)
+     (tern-ac-setup)))
+;; eslint
+(eval-after-load 'flycheck
+  '(custom-set-variables
+    '(flycheck-disabled-checkers '(javascript-jshint javascript-jscs))
+    ))
+(setq js2-include-browser-externs nil)
+(setq js2-mode-show-parse-errors nil)
+(setq js2-mode-show-strict-warnings nil)
+(setq js2-highlight-external-variables nil)
+(setq js2-include-jslint-globals nil)
+
+
+;; For Ruby
+(autoload 'ruby-mode "ruby-mode" "Mode for editing ruby source files" t)
+(add-to-list 'auto-mode-alist '("\\.rb$latex " . ruby-mode))
+(add-to-list 'auto-mode-alist '("Capfile$" . ruby-mode))
+(add-to-list 'auto-mode-alist '("Gemfile$" . ruby-mode))
+(setq ruby-insert-encoding-magic-comment nil)
+
+(el-get-bundle ruby-electric
+  (require 'ruby-electric)
+  (add-hook 'ruby-mode-hook '(lambda () (ruby-electric-mode t)))
+  (setq ruby-electric-expand-delimiters-list nil))
+(el-get-bundle ruby-block
+  (require 'ruby-block)
+  (ruby-block-mode t)
+  (setq ruby-block-highlight-toggle t))
+(el-get-bundle inf-ruby
+  (autoload 'inf-ruby "inf-ruby" "Run an inferior Ruby process" t)
+  (add-hook 'ruby-mode-hook 'inf-ruby-minor-mode))
+(el-get-bundle dgutov/robe
+  (require 'robe)
+  (add-hook 'ruby-mode-hook 'robe-mode)
+  (add-hook 'ruby-mode-hook 'ac-robe-setup))
+
+
+;; For PHP
+(el-get-bundle php-mode)
+(el-get-bundle php-completion
+  :type github :pkgname "suzuki/php-completion"
+  :branch "develop")
+(add-hook 'php-mode-hook
+          (lambda ()
+            (require 'php-completion)
+            (php-completion-mode t)
+            (define-key php-mode-map (kbd "C-o") 'phpcmp-complete)))
+(add-hook  'php-mode-hook
+           (lambda ()
+             (when (require 'auto-complete nil t)
+               (make-variable-buffer-local 'ac-sources)
+               (add-to-list 'ac-sources 'ac-source-php-completion)
+               ;; if you like patial match,
+               ;; use `ac-source-php-completion-patial' instead of `ac-source-php-completion'.
+               ;; (add-to-list 'ac-sources 'ac-source-php-completion-patial)
+               (auto-complete-mode t))))
