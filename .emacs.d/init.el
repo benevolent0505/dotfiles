@@ -269,7 +269,7 @@
 (el-get-bundle web-mode)
 
 (require 'web-mode)
-(add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.[agj]sp\\'" . web-mode))
@@ -349,7 +349,8 @@
 
 
 ;; For PHP
-(el-get-bundle php-mode)
+(el-get-bundle php-mode
+  (require 'php-mode))
 (el-get-bundle php-completion
   :type github :pkgname "suzuki/php-completion"
   :branch "develop")
