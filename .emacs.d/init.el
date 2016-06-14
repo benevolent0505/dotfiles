@@ -259,11 +259,17 @@
 (el-get-bundle flycheck
   (add-hook 'after-init-hook #'global-flycheck-mode))
 
+;; For Markdown
+(el-get-bundle markdown-mode
+  (require 'markdown-mode)
+  (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
+  (add-to-list 'auto-mode-alist '("README\\.md\\'" . gfm-mode)))
 
 ;; For web
 (el-get-bundle web-mode)
 
 (require 'web-mode)
+(add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.[agj]sp\\'" . web-mode))
