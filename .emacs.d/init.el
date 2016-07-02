@@ -151,9 +151,9 @@
 
 ;; AquaSKK setting
 (if (eq system-type 'darwin)
-    (setq skk-server-portnum 1178))
-(if (eq system-type 'darwin)
-    (setq skk-server-host "localhost"))
+    ((setq skk-server-portnum 1178)
+     (setq skk-server-host "localhost")))
+
 
 ;; ddskk
 (setq-default skk-user-directory "~/.ddskk")
@@ -368,3 +368,41 @@
                ;; use `ac-source-php-completion-patial' instead of `ac-source-php-completion'.
                ;; (add-to-list 'ac-sources 'ac-source-php-completion-patial)
                (auto-complete-mode t))))
+(el-get-bundle ac-php
+  (require 'ac-php))
+(add-hook 'php-mode-hook
+            '(lambda ()
+               (auto-complete-mode t)
+               (require 'ac-php)
+               (setq ac-sources  '(ac-source-php ) )
+               (yas-global-mode 1)
+               (define-key php-mode-map  (kbd "C-]") 'ac-php-find-symbol-at-point)   ;goto define
+               (define-key php-mode-map  (kbd "C-t") 'ac-php-location-stack-back   ) ;go back
+               ))
+
+
+;; For Gauche
+(setq process-coding-system-alist
+      (cons '("gosh" utf-8 . utf-8) process-coding-system-alist))
+(if (eq system-type 'darwin)
+    (setq scheme-program-name "/usr/local/bin/gosh -i")
+  (setq scheme-program-name "/usr/bin/gosh -i"))
+
+
+(autoload 'scheme-mode "cmuscheme" "Major mode for Scheme." t)
+(autoload 'run-scheme "cmuscheme" "Run an inferior Scheme process." t)
+
+(defun scheme-other-window ()
+  "Run Gauche on other window"
+  (interactive)
+  (split-window-horizontally (/ (frame-width) 2))
+  (let ((buf-name (buffer-name (current-buffer))))
+    (scheme-mode)
+    (switch-to-buffer-other-window
+     (get-buffer-create "*scheme*"))
+    (run-scheme scheme-program-name)
+    (switch-to-buffer-other-window
+     (get-buffer-create buf-name))))
+
+(define-key global-map
+  "\C-cG" 'scheme-other-window)
