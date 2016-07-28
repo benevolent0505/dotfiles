@@ -151,8 +151,10 @@
 
 ;; AquaSKK setting
 (if (eq system-type 'darwin)
-    ((setq skk-server-portnum 1178)
-     (setq skk-server-host "localhost")))
+    (setq skk-server-portnum 1178))
+(if (eq system-type 'darwin)
+    (setq skk-server-host "localhost"))
+
 
 
 ;; ddskk
@@ -346,40 +348,6 @@
 (require 'robe)
 (add-hook 'ruby-mode-hook 'robe-mode)
 (add-hook 'ruby-mode-hook 'ac-robe-setup)
-
-
-;; For PHP
-(el-get-bundle php-mode
-  (require 'php-mode))
-(el-get-bundle php-completion
-  :type github :pkgname "suzuki/php-completion"
-  :branch "develop")
-(add-hook 'php-mode-hook
-          (lambda ()
-            (require 'php-completion)
-            (php-completion-mode t)
-            (define-key php-mode-map (kbd "C-o") 'phpcmp-complete)))
-(add-hook  'php-mode-hook
-           (lambda ()
-             (when (require 'auto-complete nil t)
-               (make-variable-buffer-local 'ac-sources)
-               (add-to-list 'ac-sources 'ac-source-php-completion)
-               ;; if you like patial match,
-               ;; use `ac-source-php-completion-patial' instead of `ac-source-php-completion'.
-               ;; (add-to-list 'ac-sources 'ac-source-php-completion-patial)
-               (auto-complete-mode t))))
-(el-get-bundle ac-php
-  (require 'ac-php))
-(add-hook 'php-mode-hook
-            '(lambda ()
-               (auto-complete-mode t)
-               (require 'ac-php)
-               (setq ac-sources  '(ac-source-php ) )
-               (yas-global-mode 1)
-               (define-key php-mode-map  (kbd "C-]") 'ac-php-find-symbol-at-point)   ;goto define
-               (define-key php-mode-map  (kbd "C-t") 'ac-php-location-stack-back   ) ;go back
-               ))
-
 
 ;; For Gauche
 (setq process-coding-system-alist
