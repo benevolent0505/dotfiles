@@ -64,6 +64,9 @@
 ;; "C-t" でウィンドウを切り替える.初期値はtranspose-chars
 (define-key global-map (kbd "C-t") 'other-window)
 
+;; "C-h"をdeleteに
+(define-key key-translation-map (kbd "C-h") (kbd "<DEL>"))
+
 ;; バックアップとオートセーブファイルを~/.emacs.d/backups/へ集める
 (add-to-list 'backup-directory-alist
              (cons "." "~/.emacs.d/backups/"))
