@@ -1,9 +1,3 @@
-;; AquaSKK setting
-(if (eq system-type 'darwin)
-    (setq skk-server-portnum 1178))
-(if (eq system-type 'darwin)
-    (setq skk-server-host "localhost"))
-
 ;; ddskk
 (setq-default skk-user-directory "~/.ddskk")
 
