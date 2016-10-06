@@ -6,8 +6,8 @@
 
 ;; ddskk
 (setq-default skk-user-directory "~/.ddskk")
-(el-get-bundle ddskk
-  (global-set-key (kbd "C-j") 'skk-mode))
+(el-get-bundle ddskk)
+(global-set-key (kbd "C-j") 'skk-mode)
 
 (setq-default dired-bind-jump nil)
 (add-hook 'isearch-mode-hook
