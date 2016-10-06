@@ -4,7 +4,7 @@
   (setq user-emacs-directory (file-name-directory load-file-name)))
 
 ;; el-get
-(add-to-list 'load-path "~/.emacs.d/el-get/el-get")
+(add-to-list 'load-path (locate-user-emacs-file "el-get/el-get"))
 
 (unless (require 'el-get nil 'noerror)
   (with-current-buffer
@@ -13,8 +13,11 @@
     (goto-char (point-max))
     (eval-print-last-sexp)))
 
-(add-to-list 'el-get-recipe-path "~/.emacs.d/el-get-user/recipes")
+(add-to-list 'el-get-recipe-path (locate-user-emacs-file "recipes"))
 (el-get 'sync)
+
+;; package.el
+(package-initialize)
 
 ;; init-loader
 (el-get-bundle! emacs-jp/init-loader
