@@ -16,3 +16,7 @@
 ;; helm-ls-git
 (el-get-bundle! helm-ls-git)
 (global-set-key (kbd "C-x C-d") 'helm-browse-project)
+
+;; helm-git-grep
+(el-get-bundle! helm-git-grep)
+(global-set-key (kbd "C-c g") 'helm-git-grep)
