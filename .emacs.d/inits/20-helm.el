@@ -3,6 +3,8 @@
 (global-set-key (kbd "M-x") 'helm-M-x)
 (helm-mode 1)
 (helm-autoresize-mode 1)
+(setq-default helm-truncate-lines t)
+
 ;; For find-file etc.
 (define-key helm-read-file-map (kbd "TAB") 'helm-execute-persistent-action)
 ;; For helm-find-files etc.
@@ -13,3 +15,4 @@
 
 ;; helm-ls-git
 (el-get-bundle! helm-ls-git)
+(global-set-key (kbd "C-x C-d") 'helm-browse-project)
