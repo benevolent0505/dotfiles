@@ -3,7 +3,7 @@
 
 ;; scratchの初期メッセージ消去
 (setq initial-scratch-message "")
-
+n
 ;; ツールバー非表示
 (tool-bar-mode -1)
 
@@ -48,3 +48,7 @@
 
 ;; 行間
 (setq-default line-spacing 0)
+
+(el-get-bundle bbatsov/solarized-emacs)
+(add-to-list 'custom-theme-load-path (locate-user-emacs-file "el-get/solarized-emacs"))
+(load-theme 'solarized-light t)
