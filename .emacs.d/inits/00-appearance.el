@@ -23,6 +23,10 @@
 (setq-default show-trailing-whitespace t)
 (set-face-background 'trailing-whitespace "#b14770")
 
+;; 対応する括弧を表示
+(show-paren-mode t)
+(setq show-paren-delay 0)
+
 ;; 1行ずつスクロール
 (setq scroll-conservatively 35
       scroll-margin 0
@@ -38,9 +42,6 @@
 (setq display-time-day-and-date t)
 ;; (setq display-time-24hr-format t)
 (display-time-mode t)
-
-(el-get-bundle sellout/color-theme-solarized)
-(load-theme 'solarized t)
 
 ;; 80文字での自動改行をoff
 (setq text-mode-hook 'turn-off-auto-fill)
