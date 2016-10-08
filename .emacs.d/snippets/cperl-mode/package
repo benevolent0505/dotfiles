@@ -1,0 +1,14 @@
+# -*- mode: snippet -*-
+# key: package
+# name: package
+# binding: C-c C-c C-p
+# --
+package ${1:packagename};
+
+use strict;
+use warnings;
+use utf8;
+
+$0
+
+1;
