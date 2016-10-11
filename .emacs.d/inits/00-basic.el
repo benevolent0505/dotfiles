@@ -24,6 +24,9 @@
                (setq eldoc-echo-area-use-multiline-p t)
                (turn-on-eldoc-mode))))
 
+;; ファイル名の補完で大文字小文字を区別しない
+(setq completion-ignore-case t)
+
 ;; emacs server
 (require 'server)
 (unless (server-running-p)
