@@ -1,16 +1,14 @@
 ;; For JavaScript
-(el-get-bundle js2-mode
-  (require 'js2-mode)
-  (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
-  (add-to-list 'interpreter-mode-alist '("node" . js2-mode))
-  (add-to-list 'js2-mode-hook
-               '(lambda ()
-                  (setq js2-basic-offset 2)
-                  (setq indent-tabs-mode nil)))
-  (add-hook 'js-mode-hook 'js2-minor-mode))
+(el-get-bundle! js2-mode)
+(add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
+(add-to-list 'interpreter-mode-alist '("node" . js2-mode))
+(add-to-list 'js2-mode-hook
+             '(lambda ()
+                (setq js2-basic-offset 2)
+                (setq indent-tabs-mode nil)))
+(add-hook 'js-mode-hook 'js2-minor-mode)
 
-(el-get-bundle tern)
-(require 'tern)
+(el-get-bundle! tern)
 (add-hook 'js2-mode-hook '(lambda () (tern-mode t)))
 (eval-after-load 'tern
   '(progn
