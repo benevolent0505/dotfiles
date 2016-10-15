@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# key: data_printer
+# name: data_priter
+# binding: C-c C-c d
+# --
+use DDP;
+
+p $0;
