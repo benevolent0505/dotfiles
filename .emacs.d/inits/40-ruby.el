@@ -17,7 +17,7 @@
 (autoload 'inf-ruby "inf-ruby" "Run an inferior Ruby process" t)
 (add-hook 'ruby-mode-hook 'inf-ruby-minor-mode)
 
-(el-get-bundle! robe-mode
+(el-get-bundle robe-mode
   :type github
   :description "Code navigation, documentation lookup and completion for Ruby"
   :pkgname "dgutov/robe"
