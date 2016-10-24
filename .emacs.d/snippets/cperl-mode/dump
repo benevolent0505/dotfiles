@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# key: data_printer
+# name: data_priter
+# binding: C-c C-c p
+# --
+use Data::Dumper;
+print Dumper $0;
