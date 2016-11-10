@@ -49,6 +49,15 @@ n
 ;; 行間
 (setq-default line-spacing 0)
 
-(el-get-bundle bbatsov/solarized-emacs)
-(add-to-list 'custom-theme-load-path (locate-user-emacs-file "el-get/solarized-emacs"))
-(load-theme 'solarized-light t)
+;; (el-get-bundle bbatsov/solarized-emacs)
+;; (add-to-list 'custom-theme-load-path (locate-user-emacs-file "el-get/solarized-emacs"))
+;; (load-theme 'solarized-light t)
+
+(el-get-bundle bbatsov/zenburn-emacs)
+(add-to-list 'custom-theme-load-path (locate-user-emacs-file "el-get/zenburn-emacs"))
+(defvar zenburn-override-colors-alist
+  '(("zenburn-bg+05" . "#282828")
+    ("zenburn-bg+1"  . "#2F2F2F")
+    ("zenburn-bg+2"  . "#3F3F3F")
+    ("zenburn-bg+3"  . "#4F4F4F")))
+(load-theme 'zenburn t)
