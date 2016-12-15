@@ -7,3 +7,6 @@
 (set-face-attribute 'eldoc-highlight-function-argument nil
                     :underline t :foreground "green"
                     :weight 'bold)
+
+(add-to-list 'load-path "~/develop/go/src/github.com/golang/lint/misc/emacs")
+(require 'golint)
