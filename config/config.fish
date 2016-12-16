@@ -1,10 +1,7 @@
-set fisher_home ~/.local/share/fisherman
-set fisher_config ~/.config/fisherman
-source $fisher_home/config.fish
-
 # aliases
 alias ks "ls"
 alias f "open ."
+alias g "git"
 alias emacs "emacsclient -nw"
 
 alias be "bundle exec"
@@ -13,14 +10,33 @@ alias be "bundle exec"
 set PATH $PATH $HOME/.rbenv/bin/
 set PATH $HOME/.rbenv/shims $PATH
 
-# typesafe activator
-set PATH $PATH $HOME/local/bin/activator-dist-1.3.7/
+# pyenv
+set PYENV_ROOT $HOME/.pyenv
+set PATH $PYENV_ROOT/bin $PATH
 
-# nodebrew
-set PATH $HOME/.nodebrew/current/bin $PATH
-
-# gibo
-set PATH $PATH $HOME/local/bin/gibo/
+# plenv
+set -x PATH $HOME/.plenv/bin $PATH
+plenv init - | source
 
 # local bin
 set PATH $PATH $HOME/local/bin/
+
+# golang
+set PATH $PATH /usr/local/go/bin
+set GOPATH $HOME/develop
+set PATH $PATH $GOPATH/bin
+
+function peco_change_directory
+  ghq list -p | peco | read dir
+  cd $dir
+end
+
+function peco_history
+  history | peco | read cmd
+  commandline $cmd
+end
+
+function fish_user_key_bindings
+  bind \cr peco_history
+  bind \cs peco_change_directory
+end
