@@ -20,3 +20,7 @@
 ;; helm-git-grep
 (el-get-bundle! helm-git-grep)
 (global-set-key (kbd "C-c g") 'helm-git-grep)
+
+;; helm-ghq
+(el-get-bundle helm-ghq)
+(global-set-key (kbd "C-c C-f") 'helm-ghq)
