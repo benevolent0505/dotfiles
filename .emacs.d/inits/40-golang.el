@@ -8,5 +8,5 @@
                     :underline t :foreground "green"
                     :weight 'bold)
 
-(add-to-list 'load-path "~/develop/go/src/github.com/golang/lint/misc/emacs")
-(require 'golint)
+;; (add-to-list 'load-path "~/develop/src/github.com/golang/lint/misc/emacs")
+;; (require 'golint)
