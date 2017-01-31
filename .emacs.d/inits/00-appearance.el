@@ -3,7 +3,7 @@
 
 ;; scratchの初期メッセージ消去
 (setq initial-scratch-message "")
-n
+
 ;; ツールバー非表示
 (tool-bar-mode -1)
 
