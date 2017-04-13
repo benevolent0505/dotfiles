@@ -1,4 +1,4 @@
-window class_not: ['emacs-25_1', 'x-terminal-emulator'] do
+window class_not: ['emacs-25_1', 'x-terminal-emulator', 'Focus-Proxy-Window'] do
   remap 'C-b', to: 'Left'
   remap 'C-f', to: 'Right'
   remap 'C-p', to: 'Up'
@@ -11,8 +11,6 @@ window class_not: ['emacs-25_1', 'x-terminal-emulator'] do
   remap 'C-e', to: 'End'
 
   remap 'C-k', to: ['Shift-End', 'Ctrl-x']
-
-  remap 'C-s', to: 'C-f'
 
   remap 'C-d', to: 'Delete'
   remap 'C-h', to: 'BackSpace'
