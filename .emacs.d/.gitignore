@@ -1,3 +1,4 @@
 url/*
 *.elc
 *.cache
+.python-environments/
