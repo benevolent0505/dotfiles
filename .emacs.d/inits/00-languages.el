@@ -17,6 +17,6 @@
          (set-fontset-font nil 'japanese-jisx0208 (font-spec :family "源ノ角ゴシック Code JP")))
         ((eq ws 'x)
          (set-face-attribute 'default nil
-                             :family "Ricty"
-                             :height 120)
-         (set-fontset-font nil 'japanese-jisx0208 (font-spec :family "Ricty")))))
+                             :family "源ノ角ゴシック Code JP M"
+                             :height 96)
+         (set-fontset-font nil 'japanese-jisx0208 (font-spec :family "源ノ角ゴシック Code JP M")))))
