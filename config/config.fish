@@ -22,6 +22,10 @@ set -x PATH $PYENV_ROOT/bin $PATH
 set -x PATH $HOME/.plenv/bin $PATH
 plenv init - | source
 
+# ndenv
+set -x PATH $PATH $HOME/.ndenv/bin
+set -x PATH $PATH $HOME/.ndenv/shims
+
 # golang
 set -x PATH $PATH /usr/local/go/bin
 set -x GOPATH $HOME/develop
