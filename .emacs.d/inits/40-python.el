@@ -5,4 +5,6 @@
 (setq auto-mode-alist (cons '("\\.py\\'" . python-mode) auto-mode-alist))
 
 (el-get-bundle! elpy
-  (elpy-enable))
+  (elpy-enable)
+  (add-hook 'elpy-mode-hook '(lambda ()
+                               (auto-complete-mode -1))))
