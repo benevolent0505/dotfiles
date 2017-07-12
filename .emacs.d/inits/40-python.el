@@ -9,7 +9,13 @@
   (setq elpy-rpc-backend "jedi")
   (add-hook 'elpy-mode-hook
     '(lambda ()
+       ;; auto-complete停止
        (auto-complete-mode -1)
+
+       ;; companyのキーバインド設定
        (define-key company-active-map (kbd "C-n") 'company-select-next)
        (define-key company-active-map (kbd "C-p") 'company-select-previous)
-       (define-key company-active-map (kbd "<tab>") 'company-complete))))
+       (define-key company-active-map (kbd "<tab>") 'company-complete)
+
+       ;; 保存時にautopep8実行
+       (add-hook 'before-save-hook 'py-autopep8-before-save))))
