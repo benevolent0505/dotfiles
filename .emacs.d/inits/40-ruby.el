@@ -26,3 +26,5 @@
   :post-init (add-hook 'ruby-mode-hook 'robe-mode))
 (add-hook 'ruby-mode-hook 'robe-mode)
 (add-hook 'ruby-mode-hook 'ac-robe-setup)
+
+(el-get-bundle! slim-mode)
