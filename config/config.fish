@@ -28,7 +28,9 @@ set -x PATH $PATH $HOME/.ndenv/bin
 set -x PATH $PATH $HOME/.ndenv/shims
 
 # golang
-set -x PATH $PATH /usr/local/go/bin
+if test (uname) = "Linux"
+    set -x PATH $PATH /usr/local/go/bin
+end
 set -x GOPATH $HOME/develop
 set -x PATH $PATH $GOPATH/bin
 
