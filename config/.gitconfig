@@ -1,0 +1,10 @@
+[core]
+  editor = emacs
+  excludesfile = ~/.gitignore_global
+[user]
+  name = benevolent0505
+  email = mikio.fjt@gmail.com
+[color]
+  ui = auto
+[ghq]
+  root = ~/develop/src
