@@ -1,7 +1,7 @@
 (el-get-bundle helm)
 
 (global-set-key (kbd "M-x") 'helm-M-x)
-(helm-mode 1)
+(helm-mode +1)
 (helm-autoresize-mode 1)
 (setq-default helm-truncate-lines t)
 
@@ -12,6 +12,7 @@
 (define-key global-map (kbd "C-x C-f") 'helm-find-files)
 (define-key global-map (kbd "C-x C-r") 'helm-recentf)
 (define-key global-map (kbd "C-x b")   'helm-buffers-list)
+(define-key global-map (kbd "M-y")     'helm-show-kill-ring)
 
 ;; helm-ls-git
 (el-get-bundle! helm-ls-git)
@@ -23,4 +24,5 @@
 
 ;; helm-ghq
 (el-get-bundle helm-ghq)
-(global-set-key (kbd "C-c C-f") 'helm-ghq)
+(add-to-list 'exec-path "~/develop/bin")
+(add-to-list 'helm-for-files-preferred-list 'helm-source-ghq)
