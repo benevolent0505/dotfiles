@@ -26,3 +26,4 @@
 (el-get-bundle helm-ghq)
 (add-to-list 'exec-path "~/develop/bin")
 (add-to-list 'helm-for-files-preferred-list 'helm-source-ghq)
+(global-set-key (kbd "C-x C-g") 'helm-ghq)
