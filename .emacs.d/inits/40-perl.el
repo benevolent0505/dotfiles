@@ -3,7 +3,7 @@
 (defalias 'perl-mode 'cperl-mode)
 (add-hook 'cperl-mode-hook
 	  (lambda ()
-	    (local-set-key (kbd "C-h f") 'cperl-perldoc)))
+	    (local-set-key (kbd "C-x p d") 'cperl-perldoc)))
 (setq auto-mode-alist (cons '("\\.t$" . cperl-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.cgi$" . cperl-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.psgi$" . cperl-mode) auto-mode-alist))
@@ -52,4 +52,3 @@
 (defun run-perl-test ()
   (interactive)
   (compile (format "cd %s; carton exec -- prove -lvr %s" (vc-git-root default-directory) (buffer-file-name (current-buffer)))))
-
