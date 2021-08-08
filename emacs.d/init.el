@@ -34,6 +34,14 @@
 
 (set-frame-font "Jetbrains Mono 13")
 
+;; Color Theme
+(setq modus-themes-italic-constructs t
+      modus-themes-bold-constructs nil
+      modus-themes-region '(bg-only no-extend))
+(if (>= emacs-major-version 28)
+    (load-theme 'modus-vivendi t)
+  (load-theme 'tango-dark t))
+
 ;; native compile setting
 (if (>= emacs-major-version 28)
     (setq comp-async-report-warnings-errors nil
