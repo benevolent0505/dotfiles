@@ -32,7 +32,8 @@
               mouse-wheel-follow-mouse t
               scroll-step 1)
 
-(set-frame-font "Jetbrains Mono 13")
+;; Font
+(set-frame-font "Jetbrains Mono-14")
 
 ;; Color Theme
 (setq modus-themes-italic-constructs t
