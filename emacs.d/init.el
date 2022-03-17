@@ -233,7 +233,8 @@
 
 
 ;; Git
-(el-get-bundle magit)
+;; これがマージされたらel-get経由でインストールできる https://github.com/dimitri/el-get/pull/2855
+;; (el-get-bundle magit)
 (global-set-key (kbd "C-x g") 'magit-status)
 (el-get-bundle transient)
 
