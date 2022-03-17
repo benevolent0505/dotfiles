@@ -83,7 +83,35 @@
 (el-get-bundle! which-key)
 (which-key-mode)
 
+;; Complition
+(el-get-bundle! orderless)
+(el-get-bundle! vertico)
+(el-get-bundle! marginalia)
 
+(setq-default completion-styles '(orderless))
+(setq-default vertico-count 20)
+
+(defun after-init-hook ()
+  (vertico-mode)
+  (marginalia-mode)
+  (savehist-mode))
+(add-hook 'after-init-hook #'after-init-hook)
+
+(el-get-bundle! consult)
+(setq consult-find-command "fd --color=never --full-path ARG OPTS")
+
+(global-set-key (kbd "C-s") 'consult-line)
+(global-set-key [remap goto-line] 'consult-line)
+(global-set-key (kbd "M-s f") 'consult-find)
+
+
+(el-get-bundle affe)
+(el-get-bundle tomoya/consult-ghq
+  :depends (consult affe))
+(global-set-key (kbd "C-c g") 'consult-ghq-grep)
+
+(el-get-bundle embark
+  :features embark-consult)
 
 (el-get-bundle ace-window)
 (setq-default aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))
