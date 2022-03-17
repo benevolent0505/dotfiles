@@ -43,7 +43,6 @@
 (if (>= emacs-major-version 28)
     (setq comp-async-report-warnings-errors nil
           warning-minimum-log-level :error))
-;; (defalias 'yes-or-no-p 'y-or-n-p)
 
 ;; GC setting
 ;; https://zenn.dev/zk_phi/books/cba129aacd4c1418ade4/viewer/dcebc13578d42055f8a4#gc-%E3%82%92%E6%B8%9B%E3%82%89%E3%81%99
