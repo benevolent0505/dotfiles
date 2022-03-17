@@ -208,7 +208,16 @@
 ;; これがマージされたらel-get経由でインストールできる https://github.com/dimitri/el-get/pull/2855
 ;; (el-get-bundle magit)
 (global-set-key (kbd "C-x g") 'magit-status)
+(global-set-key (kbd "C-x C-b") 'magit-blame)
+
 (el-get-bundle transient)
+
+(el-get-bundle! git-gutter+)
+(global-git-gutter+-mode t)
+
+(el-get-bundle git-link)
+(setq-default git-link-open-in-browser t
+              git-link-use-commit t)
 
 
 (el-get-bundle! projectile)
