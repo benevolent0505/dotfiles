@@ -28,7 +28,8 @@
               scroll-step 1)
 
 ;; Font
-(set-frame-font "Jetbrains Mono-14")
+(set-face-attribute 'default nil :family "JetBrains Mono" :height 180)
+(set-fontset-font nil '(#x80 . #x10ffff) (font-spec :family "源ノ角ゴシック Code JP"))
 
 ;; Color Theme
 (setq modus-themes-italic-constructs t
