@@ -72,3 +72,7 @@ recentf
 /url
 /.cache
 /eln-cache
+
+bookmarks
+history
+org-roam.db
