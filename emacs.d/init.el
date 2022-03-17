@@ -45,6 +45,10 @@
           warning-minimum-log-level :error))
 ;; (defalias 'yes-or-no-p 'y-or-n-p)
 
+;; GC setting
+;; https://zenn.dev/zk_phi/books/cba129aacd4c1418ade4/viewer/dcebc13578d42055f8a4#gc-%E3%82%92%E6%B8%9B%E3%82%89%E3%81%99
+(setq gc-cons-threshold (* 16 1024 1024)) ;; 16 MB
+(run-with-idle-timer 60.0 t #'garbage-collect)
 
 ;; server
 (require 'server)
