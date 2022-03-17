@@ -235,6 +235,15 @@
 
 (el-get-bundle emacs-fish)
 
+(el-get-bundle tree-sitter)
+(el-get-bundle tree-sitter-langs)
+
+(global-tree-sitter-mode)
+(define-derived-mode typescript-tsx-mode typescript-mode "TSX")
+(add-to-list 'auto-mode-alist '("\\.tsx\\'" . typescript-tsx-mode))
+(tree-sitter-require 'tsx)
+(add-to-list 'tree-sitter-major-mode-language-alist '(typescript-tsx-mode . tsx))
+
 ;; JavaScript
 (el-get-bundle js2-mode)
 (setq-default js-indent-level 2)
