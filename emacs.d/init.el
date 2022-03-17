@@ -83,57 +83,7 @@
 (el-get-bundle! which-key)
 (which-key-mode)
 
-(el-get-bundle abo-abo/swiper
-  :features ivy)
-(setq ivy-use-virtual-buffers t
-      ivy-count-format "(%d/%d) "
-      ivy-height 20
-      ivy-wrap t)
 
-(global-set-key (kbd "C-s") 'swiper-isearch)
-(global-set-key (kbd "M-x") 'counsel-M-x)
-(global-set-key (kbd "C-x C-f") 'counsel-find-file)
-(global-set-key (kbd "M-y") 'counsel-yank-pop)
-(global-set-key (kbd "<f1> f") 'counsel-describe-function)
-(global-set-key (kbd "<f1> v") 'counsel-describe-variable)
-(global-set-key (kbd "<f1> l") 'counsel-find-library)
-(global-set-key (kbd "<f2> i") 'counsel-info-lookup-symbol)
-(global-set-key (kbd "<f2> u") 'counsel-unicode-char)
-(global-set-key (kbd "<f2> j") 'counsel-set-variable)
-(global-set-key (kbd "C-x b") 'ivy-switch-buffer)
-(global-set-key (kbd "C-c v") 'ivy-push-view)
-(global-set-key (kbd "C-c V") 'ivy-pop-view)
-
-(global-set-key (kbd "C-c c") 'counsel-compile)
-(global-set-key (kbd "C-c g") 'counsel-git)
-(global-set-key (kbd "C-c j") 'counsel-git-grep)
-(global-set-key (kbd "C-c L") 'counsel-git-log)
-(global-set-key (kbd "C-c k") 'counsel-rg)
-(global-set-key (kbd "C-x l") 'counsel-locate)
-(global-set-key (kbd "C-c J") 'counsel-file-jump)
-
-(global-set-key (kbd "C-S-s") 'counsel-imenu)
-(global-set-key (kbd "C-c C-r") 'ivy-resume)
-(global-set-key (kbd "C-c b") 'counsel-bookmark)
-(global-set-key (kbd "C-c d") 'counsel-descbinds)
-(global-set-key (kbd "C-c o") 'counsel-outline)
-(global-set-key (kbd "C-c t") 'counsel-load-theme)
-(global-set-key (kbd "C-c F") 'counsel-org-file)
-
-(with-eval-after-load-feature 'magit
-  (setq magit-completing-read-function 'ivy-completing-read))
-
-(ivy-mode +1)
-
-(el-get-bundle! analyticd/ivy-ghq)
-(global-set-key (kbd "C-c C-g") 'ivy-ghq-open)
-
-(el-get-bundle! ivy-xref)
-(setq xref-show-definitions-function #'ivy-xref-show-defs
-      xref-show-xrefs-function #'ivy-xref-show-xrefs)
-
-(el-get-bundle amx
-  :depends s)
 
 (el-get-bundle ace-window)
 (setq-default aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))
@@ -226,11 +176,6 @@
 (add-hook 'lsp-ui-doc-frame-hook
           (lambda (frame _w)
             (set-face-attribute 'default frame :font "Monaco" :height 150)))
-
-(el-get-bundle lsp-ivy
-  :depends (dash))
-
-
 ;; Git
 ;; これがマージされたらel-get経由でインストールできる https://github.com/dimitri/el-get/pull/2855
 ;; (el-get-bundle magit)
