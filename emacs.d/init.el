@@ -260,12 +260,15 @@
 (setq-default typescript-indent-level 2)
 
 (with-eval-after-load-feature 'lsp-mode
-  (add-hook 'typescript-mode-hook #'lsp))
+  (add-hook 'typescript-mode-hook #'lsp)
+  (add-hook 'before-save-hook #'lsp-organize-imports t t))
+
+(el-get-bundle prettier)
+(add-hook 'after-init-hook #'global-prettier-mode)
 
 (el-get-bundle add-node-modules-path)
 (with-eval-after-load-feature 'js2-mode
   (add-hook 'js2-mode-hook #'add-node-modules-path))
-
 
 (with-eval-after-load-feature 'typescript-mode
   (add-hook 'typescript-mode-hook #'add-node-modules-path))
