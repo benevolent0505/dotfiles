@@ -21,11 +21,6 @@
 ;; (package-refresh-contents)
 (package-initialize)
 
-
-;; UI Settings
-(menu-bar-mode -1)
-(tool-bar-mode -1)
-
 ;; smooth scroll
 (setq-default mouse-wheel-scroll-amount '(1 ((shift) . 1))
               mouse-wheel-progressive-speed nil
