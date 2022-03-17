@@ -297,6 +297,19 @@
                                          `(lambda (c)
                                             (if (char-equal c ?{) t (,electric-pair-inhibit-predicate c))))))
 
+;; Go
+(el-get-bundle go-mode)
+(add-hook 'go-mode-hook #'lsp-deferred)
+
+(defun lsp-go-install-save-hooks ()
+  (add-hook 'before-save-hook #'lsp-format-buffer t t)
+  (add-hook 'before-save-hook #'lsp-organize-imports t t))
+(add-hook 'go-mode-hook #'lsp-go-install-save-hooks)
+
+(lsp-register-custom-settings
+ '(("gopls.completeUnimported" t t)
+   ("gopls.staticcheck" t t)))
+
 ;; Documentation
 (el-get-bundle! org-roam)
 (setq-default org-roam-directory "~/local/org-roam"
