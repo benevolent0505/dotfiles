@@ -1,324 +1,347 @@
-;; Emacs user directory
+;; https://tarao.hatenablog.com/entry/20150221/1424518030#tips-isolated-setup
 (when load-file-name
   (setq user-emacs-directory (file-name-directory load-file-name)))
 
-;; El-get
-(add-to-list 'load-path (locate-user-emacs-file "el-get/el-get"))
-(unless (require 'el-get nil 'noerror)
-  (with-current-buffer
-      (url-retrieve-synchronously
-       "https://raw.githubusercontent.com/dimitri/el-get/master/el-get-install.el")
-    (goto-char (point-max))
-    (eval-print-last-sexp)))
+;; leaf install
+;; https://github.com/conao3/leaf.el#install
+(eval-and-compile
+  (customize-set-variable
+   'package-archives '(("org" . "https://orgmode.org/elpa/")
+                       ("melpa" . "https://melpa.org/packages/")
+                       ("gnu" . "https://elpa.gnu.org/packages/")))
+  (package-initialize)
+  (unless (package-installed-p 'leaf)
+    (package-refresh-contents)
+    (package-install 'leaf))
 
-(add-to-list 'el-get-recipe-path (locate-user-emacs-file "recipes"))
+  (leaf leaf-keywords
+    :ensure t
+    :init
 
-(require 'package)
-(setq package-archives
-      '(("melpa" . "https://melpa.org/packages/")
-        ("org" . "https://orgmode.org/elpa/")
-        ("gnu" . "https://elpa.gnu.org/packages/")))
-;; (package-refresh-contents)
-(package-initialize)
+    :config
+    ;; initialize leaf-keywords.el
+    (leaf-keywords-init)))
 
-;; smooth scroll
-(setq-default mouse-wheel-scroll-amount '(1 ((shift) . 1))
-              mouse-wheel-progressive-speed nil
-              mouse-wheel-follow-mouse t
-              scroll-step 1)
+(leaf comp
+  :custom '((native-comp-async-report-warnings-errors . nil)))
 
-;; Font
-(set-face-attribute 'default nil :family "JetBrains Mono" :height 180)
-(set-fontset-font nil '(#x80 . #x10ffff) (font-spec :family "源ノ角ゴシック Code JP"))
+;; EV2785向き
+(leaf frame
+  :custom '((initial-frame-alist . '((top . 25) (left . 1920) (width . 190) (height . 45)))))
 
-;; Color Theme
-(setq modus-themes-italic-constructs t
-      modus-themes-bold-constructs nil
-      modus-themes-region '(bg-only no-extend))
-(if (>= emacs-major-version 28)
-    (load-theme 'modus-vivendi t)
-  (load-theme 'tango-dark t))
+(leaf *font
+  :config
+  (set-face-attribute 'default nil :family "JetBrains Mono" :height 180)
+  (set-fontset-font nil '(#x80 . #x10ffff) (font-spec :family "源ノ角ゴシック Code JP")))
 
-;; native compile setting
-(if (>= emacs-major-version 28)
-    (setq comp-async-report-warnings-errors nil
-          warning-minimum-log-level :error))
+(leaf rainbow-delimiters
+  :ensure t
+  :require t
+  :config
+  ;; 強調設定
+  ;; https://murase-syuka.hatenablog.com/entry/20140815/1408061850
+  (require 'cl-lib)
+  (require 'color)
+  (cl-loop
+   for index from 1 to rainbow-delimiters-max-face-count
+   do
+   (let ((face (intern (format "rainbow-delimiters-depth-%d-face" index))))
+     (cl-callf color-saturate-name (face-foreground face) 30)))
+  :hook prog-mode-hook)
 
-;; GC setting
-;; https://zenn.dev/zk_phi/books/cba129aacd4c1418ade4/viewer/dcebc13578d42055f8a4#gc-%E3%82%92%E6%B8%9B%E3%82%89%E3%81%99
-(setq gc-cons-threshold (* 16 1024 1024)) ;; 16 MB
-(run-with-idle-timer 60.0 t #'garbage-collect)
+(leaf modus-themes
+  :custom '((modus-themes-italic-constructs . t)
+            (modus-themes-bold-constructs . nil)
+            (modus-themes-region '(bg-only no-extend)))
+  :config
+  (load-theme 'modus-vivendi t))
 
-;; server
-(require 'server)
-(unless (server-running-p)
-  (server-start))
+(leaf cus-start
+  :doc "define customization properties of builtins"
+  :tag "builtin" "internal"
+  :preface
+  (defun c/redraw-frame nil
+    (interactive)
+    (redraw-frame))
 
+  :bind (("M-ESC ESC" . c/redraw-frame))
+  :custom '((create-lockfiles . nil)
+            (debug-on-error . t)
+            (frame-resize-pixelwise . t)
+            (enable-recursive-minibuffers . t)
+            (scroll-preserve-screen-position . t)
+            (scroll-conservatively . 100)
+            (mouse-wheel-scroll-amount . '(1 ((control) . 5)))
+            (scroll-bar-mode . nil)
+            (indent-tabs-mode . nil)
+            (show-trailing-whitespace . t)
+            (tab-width . 2)
+            ;; GC for lsp-mode
+            (gc-cons-threshold . 800000000)
+            (read-process-output-max . 1048576))
+  :config
+  (defalias 'yes-or-no-p 'y-or-n-p)
+  (keyboard-translate ?\C-h ?\C-?))
 
-;; Settings for editing
-(setq-default tab-width 2
-              indent-tabs-mode nil
-              show-trailing-whitespace t)
+(leaf server
+  :commands (server-running-p)
+  :init
+  (defun my:new-client-frame ()
+    "Create new GUI emacsclient"
+    (interactive)
+    (make-frame-on-display (getenv "DISPLAY")))
+  :hook
+  (emacs-startup-hook . (lambda ()
+                          (unless (server-running-p)
+                            (server-start)))))
 
-(show-paren-mode t)
-(electric-pair-mode t)
+(leaf delsel
+  :global-minor-mode delete-selection-mode)
 
-(setq-default default-directory "~/"
-              command-line-default-directory "~/")
+(leaf paren
+  :custom ((show-paren-delay . 0.1))
+  :global-minor-mode show-paren-mode)
 
+(leaf elec-pair
+  :init (electric-pair-mode t))
 
-;; Setting for Backup files
-(add-to-list 'backup-directory-alist (cons "." (locate-user-emacs-file "backups")))
-(setq-default auto-save-file-name-transforms
-              `(("*" ,(expand-file-name (locate-user-emacs-file "backups")) t)))
+(leaf files
+  :custom `((auto-save-timeout . 15)
+            (auto-save-interval . 60)
+            (auto-save-file-name-transforms . '((".*" ,(locate-user-emacs-file "backup/") t)))
+            (backup-directory-alist . '((".*" . ,(locate-user-emacs-file "backup"))
+                                        (,tramp-file-name-regexp . nil)))
+            (version-control . t)
+            (delete-old-versions . t)))
 
+(leaf startup
+  :custom `((auto-save-list-file-prefix . ,(locate-user-emacs-file "backup/.saves-"))))
 
-;; Settings for extending Emacs function
-(el-get-bundle tarao/with-eval-after-load-feature-el)
-
-(el-get-bundle exec-path-from-shell)
-(when (memq window-system '(mac ns x))
+(leaf exec-path-from-shell
+  :ensure t
+  :config
   (exec-path-from-shell-initialize))
 
-(el-get-bundle! which-key)
-(which-key-mode)
+(leaf ace-window
+  :ensure t
+  :custom '((aw-keys . '(?a ?s ?d ?f ?g ?h ?j ?k ?l)))
+  :bind (("C-x o" . ace-window)))
 
-;; Complition
-(el-get-bundle! orderless)
-(el-get-bundle! vertico)
-(el-get-bundle! marginalia)
+(leaf ddskk
+  :ensure t
+  :custom '((skk-server-host . "localhost")
+            (skk-server-portnum . 1178)
+            (skk-japanese-message-and-error . t)
+            (skk-dcomp-activate . t)
+            (skk-dcomp-multiple-rows . 20)
+            (skk-comp-prefix . t)
+            (skk-share-private-jisyo . t))
+  :bind ("C-j" . skk-mode))
 
-(setq-default completion-styles '(orderless))
-(setq-default vertico-count 20)
+(leaf orderless
+  :ensure t
+  :custom (completion-styles . '(orderless)))
 
-(defun after-init-hook ()
+(leaf vertico
+  :ensure t
+  :init
   (vertico-mode)
-  (marginalia-mode)
-  (savehist-mode))
-(add-hook 'after-init-hook #'after-init-hook)
+  :custom (vertico-count . 20))
 
-(el-get-bundle! consult)
-(setq consult-find-command "fd --color=never --full-path ARG OPTS")
+(leaf marginalia
+  :ensure t
+  :init (marginalia-mode))
 
-(global-set-key (kbd "C-s") 'consult-line)
-(global-set-key [remap goto-line] 'consult-line)
-(global-set-key (kbd "M-s f") 'consult-find)
+(leaf consult
+  :ensure t
+  :custom '((consult-find-command . "fd --color=never --full-path ARG OPTS"))
+  :bind (("C-s" . consult-line)
+         ("M-s f" . consult-find)
+         ([remap goto-line] . consult-line)))
 
+(leaf embark
+  :ensure t
+  :bind (("C-." . embark-act)
+         ("C-;" . embark-dwim)
+         ("C-h B" . embark-bindings)))
 
-(el-get-bundle affe)
-(el-get-bundle tomoya/consult-ghq
-  :depends (consult affe))
-(global-set-key (kbd "C-c g") 'consult-ghq-grep)
+(leaf embark-consult
+  :ensure t
+  :after embark consult
+  :hook (embark-collect-mode . consult-preview-at-point-mode))
 
-(el-get-bundle embark
-  :features embark-consult)
+(leaf affe
+  :ensure t
+  :after orderless
+  :custom '((affe-highlight-function . 'orderless-highlight-matches)
+            (affe-regexp-function . 'orderless-pattern-compiler)
+            (affe-find-command . "fd --color=never --full-path")))
 
-(el-get-bundle ace-window)
-(setq-default aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))
-(global-set-key (kbd "C-x o") 'ace-window)
+(leaf which-key
+  :ensure t
+  :init (which-key-mode))
 
-(el-get-bundle! rainbow-delimiters
-  :features color)
-;; emphasis
-(cl-loop
- for index from 1 to rainbow-delimiters-max-face-count
- do
- (let ((face (intern (format "rainbow-delimiters-depth-%d-face" index))))
-   (cl-callf color-saturate-name (face-foreground face) 30)))
-
-(add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
-
-
-;; Input Method
-;; 何故か起動時にロードされないので package.el でインストールしている
-;; (el-get-bundle ddskk)
-(setq skk-server-host "localhost"
-      skk-server-portnum 1178
-      skk-japanese-message-and-error t
-      skk-dcomp-activate t
-      skk-dcomp-multiple-rows 20
-      skk-comp-prefix t
-      skk-share-private-jisyo t)
-
-(add-hook 'dired-load-hook
-          (lambda ()
-            (load "dired-x")
-            (global-set-key (kbd "C-x C-j") 'skk-mode)))
-;; org-mode にすると C-j が改行に奪われている気がするのでその対応
-(add-hook 'org-mode-hook
-          (lambda ()
-            (global-set-key (kbd "C-x C-j") 'skk-mode)))
-
-(global-set-key (kbd "C-j") 'skk-mode)
-
-
-(el-get-bundle vterm)
-(add-hook 'vterm-mode-hook
-          #'(lambda ()
-              (setq show-trailing-whitespace nil)))
-
-
-;; Coding
-(el-get-bundle company)
-(global-company-mode)
-
-(setq-default company-idle-delay 0.0
-              company-minimum-prefix-length 1
-              company-selection-wrap-around t
-              completion-ignore-case t
-              company-transformers '(company-sort-by-backend-importance))
-
-(define-key company-active-map (kbd "M-n") nil)
-(define-key company-active-map (kbd "M-p") nil)
-(define-key company-active-map (kbd "C-n") 'company-select-next)
-(define-key company-active-map (kbd "C-p") 'company-select-previous)
-
-(el-get-bundle! yasnippet)
-(add-to-list 'yas-snippet-dirs (locate-user-emacs-file "snippet"))
-(yas-global-mode 1)
-
-(el-get-bundle yasnippet-snippets)
-(with-eval-after-load-feature 'yasnippet
-  (add-to-list 'yas-snippet-dirs (locate-user-emacs-file "el-get/yasnippet-snippets/snippets")))
-
-(el-get-bundle flycheck)
-(add-hook 'prog-mode-hook #'flycheck-mode)
-
-;; LSP
-(el-get-bundle! lsp-mode)
-(setq lsp-enable-imenu nil
-      lsp-modeline-diagnostics-enable t
-      lsp-headerline-breadcrumb-enable t
-      lsp-completion-enable t)
-
-;; Performance Tuning
-(setq gc-cons-threshold 800000000
-      read-process-output-max (* 1024 1024))
-
-(el-get-bundle lsp-ui)
-(setq-default lsp-ui-doc-use-webkit t
-              lsp-ui-doc-max-height 300
-              lsp-ui-doc-max-width 150)
-
-;; https://github.com/emacs-lsp/lsp-ui/issues/123#issuecomment-384941120
-(add-hook 'lsp-ui-doc-frame-hook
-          (lambda (frame _w)
-            (set-face-attribute 'default frame :font "Monaco" :height 150)))
-;; Git
-;; これがマージされたらel-get経由でインストールできる https://github.com/dimitri/el-get/pull/2855
-;; (el-get-bundle magit)
-(global-set-key (kbd "C-x g") 'magit-status)
-(global-set-key (kbd "C-x C-b") 'magit-blame)
-
-(el-get-bundle transient)
-
-(el-get-bundle! git-gutter+)
-(global-git-gutter+-mode t)
-
-(el-get-bundle git-link)
-(setq-default git-link-open-in-browser t
-              git-link-use-commit t)
-
-
-(el-get-bundle! projectile)
-(setq projectile-completion-system 'ivy)
-(define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
-(projectile-mode +1)
-
-
-(el-get-bundle! rg
-  :depends (transient wgrep))
-(rg-enable-default-bindings)
-
-
-(el-get-bundle restclient)
-
-(el-get-bundle emacs-fish)
-
-(el-get-bundle tree-sitter)
-(el-get-bundle tree-sitter-langs)
-
-(global-tree-sitter-mode)
-(define-derived-mode typescript-tsx-mode typescript-mode "TSX")
-(add-to-list 'auto-mode-alist '("\\.tsx\\'" . typescript-tsx-mode))
-(tree-sitter-require 'tsx)
-(add-to-list 'tree-sitter-major-mode-language-alist '(typescript-tsx-mode . tsx))
-
-;; JavaScript
-(el-get-bundle js2-mode)
-(setq-default js-indent-level 2)
-
-(add-hook 'js-mode-hook 'js2-minor-mode)
-
-(with-eval-after-load-feature 'lsp-mode
-  (add-hook 'js-mode-hook #'lsp))
-
-;; TypeScript
-(el-get-bundle typescript-mode)
-(add-to-list 'auto-mode-alist '("\\.tsx\\'" . typescript-mode))
-
-(setq-default typescript-indent-level 2)
-
-(with-eval-after-load-feature 'lsp-mode
-  (add-hook 'typescript-mode-hook #'lsp)
-  (add-hook 'before-save-hook #'lsp-organize-imports t t))
-
-(el-get-bundle prettier)
-(add-hook 'after-init-hook #'global-prettier-mode)
-
-(el-get-bundle add-node-modules-path)
-(with-eval-after-load-feature 'js2-mode
-  (add-hook 'js2-mode-hook #'add-node-modules-path))
-
-(with-eval-after-load-feature 'typescript-mode
-  (add-hook 'typescript-mode-hook #'add-node-modules-path))
-
-(el-get-bundle json-mode)
-(with-eval-after-load-feature 'flycheck
-  (add-hook 'json-mode-hook #'flycheck-mode))
-
-;; GraphQL
-(el-get-bundle graphql-mode)
-
-;; Docker
-(el-get-bundle dockerfile-mode)
-(add-to-list 'auto-mode-alist '("\\Dockerfile\\'" . dockerfile-mode))
-
-(with-eval-after-load-feature 'lsp-mode
-  (add-hook 'dockerfile-mode-hook #'lsp))
-
-(el-get-bundle docker-compose-mode)
-
-;; web-mode
-(el-get-bundle web-mode)
-(setq-default web-mode-markup-indent-offset 2)
-(add-hook 'web-mode-hook #'(lambda ()
-                             (setq-local electric-pair-inhibit-predicate
-                                         `(lambda (c)
-                                            (if (char-equal c ?{) t (,electric-pair-inhibit-predicate c))))))
-
-;; Go
-(el-get-bundle go-mode)
-(add-hook 'go-mode-hook #'lsp-deferred)
-
-(defun lsp-go-install-save-hooks ()
-  (add-hook 'before-save-hook #'lsp-format-buffer t t)
-  (add-hook 'before-save-hook #'lsp-organize-imports t t))
-(add-hook 'go-mode-hook #'lsp-go-install-save-hooks)
-
-(lsp-register-custom-settings
- '(("gopls.completeUnimported" t t)
-   ("gopls.staticcheck" t t)))
+(leaf savehint
+  :custom '((savehint-mode . t)))
 
 ;; Documentation
-(el-get-bundle! org-roam)
-(setq-default org-roam-directory "~/local/org-roam"
-              org-roam-completion-everywhere t
-              org-roam-v2-ack t)
-(org-roam-setup)
-(global-set-key (kbd "C-c n l") 'org-roam-buffer-toggle)
-(global-set-key (kbd "C-c n f") 'org-roam-node-find)
-(global-set-key (kbd "C-c n g") 'org-roam-graph)
-(global-set-key (kbd "C-c n i") 'org-roam-node-insert)
-(global-set-key (kbd "C-c n c") 'org-roam-capture)
-(define-key org-mode-map (kbd "C-M-i") 'complition-at-point)
+
+;;; OrgMode
+;; (leaf org-roam
+;;   :ensure t)
+
+;; Terminal
+(leaf vterm
+  :ensure t
+  :hook (vterm-mode-hook . (lambda () (setq show-trailing-whitespace nil))))
+
+;; Coding
+
+;;; Completion
+(leaf company
+  :ensure t
+  :leaf-defer nil
+  :bind ((company-active-map
+          ("M-n" . nil)
+          ("M-p" . nil)
+          ("C-s" . company-filter-candidates)
+          ("C-n" . company-select-next)
+          ("C-p" . company-select-previous)
+          ("<tab>" . company-complete-selection))
+         (company-search-map
+          ("C-n" . company-select-next)
+          ("C-p" . company-select-previous)))
+  :custom ((company-idle-delay . 0)
+           (company-minimum-prefix-length . 1)
+           (completion-ignore-case . t)
+           (company-transformers . '(company-sort-by-occurrence)))
+  :global-minor-mode global-company-mode)
+
+;;; Git
+(leaf magit
+  :ensure t
+  :bind ("C-x C-b" . magit-blame))
+
+(leaf git-gutter+
+  :ensure t
+  :init (global-git-gutter+-mode))
+
+(leaf git-link
+  :ensure t
+  :custom '((git-link-open-in-browser . t)
+            (git-link-use-commit . t)
+            (git-link-use-single-line-number . t)))
+
+(leaf consult-ghq
+  :ensure t
+  :after affe consult
+  :bind ("C-c g" . consult-ghq-find))
+
+;;; LSP
+(leaf lsp-mode
+  :ensure t
+  :custom '((lsp-enable-imenu . nil)
+            (lsp-modeline-diagnostics-enable . t)
+            (lsp-headerline-breadcrumb-enable . t)
+            (lsp-completion-enable . t))
+  :hook ((dockerfile-mode-hook js-mode-hook typescript-mode-hook) . lsp))
+
+(leaf lsp-ui
+  :ensure t
+  :after lsp-mode
+  :custom '((lsp-ui-doc-use-webkit . t)
+            (lsp-vi-doc-max-height . 300)
+            (lsp-ui-doc-max-width . 150))
+  ;; フレームサイズを設定したい
+  ;; https://github.com/emacs-lsp/lsp-ui/issues/123#issuecomment-384941120
+  :hook (lsp-ui-doc-frame-hook . (lambda (frame _w)
+                                   (set-face-attribute 'default frame :font "Monaco" :height 150))))
+
+(leaf consult-lsp
+  :ensure t
+  :after consult lsp-mode)
+
+;;; Checker
+(leaf flycheck
+  :ensure t
+  :hook prog-mode-hook)
+
+;;; Snippet
+(leaf yasnippet
+  :ensure t
+  :init (yas-global-mode 1))
+
+(leaf yasnippet-snippets
+  :ensure t
+  :after yasnippet)
+
+(leaf consult-yasnippet
+  :ensure t
+  :after consult yasnippet)
+
+;; Programming Language
+
+;;; fish
+(leaf fish-mode
+  :ensure t)
+
+;;; Go
+(leaf go-mode
+  :ensure t
+  :after lsp-mode
+  :custom '((gofmt-command . "goimports")
+            (lsp-register-custom-settings
+             . '(("gopls.completeUnimported" t t)
+                 ("gopls.staticcheck" t t))))
+  :hook (go-mode-hook . lsp-deferred))
+
+(leaf go-gen-test
+  :ensure t
+  :hook (before-save-hook . gofmt-before-save))
+
+;;; JavaScript / TypeScript
+(leaf add-node-modules-path
+  :after js2-mode typescript-mode
+  :hook ((js2-mode-hook typescript-mode-hook) . add-node-modules-path))
+
+(leaf js2-mode
+  :ensure t
+  :custom '((js-indent-level . 2))
+  :hook (js-mode-hook . js2-minor-mode))
+
+(leaf typescript-mode
+  :ensure t
+  :mode "\\.tsx\\'"
+  :custom '((typescript-indent-level . 2)))
+
+;;; WebMode
+(leaf web-mode
+  :ensure t
+  :custom '((web-mode-markup-indent-offset . 2)))
+
+;;; Docker
+(leaf docker
+  :ensure t
+  :mode "\\Dockerfile\\'")
+(leaf dockerfile-mode
+  :ensure t)
+(leaf docker-compose-mode
+  :ensure t)
+
+;;; GraphQL
+(leaf graphql-mode
+  :ensure t)
+
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   '(graphql-mode docker-compose-mode dockerfile-mode docker go-gen-test go-mode yasnippet flycheck consult-lsp lsp-ui lsp-mode consult-ghq git-link git-gutter+ magit company vterm which-key affe embark-consult embark consult marginalia vertico orderless ddskk ace-window exec-path-from-shell rainbow-delimiters leaf-keywords leaf)))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
