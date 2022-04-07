@@ -105,6 +105,10 @@
 (leaf elec-pair
   :init (electric-pair-mode t))
 
+(leaf yafolding
+  :ensure t
+  :hook (prog-mode-hook . (lambda () (yafolding-mode))))
+
 (leaf files
   :custom `((auto-save-timeout . 15)
             (auto-save-interval . 60)
