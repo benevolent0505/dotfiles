@@ -272,6 +272,10 @@
   :ensure t
   :hook prog-mode-hook)
 
+(leaf editorconfig
+  :ensure t
+  :init (editorconfig-mode 1))
+
 ;;; Snippet
 (leaf yasnippet
   :ensure t
