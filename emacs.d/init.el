@@ -154,9 +154,9 @@
 
 (leaf consult
   :ensure t
-  :custom '((consult-find-command . "fd --color=never --full-path ARG OPTS"))
+  :custom '((consult-find-command . "fd --color=never --full-path ARG OPTS")
+            (consult-project-function . (lambda (_) (locate-dominating-file "." ".git"))))
   :bind (("C-s" . consult-line)
-         ("M-s f" . consult-find)
          ([remap goto-line] . consult-line)))
 
 (leaf embark
@@ -175,7 +175,9 @@
   :after orderless
   :custom '((affe-highlight-function . 'orderless-highlight-matches)
             (affe-regexp-function . 'orderless-pattern-compiler)
-            (affe-find-command . "fd --color=never --full-path")))
+            (affe-find-command . "fd --color=never --full-path"))
+  :bind ((("M-s f" . affe-find)
+          ("M-s g" . affe-grep))))
 
 (leaf which-key
   :ensure t
@@ -234,7 +236,7 @@
 
 (leaf consult-ghq
   :ensure t
-  :after affe consult
+  :after consult affe
   :bind ("C-c g" . consult-ghq-find))
 
 ;;; LSP
