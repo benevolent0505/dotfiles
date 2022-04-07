@@ -240,8 +240,9 @@
 
 (leaf consult-ghq
   :ensure t
-  :after consult affe
-  :bind ("C-c g" . consult-ghq-find))
+  :after consult affe)
+;; bind keyword で何故か反映されない
+(global-set-key (kbd "C-c g") 'consult-ghq-find)
 
 ;;; LSP
 (leaf lsp-mode
