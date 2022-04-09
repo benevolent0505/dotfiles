@@ -251,7 +251,12 @@
             (lsp-modeline-diagnostics-enable . t)
             (lsp-headerline-breadcrumb-enable . t)
             (lsp-completion-enable . t))
-  :hook ((dockerfile-mode-hook js-mode-hook typescript-mode-hook) . lsp))
+  :commands (lsp lsp-deferred)
+  :hook
+  (dockerfile-mode-hook . lsp)
+  (js-mode-hook . lsp)
+  (typescript-mode-hook . lsp)
+  (go-mode-hook . lsp-deferred))
 
 (leaf lsp-ui
   :ensure t
@@ -303,8 +308,7 @@
   :custom '((gofmt-command . "goimports")
             (lsp-register-custom-settings
              . '(("gopls.completeUnimported" t t)
-                 ("gopls.staticcheck" t t))))
-  :hook (go-mode-hook . lsp-deferred))
+                 ("gopls.staticcheck" t t)))))
 
 (leaf go-gen-test
   :ensure t
