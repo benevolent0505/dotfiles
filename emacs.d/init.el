@@ -187,8 +187,8 @@
   :ensure t
   :init (which-key-mode))
 
-(leaf savehint
-  :custom '((savehint-mode . t)))
+(leaf savehist-mode
+  :custom '((savehist-mode . t)))
 
 ;; Documentation
 
