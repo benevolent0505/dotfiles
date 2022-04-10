@@ -333,6 +333,10 @@
   :mode "\\.tsx\\'"
   :custom '((typescript-indent-level . 2)))
 
+;;; Prettier
+(leaf prettier
+  :ensure t)
+
 ;;; WebMode
 (leaf web-mode
   :ensure t
