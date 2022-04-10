@@ -331,11 +331,25 @@
 (leaf typescript-mode
   :ensure t
   :mode "\\.tsx\\'"
-  :custom '((typescript-indent-level . 2)))
+  :custom '((typescript-indent-level . 2))
+  :config
+  (define-derived-mode typescript-tsx-mode typescript-mode "TSX")
+  (add-to-list 'auto-mode-alist '("\\.tsx\\'" . typescript-tsx-mode)))
 
 ;;; Prettier
 (leaf prettier
   :ensure t)
+
+;;; Tree-sitter
+(leaf tree-sitter
+  :ensure (t tree-sitter-langs)
+  :require tree-sitter-langs
+  :config
+  (global-tree-sitter-mode)
+  (add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode)
+  ;; TSXの対応
+  (tree-sitter-require 'tsx)
+  (add-to-list 'tree-sitter-major-mode-language-alist '(typescript-tsx-mode . tsx)))
 
 ;;; WebMode
 (leaf web-mode
@@ -362,7 +376,8 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(graphql-mode docker-compose-mode dockerfile-mode docker go-gen-test go-mode yasnippet flycheck consult-lsp lsp-ui lsp-mode consult-ghq git-link git-gutter+ magit company vterm which-key affe embark-consult embark consult marginalia vertico orderless ddskk ace-window exec-path-from-shell rainbow-delimiters leaf-keywords leaf)))
+    '(graphql-mode docker-compose-mode dockerfile-mode docker go-gen-test go-mode yasnippet flycheck consult-lsp lsp-ui lsp-mode consult-ghq git-link git-gutter+ magit company vterm which-key affe embark-consult embark consult marginalia vertico orderless ddskk ace-window exec-path-from-shell rainbow-delimiters leaf-keywords leaf))
+ '(safe-local-variable-values '((eval prettier-mode t))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
