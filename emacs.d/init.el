@@ -199,6 +199,9 @@
 ;; Terminal
 (leaf vterm
   :ensure t
+  :custom
+  (vterm-max-scrollback . 10000)
+  (vterm-buffer-name-string . "vterm: %s")
   :hook (vterm-mode-hook . (lambda () (setq show-trailing-whitespace nil))))
 
 ;; Coding
