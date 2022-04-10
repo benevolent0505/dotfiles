@@ -319,6 +319,7 @@
 
 ;;; JavaScript / TypeScript
 (leaf add-node-modules-path
+  :ensure t
   :after js2-mode typescript-mode
   :hook ((js2-mode-hook typescript-mode-hook) . add-node-modules-path))
 
