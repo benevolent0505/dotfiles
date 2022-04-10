@@ -332,6 +332,7 @@
 ;;; WebMode
 (leaf web-mode
   :ensure t
+  :mode "\\.html\\'"
   :custom '((web-mode-markup-indent-offset . 2)))
 
 ;;; Docker
