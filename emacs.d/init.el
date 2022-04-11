@@ -359,10 +359,10 @@
 
 ;;; Docker
 (leaf docker
+  :ensure t)
+(leaf dockerfile-mode
   :ensure t
   :mode "\\Dockerfile\\'")
-(leaf dockerfile-mode
-  :ensure t)
 (leaf docker-compose-mode
   :ensure t)
 
@@ -376,8 +376,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-    '(graphql-mode docker-compose-mode dockerfile-mode docker go-gen-test go-mode yasnippet flycheck consult-lsp lsp-ui lsp-mode consult-ghq git-link git-gutter+ magit company vterm which-key affe embark-consult embark consult marginalia vertico orderless ddskk ace-window exec-path-from-shell rainbow-delimiters leaf-keywords leaf))
- '(safe-local-variable-values '((eval prettier-mode t))))
+   '(graphql-mode docker-compose-mode dockerfile-mode docker web-mode tree-sitter-langs tree-sitter prettier typescript-mode js2-mode add-node-modules-path go-gen-test go-mode fish-mode consult-yasnippet yasnippet-snippets yasnippet editorconfig flycheck consult-lsp lsp-ui lsp-mode consult-ghq git-link git-gutter+ magit company vterm which-key affe embark-consult embark consult marginalia vertico orderless ddskk ace-window exec-path-from-shell yafolding rainbow-delimiters leaf-keywords leaf)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
