@@ -159,7 +159,9 @@
 (leaf consult
   :ensure t
   :custom '((consult-find-command . "fd --color=never --full-path ARG OPTS")
-            (consult-project-function . (lambda (_) (locate-dominating-file "." ".git"))))
+            (consult-project-function . (lambda (_) (locate-dominating-file "." ".git")))
+            (xref-show-xrefs-function . #'consult-xref)
+            (xref-show-definitions-function . #'consult-xref))
   :bind (("C-s" . consult-line)
          ([remap goto-line] . consult-line)))
 
