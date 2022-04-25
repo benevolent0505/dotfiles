@@ -25,10 +25,6 @@
 (leaf comp
   :custom '((native-comp-async-report-warnings-errors . nil)))
 
-;; EV2785向き
-(leaf frame
-  :custom '((initial-frame-alist . '((top . 25) (left . 1920) (width . 190) (height . 45)))))
-
 (leaf *font
   :config
   (set-face-attribute 'default nil :family "JetBrains Mono" :height 180)
