@@ -257,7 +257,8 @@
   (dockerfile-mode-hook . lsp)
   (js-mode-hook . lsp)
   (typescript-mode-hook . lsp)
-  (go-mode-hook . lsp-deferred))
+  (go-mode-hook . lsp-deferred)
+  (graphql-mode-hook . lsp))
 
 (leaf lsp-ui
   :ensure t
