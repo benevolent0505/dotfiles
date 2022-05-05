@@ -229,9 +229,9 @@
   :ensure t
   :bind ("C-x C-b" . magit-blame))
 
-(leaf git-gutter+
-  :ensure t
-  :init (global-git-gutter+-mode))
+;; (leaf git-gutter+
+;;   :ensure t
+;;   :init (global-git-gutter+-mode))
 
 (leaf git-link
   :ensure t
