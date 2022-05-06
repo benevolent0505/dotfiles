@@ -117,6 +117,10 @@
 (leaf startup
   :custom `((auto-save-list-file-prefix . ,(locate-user-emacs-file "backup/.saves-"))))
 
+(leaf shell
+  :setq
+  (shell-file-name . "/bin/bash"))
+
 (leaf exec-path-from-shell
   :ensure t
   :config
