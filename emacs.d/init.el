@@ -123,6 +123,7 @@
 
 (leaf exec-path-from-shell
   :ensure t
+  :if-not (eq system-type 'windows-nt)
   :config
   (exec-path-from-shell-initialize))
 
