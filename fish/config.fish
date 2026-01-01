@@ -4,7 +4,7 @@ if test (uname) = "Linux"
 end
 
 alias f "open ."
-alias emacs "emacsclient -nw"
+alias cat "bat"
 
 # set PATH so it includes user's private bin if it exists
 if test -d $HOME/bin
