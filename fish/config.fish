@@ -16,11 +16,17 @@ if test -d $HOME/.local/bin
     fish_add_path $HOME/.local/bin
 end
 
+# mise
+~/.local/bin/mise activate fish | source
+
+# aqua
+set -gx AQUA_ROOT_DIR (aqua root-dir)
+set -gx AQUA_GLOBAL_CONFIG $HOME/.config/aquaproj-aqua/aqua.yaml
+fish_add_path (aqua root-dir)/bin
+
 # pnpm
-set -gx PNPM_HOME "/home/benevolent0505/.local/share/pnpm"
+set -gx PNPM_HOME $HOME"/.local/share/pnpm"
 if not string match -q -- $PNPM_HOME $PATH
-  set -gx PATH "$PNPM_HOME" $PATH
+    fish_add_path $PNPM_HOME
 end
 # pnpm end
-
-~/.local/bin/mise activate fish | source
