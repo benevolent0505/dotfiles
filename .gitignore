@@ -1,3 +1,10 @@
+# fishshell
+*.local.fish
+fish/fish_variables
+fish/completions/*
+fish/functions/*
+
+
 # Emacs
 /.emacs.d/ac-comphist.dat
 /.emacs.d/auto-save-list/*
